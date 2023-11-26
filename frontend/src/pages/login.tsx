@@ -1,15 +1,17 @@
 
 
 
-export default function SignIn() {
+
+
+
+
+export default function Login() {
     return (
       <div>
-  burası siginin
+  
       </div>
     )
   }
-
-
 
 
 
