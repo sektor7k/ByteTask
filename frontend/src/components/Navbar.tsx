@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react"
+import { useHref } from "react-router-dom"
 
 export default function Navbar() { 
 
@@ -8,17 +9,26 @@ export default function Navbar() {
 
     <header style={{ backgroundColor: '#19181F' }} className="bg-white fixed w-full z-20 top-0 start-0 ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
+        <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="https://w7.pngwing.com/pngs/462/673/png-transparent-black-arrows-logo-art-computer-icons-computer-monitors-desktop-svg-icon-full-screen-miscellaneous-angle-white-thumbnail.png" alt="Flowbite Logo" className="h-8" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Byte Task</span>
         </a>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          
+          <div className=" space-x-4">
+          <button
+            type="button" onClick={() => window.location.href = '/login'}
+            className="text-gray-50 bg-white bg-opacity-0 hover:bg-opacity-100 hover:text-gray-900 border border-2 border-gray-50 focus:ring-1 focus:outline-none focus:ring-white font-bold rounded-full text-sm px-6 py-3 text-center transition duration-300 ease-in-out "
+          >
+            Login
+          </button>
           <button
             type="button"
-            className="text-opacity-0 bg-white hover:bg-black hover:bg-opacity-10 hover:text-white focus:ring-1 focus:outline-none focus:ring-white font-medium rounded-full text-sm px-6 py-3 text-center transition duration-300 ease-in-out font-bold"
+            className="text-opacity-0 bg-white hover:bg-black hover:bg-opacity-10 hover:text-white focus:ring-1 focus:outline-none focus:ring-white font-bold rounded-full text-sm px-6 py-3 text-center transition duration-300 ease-in-out border border-2  border-gray-50 border-opacity-0 hover:border-opacity-100"
           >
             CONNECT
           </button>
+          </div>
 
 
 
