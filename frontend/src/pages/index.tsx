@@ -51,7 +51,7 @@ export default function Home() {
 
       {/* 2. alan */}
 
-      <div style={{ backgroundColor: '#1E1B24' }} className="min-h-screen flex items-center justify-center">
+      <div style={{ backgroundColor: '#1E1B24' }} className="min-h-screen flex items-center justify-center" id="about">
         <div className=" rounded-3xl  p-20 pt-12  w-10/12 ">
           <div className="flex flex-col space-y-6">
 
@@ -59,13 +59,12 @@ export default function Home() {
               type="button"
               className="text-white bg-black bg-opacity-30  font-medium rounded-tl-full rounded-br-full rounded-tr-full rounded-bl-md cursor-auto text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-medium w-36   "
             >
-              What we do
+              About
             </button>
 
             <div className="flex flex-row space-x-10">
-              <h2 className="text-white text-4xl font-bold">We create digital products that
-                help you get ahead </h2>
-              <p className="text-gray-300 text-xl mt-0 mr-0">From fresh ideas to fully-realized designs, we cover  every aspect of your digital presence.</p>
+              <h2 className="text-white text-3xl font-bold">ByteTask, çalışanlar ve işverenler arasında bir bağlantı noktasıdır </h2>
+              <p className="text-gray-300 text-xl mt-0 mr-0">Yetenekli profesyonelleri işverenlerle buluşturarak projelerinizi hızlı ve etkili bir şekilde tamamlamanıza yardımcı oluyoruz.</p>
 
 
             </div>
@@ -87,11 +86,10 @@ export default function Home() {
 
                     <div>
                       <h1 className=" text-white text-xl font-bold">
-                        Web Design
+                        Tasarım Hizmetleri
                       </h1>
                       <p className="text-gray-300 text-sm ">
-                        We craft visually stunning, unforgettable experiences with responsive design at the forefront.
-                      </p>
+                      ByteTask, sadece işlevsel değil, aynı zamanda görsel olarak çekici tasarımlarıyla unutulmaz deneyimler sunar.                      </p>
                     </div>
                   </div>
                 </div>
@@ -108,11 +106,10 @@ export default function Home() {
 
                     <div>
                       <h1 className=" text-white text-xl font-bold">
-                        Web Development
+                      Web Geliştirme Hizmetleri
                       </h1>
                       <p className="text-gray-300 text-sm ">
-                        We excell at converting eye-catching designs into high-functioning, user-friendly web applications.
-                      </p>
+                      Profesyonel tasarımları etkileşimli ve kullanıcı dostu web uygulamalarına dönüştürüyoruz.                      </p>
                     </div>
                   </div>
                 </div>
@@ -130,11 +127,10 @@ export default function Home() {
 
                     <div>
                       <h1 className=" text-white text-xl font-bold">
-                        Maintenance & Optimization
+                      Bakım ve Optimizasyon
                       </h1>
                       <p className="text-gray-300 text-sm ">
-                        We ensure your site remains an effective, optimized tool for your business needs, goals and growth.
-                      </p>
+                      ByteTask, sitenizin etkinliğini ve işlevselliğini sürdürmek için düzenli bakım ve optimizasyon hizmetleri sunar.                       </p>
                     </div>
                   </div>
                 </div>

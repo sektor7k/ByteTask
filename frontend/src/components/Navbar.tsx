@@ -52,7 +52,7 @@ export default function Navbar() {
             </li>
             <li>
               <a
-                href="#"
+                href="#about"
                 className="block py-1 px-3 text-white rounded-full  transition duration-300 ease-in-out hover:bg-gray-800 hover:text-white"
                 aria-current="page"
               >
