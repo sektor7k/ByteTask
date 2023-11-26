@@ -15,7 +15,7 @@ export default function Navbar() {
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           <button
             type="button"
-            className="text-opacity-0 bg-white hover:bg-1E1B24 hover:bg-opacity-0 hover:text-white focus:ring-4 focus:outline-none focus:ring-1E1B24 font-medium rounded-full text-sm px-6 py-3 text-center transition duration-300 ease-in-out font-bold"
+            className="text-opacity-0 bg-white hover:bg-black hover:bg-opacity-10 hover:text-white focus:ring-1 focus:outline-none focus:ring-white font-medium rounded-full text-sm px-6 py-3 text-center transition duration-300 ease-in-out font-bold"
           >
             CONNECT
           </button>

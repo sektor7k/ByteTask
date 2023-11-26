@@ -11,7 +11,7 @@ export default function Home() {
             <div className="ml-0">
             <button
                   type="button"
-                  className="text-white bg-black bg-opacity-30  focus:ring-4 focus:outline-none focus:ring-1E1B24 font-medium rounded-tl-full rounded-br-full rounded-tr-full rounded-bl-md     text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-medium mb-5 "
+                  className="text-white bg-black bg-opacity-30  font-medium rounded-tl-full rounded-br-full rounded-tr-full rounded-bl-md cursor-auto text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-medium mb-5 "
                 >
                   Welcome
                 </button>
@@ -23,13 +23,13 @@ export default function Home() {
               <div className="flex space-x-10   mt-12 justify-center">
                 <button
                   type="button"
-                  className="text-black bg-white hover:bg-1E1B24 hover:bg-opacity-0 hover:text-white focus:ring-4 focus:outline-none focus:ring-1E1B24 font-medium rounded-full text-sm px-8 py-4 text-center transition duration-300 ease-in-out font-bold"
+                  className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white focus:ring-2 focus:outline-none focus:ring-white font-medium rounded-full text-sm px-8 py-4 text-center transition duration-300 ease-in-out font-bold"
                 >
                   Hemen İş Al!
                 </button>
                 <button
                   type="button"
-                  className="text-black bg-white hover:bg-1E1B24 hover:bg-opacity-0 hover:text-white focus:ring-4 focus:outline-none focus:ring-1E1B24 font-medium rounded-full text-sm px-8 py-4 text-center transition duration-300 ease-in-out font-bold"
+                  className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white focus:ring-2 focus:outline-none focus:ring-white font-medium rounded-full text-sm px-8 py-4 text-center transition duration-300 ease-in-out font-bold"
                 >
                   İş  ilanı ver
                 </button>
@@ -45,7 +45,16 @@ export default function Home() {
           </div>
 
         </div>
+
+        
       </div>
+
+      {/* 2. alan */}
+
+      
+
+        
+      
       <Footer/>
     </>
   );
