@@ -1,10 +1,12 @@
-import Image from "next/image"
+import React, {useState, useEffect} from "react"
 
-export default function Navbar() {
+export default function Navbar() { 
+
+
   return (
 
 
-    <header style={{ backgroundColor: '#19181F' }} className="bg-white fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+    <header style={{ backgroundColor: '#19181F' }} className="bg-white fixed w-full z-20 top-0 start-0 ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="https://w7.pngwing.com/pngs/462/673/png-transparent-black-arrows-logo-art-computer-icons-computer-monitors-desktop-svg-icon-full-screen-miscellaneous-angle-white-thumbnail.png" alt="Flowbite Logo" className="h-8" />
@@ -13,7 +15,7 @@ export default function Navbar() {
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           <button
             type="button"
-            className="text-1E1B24 bg-white hover:bg-1E1B24 hover:bg-opacity-0 hover:text-white focus:ring-4 focus:outline-none focus:ring-1E1B24 font-medium rounded-full text-sm px-6 py-3 text-center transition duration-300 ease-in-out font-bold"
+            className="text-opacity-0 bg-white hover:bg-1E1B24 hover:bg-opacity-0 hover:text-white focus:ring-4 focus:outline-none focus:ring-1E1B24 font-medium rounded-full text-sm px-6 py-3 text-center transition duration-300 ease-in-out font-bold"
           >
             CONNECT
           </button>
