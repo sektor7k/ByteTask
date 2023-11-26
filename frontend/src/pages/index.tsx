@@ -6,9 +6,15 @@ export default function Home() {
     <>
       <Navbar />
       <div style={{ backgroundColor: '#1E1B24' }} className="min-h-screen flex items-center justify-center">
-        <div style={{ backgroundColor: '#23202A', height: "30rem" }} className=" rounded-3xl  p-20 shadow-2xl w-9/12 ">
+        <div style={{ backgroundColor: '#23202A', height: "30rem" }} className=" rounded-3xl  p-20 pt-12 shadow-2xl w-9/12 ">
           <div className="flex items-center mb-20 justify-between ">
             <div className="ml-0">
+            <button
+                  type="button"
+                  className="text-white bg-black bg-opacity-30  focus:ring-4 focus:outline-none focus:ring-1E1B24 font-medium rounded-tl-full rounded-br-full rounded-tr-full rounded-bl-md     text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-medium mb-5 "
+                >
+                  Welcome
+                </button>
               <h2 className="text-white text-4xl font-bold   mt-0">Serbest Çalışanlarla Buluşun, <br />Projelerinizi Gerçekleştirin! </h2>
               <p className="text-gray-300 mt-10">İhtiyacınız olan yetenekli serbest çalışanları bulun ya da kendi <br />
                 becerilerinizi sunun. ByteTask, projelerinizi hayata geçirmeniz <br />
