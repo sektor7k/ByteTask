@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Welcome from "@/components/Welcome";
 import About from "@/components/About";
 import ExampleJobs from "@/components/Examplejobs";
+import Donate from "@/components/Donate";
 
 export default function Home() {
   return (
@@ -10,7 +11,8 @@ export default function Home() {
       <Navbar />
       <Welcome />
       <About />
-      <ExampleJobs/>
+      <ExampleJobs />
+      <Donate/>     
       <Footer />
     </>
   );

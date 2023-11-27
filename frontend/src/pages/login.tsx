@@ -18,7 +18,7 @@ export default function Login() {
                 <div className="space-y-4 md:space-y-6" >
                   <button
                     type="button"
-                    className="text-white bg-black bg-opacity-30  font-medium rounded-tl-full rounded-br-full rounded-tr-full rounded-bl-md cursor-auto text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-medium mt-0 "
+                    className="text-white bg-black bg-opacity-30  font-medium rounded-tl-full rounded-br-full rounded-tr-full rounded-bl-md cursor-auto text-sm px-4 py-2 text-center transition duration-300 ease-in-out mt-0 "
                   >
                     Contact
                   </button>
