@@ -93,7 +93,7 @@ export default function ExampleJobs() {
                 <span className="text-3xl font-bold text-gray-900 dark:text-white">$40</span>
                 <button
                   type="button"
-                  className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white border-2 border-gray-50 focus:ring-2 focus:outline-none focus:ring-white font-medium rounded-full text-sm px-4 py-3 text-center transition duration-300 ease-in-out font-bold"
+                  className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white border-2 border-gray-50 focus:ring-2 focus:outline-none focus:ring-white font-medium rounded-full text-sm px-4 py-3 text-center transition duration-300 ease-in-out"
                 >
                   Go to App
                 </button>              </div>
@@ -132,7 +132,7 @@ export default function ExampleJobs() {
                 <span className="text-3xl font-bold text-gray-900 dark:text-white">$150</span>
                 <button
                   type="button"
-                  className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white border border-2 border-gray-50 focus:ring-2 focus:outline-none focus:ring-white font-medium rounded-full text-sm px-4 py-3 text-center transition duration-300 ease-in-out font-bold"
+                  className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white border-2 border-gray-50 focus:ring-2 focus:outline-none focus:ring-white rounded-full text-sm px-4 py-3 text-center transition duration-300 ease-in-out font-medium"
                 >
                   Go to App
                 </button>
