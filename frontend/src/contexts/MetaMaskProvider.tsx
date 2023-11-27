@@ -14,10 +14,10 @@ export const useMetaMask = () => useContext(MetaMaskContext)
 export const MetaMaskProvider = ({ children }: { children: ReactNode }) => {
     const [address, setAddress] = useState<string | null>(null)
 
-    // function etherToWei(amount: number): string {
-    //     const wei = amount * 1000000000000000000
-    //     return '0x' + wei.toString(16)
-    // }
+    function etherToWei(amount: number): string {
+        const wei = amount 
+        return '0x' + wei.toString(16)
+    }
  
     return (
         <MetaMaskContext.Provider value={{
@@ -49,13 +49,14 @@ export const MetaMaskProvider = ({ children }: { children: ReactNode }) => {
                 setAddress(null)}
                 ,
             async sendEther(amount: number, toAddress: string) {
+
                 try {      
                     const hash = await (window as any).ethereum.request({              
                         method: 'eth_sendTransaction',
                         params: [{
                             from: address,
                             to: toAddress,
-                            value: '0x001'//etherToWei(amount), // todo: `value` kismina `amount` parametresine gore hex olarak WEI miktarinin gelmesi lazim
+                            value: etherToWei(amount), // todo: `value` kismina `amount` parametresine gore hex olarak WEI miktarinin gelmesi lazim
                         }]
                     })
 

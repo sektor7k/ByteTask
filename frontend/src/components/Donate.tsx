@@ -9,7 +9,7 @@ export default function Donate() {
   const [transactionHash, setTransactionHash] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
-    console.log(address);
+    
     e.preventDefault();
 
     // Güvenlik kontrolleri ve gerekli validasyonlar burada yapılabilir
