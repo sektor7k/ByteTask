@@ -51,7 +51,7 @@ export default function Home() {
 
       {/* 2. alan */}
 
-      <div style={{ backgroundColor: '#1E1B24' }} className="min-h-screen flex items-center justify-center" id="about">
+      <div style={{ backgroundColor: '#1E1B24' }} className="min-h-screen flex items-center justify-center">
         <div className=" rounded-3xl  p-20 pt-12  w-10/12 ">
           <div className="flex flex-col space-y-6">
 
@@ -75,7 +75,7 @@ export default function Home() {
                   <div className="flex flex-row space-x-10">
 
                     <div className="flex flex-col justify-between">
-                      
+
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12  text-gray-400 p-2 bg-black bg-opacity-40 rounded-xl">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
                       </svg>
@@ -89,7 +89,7 @@ export default function Home() {
                         Tasarım Hizmetleri
                       </h1>
                       <p className="text-gray-300 text-sm ">
-                      ByteTask, sadece işlevsel değil, aynı zamanda görsel olarak çekici tasarımlarıyla unutulmaz deneyimler sunar.                      </p>
+                        ByteTask, sadece işlevsel değil, aynı zamanda görsel olarak çekici tasarımlarıyla unutulmaz deneyimler sunar.                      </p>
                     </div>
                   </div>
                 </div>
@@ -106,10 +106,10 @@ export default function Home() {
 
                     <div>
                       <h1 className=" text-white text-xl font-bold">
-                      Web Geliştirme Hizmetleri
+                        Web Geliştirme Hizmetleri
                       </h1>
                       <p className="text-gray-300 text-sm ">
-                      Profesyonel tasarımları etkileşimli ve kullanıcı dostu web uygulamalarına dönüştürüyoruz.                      </p>
+                        Profesyonel tasarımları etkileşimli ve kullanıcı dostu web uygulamalarına dönüştürüyoruz.                      </p>
                     </div>
                   </div>
                 </div>
@@ -127,10 +127,10 @@ export default function Home() {
 
                     <div>
                       <h1 className=" text-white text-xl font-bold">
-                      Bakım ve Optimizasyon
+                        Bakım ve Optimizasyon
                       </h1>
                       <p className="text-gray-300 text-sm ">
-                      ByteTask, sitenizin etkinliğini ve işlevselliğini sürdürmek için düzenli bakım ve optimizasyon hizmetleri sunar.                       </p>
+                        ByteTask, sitenizin etkinliğini ve işlevselliğini sürdürmek için düzenli bakım ve optimizasyon hizmetleri sunar.                       </p>
                     </div>
                   </div>
                 </div>
@@ -168,7 +168,134 @@ export default function Home() {
 
 
       </div>
+      {/* 3. Alan*/}
+      <div style={{ backgroundColor: '#1E1B24' }} className="min-h-screen flex items-center justify-center">
+        <div className="  p-20 pt-12  w-10/12 flex flex-row space-x-8">
 
+
+
+          <div style={{ backgroundColor: '#23202A' }} className="w-full max-w-sm border border-gray-700 rounded-lg shadow-2xl">
+            <a href="#">
+              <img className="p-8 rounded-2xl" src="https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/gigs/323544322/original/f9df904ea0d24c99ee4f88628a634b0fa1d269b1.png" alt="product image" />
+            </a>
+            <div className="px-5 pb-5">
+              <a href="#">
+                <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">I will create 3d game assets, weapons and props with textures</h5>
+              </a>
+              <div className="flex items-center mt-2.5 mb-5">
+                <div className="flex items-center space-x-1 rtl:space-x-reverse">
+                  <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                  </svg>
+                  <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                  </svg>
+                  <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                  </svg>
+                  <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                  </svg>
+                  <svg className="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                  </svg>
+                </div>
+                <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-3xl font-bold text-gray-900 dark:text-white">$250</span>
+                <button
+                  type="button"
+                  className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white border border-2 border-gray-50 focus:ring-2 focus:outline-none focus:ring-white font-medium rounded-full text-sm px-4 py-3 text-center transition duration-300 ease-in-out font-bold"
+                >
+                  Go to App
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ backgroundColor: '#23202A' }} className="w-full max-w-sm border border-gray-700 rounded-lg shadow-2xl">
+            <a href="#">
+              <img className="p-8 rounded-t-lg" src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/1360189/original/cb4b5dd861907fe92720b1009eadd53e8dcc864b/design-logo-for-your-company.jpg" alt="product image" />
+            </a>
+            <div className="px-5 pb-5">
+              <a href="#">
+                <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">I will design a modern logo for your company</h5>
+              </a>
+              <div className="flex items-center mt-2.5 mb-5">
+                <div className="flex items-center space-x-1 rtl:space-x-reverse">
+                  <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                  </svg>
+                  <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                  </svg>
+                  <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                  </svg>
+                  <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                  </svg>
+                  <svg className="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                  </svg>
+                </div>
+                <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-3xl font-bold text-gray-900 dark:text-white">$40</span>
+                <button
+                  type="button"
+                  className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white border border-2 border-gray-50 focus:ring-2 focus:outline-none focus:ring-white font-medium rounded-full text-sm px-4 py-3 text-center transition duration-300 ease-in-out font-bold"
+                >
+                  Go to App
+                </button>              </div>
+            </div>
+          </div>
+
+          <div style={{ backgroundColor: '#23202A' }} className="w-full max-w-sm border border-gray-700 rounded-lg shadow-2xl">
+            <a href="#">
+              <img className="p-8 rounded-t-lg" src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/173262263/original/83056cf7e962c8033646df27d06c3f4e453e4681/create-web-app-ui-ux-designs.png" alt="product image" />
+            </a>
+            <div className="px-5 pb-5">
+              <a href="#">
+                <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">I will do website UI UX design</h5>
+              </a>
+              <div className="flex items-center mt-2.5 mb-5">
+                <div className="flex items-center space-x-1 rtl:space-x-reverse">
+                  <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                  </svg>
+                  <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                  </svg>
+                  <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                  </svg>
+                  <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                  </svg>
+                  <svg className="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                  </svg>
+                </div>
+                <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-3xl font-bold text-gray-900 dark:text-white">$150</span>
+                <button
+                  type="button"
+                  className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white border border-2 border-gray-50 focus:ring-2 focus:outline-none focus:ring-white font-medium rounded-full text-sm px-4 py-3 text-center transition duration-300 ease-in-out font-bold"
+                >
+                  Go to App
+                </button>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
 
 
 
