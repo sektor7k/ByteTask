@@ -1,12 +1,25 @@
 
 
-export default function ExampleJobs(){
-    
-    return(
+export default function ExampleJobs() {
+
+    return (
         <div style={{ backgroundColor: '#1E1B24' }} className="min-h-screen flex items-center justify-center">
-        <div className="  p-20 pt-12  w-10/12 flex flex-row space-x-8">
+        <div className="w-10/12 flex flex-col items-center justify-center space-y-4">
 
-
+        <div className=" pl-44 w-full">
+        <button
+            type="button"
+            className="text-white bg-black bg-opacity-30  font-medium rounded-tl-full rounded-br-full rounded-tr-full rounded-bl-md cursor-auto text-sm px-4 py-2 text-center transition duration-300 ease-in-out w-36   "
+          >
+            Hemen İşe Başla
+          </button>
+        </div>
+        <div className="pl-44 w-full">
+        <h2 className="text-white text-3xl font-bold mt-0">İleriye Atılan İlk Adım: Hemen İşe Başla Arena </h2>
+        </div>
+        
+        
+        <div className="p-20 pt-4  w-10/12 flex flex-row space-x-8">
 
           <div style={{ backgroundColor: '#23202A' }} className="w-full max-w-sm border border-gray-700 rounded-lg shadow-2xl">
             <a href="#">
@@ -40,7 +53,7 @@ export default function ExampleJobs(){
                 <span className="text-3xl font-bold text-gray-900 dark:text-white">$250</span>
                 <button
                   type="button"
-                  className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white border-2 border-gray-50 focus:ring-2 focus:outline-none focus:ring-white font-medium rounded-full text-sm px-4 py-3 text-center transition duration-300 ease-in-out font-bold"
+                  className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white border-2 border-gray-50 focus:ring-2 focus:outline-none focus:ring-white font-medium rounded-full text-sm px-4 py-3 text-center transition duration-300 ease-in-out"
                 >
                   Go to App
                 </button>
@@ -129,10 +142,10 @@ export default function ExampleJobs(){
 
 
         </div>
-      </div>
+        </div>
+      </div> 
     )
 }
-
 
 
 

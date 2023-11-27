@@ -11,7 +11,7 @@ export default function Welcome(){
             <div className="ml-0">
               <button
                 type="button"
-                className="text-white bg-black bg-opacity-30  font-medium rounded-tl-full rounded-br-full rounded-tr-full rounded-bl-md cursor-auto text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-medium mb-5 "
+                className="text-white bg-black bg-opacity-30  font-medium rounded-tl-full rounded-br-full rounded-tr-full rounded-bl-md cursor-auto text-sm px-4 py-2 text-center transition duration-300 ease-in-out mb-5 "
               >
                 Hoş geldiniz
               </button>
