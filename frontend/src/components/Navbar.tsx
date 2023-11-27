@@ -1,8 +1,10 @@
-import React, {useState, useEffect} from "react"
-import { useHref } from "react-router-dom"
+import { useMetaMask } from "@/contexts/MetaMaskProvider";
+import React, { useState, useEffect } from "react"
 
-export default function Navbar() { 
 
+export default function Navbar() {
+
+  const { connect, address, disconnect } = useMetaMask();
 
   return (
 
@@ -14,20 +16,35 @@ export default function Navbar() {
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Byte Task</span>
         </a>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          
+
           <div className=" space-x-4">
-          <button
-            type="button" onClick={() => window.location.href = '/login'}
-            className="text-gray-50 bg-white bg-opacity-0 hover:bg-opacity-100 hover:text-gray-900 border border-2 border-gray-50 focus:ring-1 focus:outline-none focus:ring-white font-bold rounded-full text-sm px-6 py-3 text-center transition duration-300 ease-in-out "
-          >
-            Login
-          </button>
-          <button
-            type="button"
-            className="text-opacity-0 bg-white hover:bg-black hover:bg-opacity-10 hover:text-white focus:ring-1 focus:outline-none focus:ring-white font-bold rounded-full text-sm px-6 py-3 text-center transition duration-300 ease-in-out border border-2  border-gray-50 border-opacity-0 hover:border-opacity-100"
-          >
-            CONNECT
-          </button>
+            <button
+              type="button" onClick={() => window.location.href = '/login'}
+              className="text-gray-50 bg-white bg-opacity-0 hover:bg-opacity-100 hover:text-gray-900 border-2 border-gray-50 focus:ring-1 focus:outline-none focus:ring-white font-bold rounded-full text-sm px-6 py-3 text-center transition duration-300 ease-in-out "
+            >
+              Login
+            </button>
+            {address ? (
+                <button
+                onClick={disconnect}
+                type="button"
+                className="text-opacity-0 bg-white hover:bg-black hover:bg-opacity-10 hover:text-white focus:ring-1 focus:outline-none focus:ring-white font-bold rounded-full text-sm px-6 py-3 text-center transition duration-300 ease-in-out border-2  border-gray-50 border-opacity-0 hover:border-opacity-100"
+              >
+                {address.substring(0, 4) +
+                '..' +
+                address.substring(address.length - 4, address.length)}
+              </button>
+            ) : (
+              <button
+                onClick={connect}
+                type="button"
+                className="text-opacity-0 bg-white hover:bg-black hover:bg-opacity-10 hover:text-white focus:ring-1 focus:outline-none focus:ring-white font-bold rounded-full text-sm px-6 py-3 text-center transition duration-300 ease-in-out border-2  border-gray-50 border-opacity-0 hover:border-opacity-100"
+              >
+                CONNECT
+              </button>
+            )}
+
+            
           </div>
 
 

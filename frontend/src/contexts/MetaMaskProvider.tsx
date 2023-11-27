@@ -2,7 +2,8 @@ import { createContext, ReactNode, useContext, useState } from "react"
 
 interface MetaMaskContextState {
     address: string | null // kullanicinin adresi, null ise bagli degil demektir
-    connect(): Promise<void> // cuzdan baglama fonksiyonu
+    connect(): Promise<void>
+    disconnect(): void // cuzdan baglama fonksiyonu
     sendEther(amount: number, toAddress: string): Promise<string> // tx basariliysa tx hash donduruyor
 }
 
@@ -39,6 +40,9 @@ export const MetaMaskProvider = ({ children }: { children: ReactNode }) => {
                 }
 
             },
+            async disconnect() {
+                setAddress(null)}
+                ,
             async sendEther(amount: number, toAddress: string) {
                 try {      
                     const hash = await (window as any).ethereum.request({              
