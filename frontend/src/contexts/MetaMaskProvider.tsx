@@ -14,10 +14,10 @@ export const useMetaMask = () => useContext(MetaMaskContext)
 export const MetaMaskProvider = ({ children }: { children: ReactNode }) => {
     const [address, setAddress] = useState<string | null>(null)
 
-    function etherToWei(amount: number): string {
-        const wei = amount * 1000000000000000000
-        return '0x' + wei.toString(16)
-    }
+    // function etherToWei(amount: number): string {
+    //     const wei = amount * 1000000000000000000
+    //     return '0x' + wei.toString(16)
+    // }
  
     return (
         <MetaMaskContext.Provider value={{
@@ -55,7 +55,7 @@ export const MetaMaskProvider = ({ children }: { children: ReactNode }) => {
                         params: [{
                             from: address,
                             to: toAddress,
-                            value: etherToWei(amount), // todo: `value` kismina `amount` parametresine gore hex olarak WEI miktarinin gelmesi lazim
+                            value: '0x001'//etherToWei(amount), // todo: `value` kismina `amount` parametresine gore hex olarak WEI miktarinin gelmesi lazim
                         }]
                     })
 
@@ -65,7 +65,7 @@ export const MetaMaskProvider = ({ children }: { children: ReactNode }) => {
                         return // hata kodu 4001 ise kullanici MetaMask'ta iptale basmistir
                     } else {
                         // hata baska biseyse console'a yazdirsin
-                        alert('Open console!')
+                        alert('Open console!!')
                         console.log(error)
                     }
                 }

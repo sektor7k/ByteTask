@@ -1,5 +1,5 @@
 import { useMetaMask } from "@/contexts/MetaMaskProvider";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Web3 from 'web3';
 
 export default function Donate() {
@@ -28,6 +28,13 @@ export default function Donate() {
     }
   };
 
+  useEffect(() => {
+    if (transactionHash) {
+      console.log("Transaction Hash:", transactionHash);
+    }
+  }, [transactionHash]);
+
+  
   return (
     <div style={{ backgroundColor: '#1E1B24' }} className="min-h-screen flex items-center justify-center">
       <div className="rounded-3xl p-20 pt-0 w-10/12 flex items-center justify-center">
