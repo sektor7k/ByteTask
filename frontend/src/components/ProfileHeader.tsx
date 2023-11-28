@@ -17,20 +17,24 @@ export default function ProfileHeader(){
                 className="bg-cover bg-center h-32 w-32 rounded-full overflow-hidden  "
                 style={{ backgroundImage: `url("https://blog.teknosa.com/wp-content/uploads/2021/09/profil-fotografi-nasil-cekilmeli-teknosa.jpg")`, border: "6px solid #23202A" }}
               ></div>
+              <div className=" justify-center items-center relative">
+              <h2 className="text-white text-xl font-bold ">Angelina Swam </h2>
+              <p className="text-gray-300 text-xs mt-1 translate-x-6">San Francisco, CA</p>
+              </div>
             </div>
 
           </div>
 
           <div style={{ backgroundColor: '#23202A' }} className=" h-28 w-5/6  rounded-bl-lg rounded-br-lg flex flex-row justify-between items-center">
             
-              <ul  className="flex flex-row p-4 md:p-0 mt-4 font-medium rounded-lg ml-24 space-x-12">
+              <ul  className="flex flex-row p-4 md:p-0 mt-4 font-medium rounded-lg ml-10 space-x-12">
                 <li>
                   <a
                     href="/"
                     className="block py-1 px-3 text-white rounded-full  transition duration-300 ease-in-out hover:bg-gray-800 hover:text-white"
                     aria-current="page"
                   >
-                    Home
+                    Hakkında
                   </a>
                 </li>
                 <li>
@@ -39,7 +43,7 @@ export default function ProfileHeader(){
                     className="block py-1 px-3 text-white rounded-full  transition duration-300 ease-in-out hover:bg-gray-800 hover:text-white"
                     aria-current="page"
                   >
-                    About
+                    Portfolyosu
                   </a>
                 </li>
                 <li>
@@ -48,15 +52,12 @@ export default function ProfileHeader(){
                     className="block py-1 px-3 text-white rounded-full  transition duration-300 ease-in-out hover:bg-gray-800 hover:text-white"
                     aria-current="page"
                   >
-                    Services
+                    Değerlendirmeler
                   </a>
                 </li>
 
               </ul>
-              <div className=" justify-center items-center relative">
-              <h2 className="text-white text-xl font-bold ">Angelina Swam </h2>
-              <p className="text-gray-300 text-xs mt-1 translate-x-6">San Francisco, CA</p>
-              </div>
+              
               <ul className="flex flex-row p-4 md:p-0 mt-4 font-medium rounded-lg mr-24 space-x-12">
                 <li>
                   <a
