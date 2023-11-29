@@ -106,31 +106,146 @@ export default function Evaluations() {
                 </div>
                 <div className="flex flex-col items-center ">
                     <p className="text-gray-400">
-                    12 sipariş
+                        12 sipariş
                     </p>
                     <p className="text-white text-lg">
-                    7 değerlendirme
+                        7 değerlendirme
                     </p>
                     <p className="text-yellow-300 text-6xl font-bold">
-                    3.50
+                        3.50
                     </p>
                     <p className="text-gray-500">
-                    5 üzerinden
+                        5 üzerinden
                     </p>
+
                 </div>
 
             </div>
 
             <div className="flex flex-col  space-y-5 w-5/6 p-10">
 
-                <div className="w-full h-12 border border-solid border-gray-700 rounded-xl">
-                    sasa
+                <div className="w-full border border-solid border-gray-700 rounded-xl flex flex-row p-6 justify-between">
+                    <div className="flex flex-row space-x-3">
+                        <img className="w-12 h-12 rounded-full" src="https://bgcp.bionluk.com/images/avatar/200x200/e8be52af-d617-455f-9ec1-c85fa58af620.jpg" alt="profil" />
+                        <div>
+                            <div className="flex flex-row space-x-1">
+                                <p className="text-white font-bold text-lg">
+                                    cerennalbant
+                                </p>
+                                <svg className="w-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                </svg>
+                                <p className="text-yellow-300 text-lg font-bold">
+                                    5.0
+                                </p>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 text-gray-400">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                                </svg>
+
+
+
+                            </div>
+                            <p className="text-gray-400">
+                                İletişim konusunda oldukça başarılı, yeniden tanıştığıma memnun oldum ☺️🖖
+                            </p>
+                        </div>
+
+                    </div>
+                    <p className="text-white">
+                        14 gün önce
+                    </p>
                 </div>
-                <div className="w-full h-12 border border-solid border-gray-700 rounded-xl">
-                    sasa
+                <div className="w-full border border-solid border-gray-700 rounded-xl flex flex-row p-6 justify-between">
+                    <div className="flex flex-row space-x-3">
+                        <img className="w-12 h-12 rounded-full" src="https://bgcp.bionluk.com/images/avatar/200x200/101154dc-0057-4371-8c3b-eb86ae113afd.jpg" alt="profil" />
+                        <div>
+                            <div className="flex flex-row space-x-1">
+                                <p className="text-white font-bold text-lg">
+                                    ooerdik
+                                </p>
+                                <svg className="w-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                </svg>
+                                <p className="text-yellow-300 text-lg font-bold">
+                                    4.0
+                                </p>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 text-gray-400">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                                </svg>
+
+
+
+                            </div>
+                            <p className="text-gray-400">
+                                İletişimi kuvvetli, oldukça başarılı. Tam istediğim ürüne sahip oldum.
+                            </p>
+                        </div>
+
+                    </div>
+                    <p className="text-white">
+                        2 ay önce
+                    </p>
                 </div>
-                <div className="w-full h-12 border border-solid border-gray-700 rounded-xl">
-                    sasa
+                <div className="w-full border border-solid border-gray-700 rounded-xl flex flex-row p-6 justify-between">
+                    <div className="flex flex-row space-x-3">
+                        <img className="w-12 h-12 rounded-full" src="https://bgcp.bionluk.com/images/avatar/200x200/e4c54d71-8743-456e-9976-4d12795669b2.jpg" alt="profil" />
+                        <div>
+                            <div className="flex flex-row space-x-1">
+                                <p className="text-white font-bold text-lg">
+                                    edizsb
+                                </p>
+                                <svg className="w-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                </svg>
+                                <p className="text-yellow-300 text-lg font-bold">
+                                    5.0
+                                </p>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 text-gray-400">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                                </svg>
+
+
+
+                            </div>
+                            <p className="text-gray-400">
+                                2. İşbirliğimizdi. Teşekkür ederiz.
+                            </p>
+                        </div>
+
+                    </div>
+                    <p className="text-white">
+                        2 ay önce
+                    </p>
+                </div>
+                <div className="w-full border border-solid border-gray-700 rounded-xl flex flex-row p-6 justify-between">
+                    <div className="flex flex-row space-x-3">
+                        <img className="w-12 h-12 rounded-full" src="https://bgcp.bionluk.com/images/avatar/200x200/8ddba9df-3589-4261-a96a-bd595da725aa.jpg" alt="profil" />
+                        <div>
+                            <div className="flex flex-row space-x-1">
+                                <p className="text-white font-bold text-lg">
+                                    sentilyon
+                                </p>
+                                <svg className="w-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                </svg>
+                                <p className="text-yellow-300 text-lg font-bold">
+                                    4.0
+                                </p>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 text-gray-400">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                                </svg>
+
+
+
+                            </div>
+                            <p className="text-gray-400">
+                                Zor bir zamanda çözüm katkısı sağladığı ve sorunsuz hizmet sunduğunuz için çok teşekkür ederim.                            </p>
+                        </div>
+
+                    </div>
+                    <p className="text-white">
+                        2 ay önce
+                    </p>
                 </div>
 
             </div>
