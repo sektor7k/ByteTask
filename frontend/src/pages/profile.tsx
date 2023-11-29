@@ -1,3 +1,4 @@
+import Evaluations from "@/components/Evaluations";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import ProfileAbout from "@/components/ProfileAbout";
@@ -18,8 +19,10 @@ export default function Profile() {
         {/* <ProfileAbout/> */}
 
         {/* Hizmetler */}
+        {/* <Services/> */}
 
-        <Services/>
+        {/* Değerlendirmeler */}
+        <Evaluations/>
 
 
 

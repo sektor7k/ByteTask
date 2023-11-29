@@ -105,7 +105,7 @@ export default function Services(){
                   </div>
                 </div>
                 <p className="text-2xl text-green-400 font-bold">
-                  500$
+                  130$
                 </p>
 
 
@@ -137,7 +137,7 @@ export default function Services(){
                   </div>
                 </div>
                 <p className="text-2xl text-green-400 font-bold">
-                  500$
+                  350$
                 </p>
 
 
