@@ -5,7 +5,7 @@ export default function Statistics() {
 
         <div style={{ backgroundColor: '#23202A' }} className=" w-4/12  rounded-lg flex flex-col pb-6 items-center">
 
-            <div className="flex flex-row space-x-2 mt-6 ml-10  ">
+            <div className="flex flex-row space-x-2 mt-6   ">
                 <button
                     type="button"
                     className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white  border-2 border-gray-50 focus:ring-2 focus:outline-none focus:ring-whit  rounded-full rounded-r-none text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-bold"

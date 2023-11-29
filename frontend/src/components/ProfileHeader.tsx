@@ -15,7 +15,7 @@ export default function ProfileHeader() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 translate-y-12">
           <div
             className="bg-cover bg-center h-32 w-32 rounded-full overflow-hidden  "
-            style={{ backgroundImage: `url("https://blog.teknosa.com/wp-content/uploads/2021/09/profil-fotografi-nasil-cekilmeli-teknosa.jpg")`, border: "6px solid #23202A" }}
+            style={{ backgroundImage: `url("https://pbs.twimg.com/media/FvELKPKWYBQ1d1x.jpg")`, border: "6px solid #23202A" }}
           ></div>
           <div className=" justify-center items-center relative">
             <h2 className="text-white text-xl font-bold ">Angelina Swam </h2>
@@ -43,7 +43,7 @@ export default function ProfileHeader() {
               className="block py-1 px-3 text-white rounded-full  transition duration-300 ease-in-out hover:bg-gray-800 hover:text-white"
               aria-current="page"
             >
-              Portfolyosu
+              Hizmetler
             </a>
           </li>
           <li>
