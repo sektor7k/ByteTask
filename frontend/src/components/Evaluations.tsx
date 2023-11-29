@@ -214,7 +214,7 @@ export default function Evaluations() {
 
                     </div>
                     <p className="text-white">
-                        2 ay önce
+                        5 ay önce
                     </p>
                 </div>
                 <div className="w-full border border-solid border-gray-700 rounded-xl flex flex-row p-6 justify-between">
@@ -244,7 +244,7 @@ export default function Evaluations() {
 
                     </div>
                     <p className="text-white">
-                        2 ay önce
+                        7 ay önce
                     </p>
                 </div>
 
