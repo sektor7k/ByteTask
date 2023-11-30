@@ -30,7 +30,7 @@ export default function ProfileHeader() {
         <ul className="flex flex-row p-4 md:p-0 mt-4 font-medium rounded-lg ml-10 space-x-12">
           <li>
             <a
-              href="/"
+              href="/profile/hakkimda"
               className="block py-1 px-3 text-white rounded-full  transition duration-300 ease-in-out hover:bg-gray-800 hover:text-white"
               aria-current="page"
             >
@@ -39,7 +39,7 @@ export default function ProfileHeader() {
           </li>
           <li>
             <a
-              href="#about"
+              href="/profile/hizmetler"
               className="block py-1 px-3 text-white rounded-full  transition duration-300 ease-in-out hover:bg-gray-800 hover:text-white"
               aria-current="page"
             >
@@ -48,7 +48,7 @@ export default function ProfileHeader() {
           </li>
           <li>
             <a
-              href="#"
+              href="/profile/degerlendirmeler"
               className="block py-1 px-3 text-white rounded-full  transition duration-300 ease-in-out hover:bg-gray-800 hover:text-white"
               aria-current="page"
             >

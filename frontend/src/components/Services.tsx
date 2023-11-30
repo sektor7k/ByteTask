@@ -22,7 +22,7 @@ export default function Services(){
 
           </div>
 
-          <div className="flex flex-row  space-x-5 w-full justify-start p-10">
+          <div className="flex flex-row space-x-5 w-full justify-start p-10">
             <div className="w-72  max-w-sm border border-gray-700 rounded-xl shadow-2xl flex flex-col justify-between">
               <div className="h-1/2 ">
                 <img className="w-full h-full rounded-t-xl" src="https://bgcp.bionluk.com/images/portfolio/1400x788/ccd29e10-12ab-46c9-97a3-2ac871afa09c.jpg" alt="job" />
