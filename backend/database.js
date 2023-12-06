@@ -1,5 +1,6 @@
 import mysql from "mysql2";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
+import bcrypt from "bcrypt";
 
 dotenv.config()
 
@@ -11,6 +12,7 @@ const pool = mysql.createPool({
 }).promise()
 
 export async function addUser(username, email, password) {
+  const hashPassword = await bcrypt.hash(password, 13)
   try {
 
     const checkuser = await userCheck(username, email);
@@ -19,7 +21,7 @@ export async function addUser(username, email, password) {
 
       const result = await pool.query(
         `INSERT INTO users (username, email, password)
-        VALUES (?, ?, ?)`, [username, email, password]
+        VALUES (?, ?, ?)`, [username, email, hashPassword]
       )
       return { success: checkuser.success, message: checkuser.message }
     } else {
