@@ -27,7 +27,7 @@ app.post("/signup", async (req, res) => {
     
     if(signupdatabaseresponse)
     {
-      return res.status(200).send({ message: signupdatabaseresponse.message, status: 'ok' });
+      return res.status(200).send({ message: signupdatabaseresponse.message, status: 'ok', success: signupdatabaseresponse.success });
     }
     else{ 
       return res.status(201).send({ message: signupdatabaseresponse.message, status: 'SigupError' });
