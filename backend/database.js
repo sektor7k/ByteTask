@@ -13,15 +13,17 @@ const pool = mysql.createPool({
 export async function addUser(username, email, password) {
   try {
 
-    const checkuser = await userCheck(email);
+    const checkuser = await userCheck(username, email);
 
-    if (checkuser) {
-      return { success: checkuser.success, message: checkuser.message }
-    } else {
+    if (checkuser.success) {
+
       const result = await pool.query(
         `INSERT INTO users (username, email, password)
         VALUES (?, ?, ?)`, [username, email, password]
       )
+      return { success: checkuser.success, message: checkuser.message }
+    } else {
+      
       return { success: checkuser.success, message: checkuser.message };
     }
   } catch (err) {
@@ -29,15 +31,21 @@ export async function addUser(username, email, password) {
   }
 }
 
-export async function userCheck(email) {
+export async function userCheck(username, email) {
   try {
     // MySQL sorgusunu hazırla
-    const query = 'SELECT * FROM users WHERE email = ?';
-    const [rows] = await pool.query(query, [email]);
+    const queryUsername = 'SELECT * FROM users WHERE username = ?';
+    const [rowsUsername] = await pool.query(queryUsername, [username]);
+
+    const queryEmail = 'SELECT * FROM users WHERE email = ?';
+    const [rowsEmail] = await pool.query(queryEmail, [email]);
 
     // Eğer kullanıcı bulunduysa hata döndür
-    if (rows.length > 0) {
-      return { success: false, message: 'Bu e-posta adresi zaten kayıtlı.' };
+    if (rowsUsername.length > 0) {
+      return { success: false, message: 'Bu kullanıcı adı zaten kayıtlı.' };
+    }
+    if (rowsEmail.length > 0) {
+      return { success: false, message: 'Bu email adresi zaten kayıtlı' };
     }
 
     // Kullanıcı bulunamadıysa, kayıt işlemine devam et
