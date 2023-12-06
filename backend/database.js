@@ -1,36 +1,49 @@
+import mysql from "mysql2";
+import dotenv from "dotenv"
 
+dotenv.config()
 
+const pool = mysql.createPool({
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE
+}).promise()
 
-export async function SignupUser(username, password, email) {
-    try {
-      // Burada kullanıcı kaydı için gerekli işlemleri gerçekleştirin
-      // Örneğin, veritabanına kullanıcı bilgilerini kaydetme işlemi
-       const CheckStatus = await UserExistsCheck(username, email);
-        if( CheckStatus.success === false){
-            //buraya database kullnaıcı ekleme işlemini yaz
-            return { success: true, message: 'Kullanıcı Başarıyla Kayıt oldu' };
-        }
-        else{
-            return { success: false, message: 'Kullanıcı Zaten Kayıtlı' };
-        }
-    } catch (error) {
-      // Hata durumunda bir hata mesajı döndür
-      return { success: false, message: 'Signup failed', error: error };
+export async function addUser(username, email, password) {
+  try {
+
+    const checkuser = await userCheck(email);
+
+    if (checkuser) {
+      return { success: checkuser.success, message: checkuser.message }
+    } else {
+      const result = await pool.query(
+        `INSERT INTO users (username, email, password)
+        VALUES (?, ?, ?)`, [username, email, password]
+      )
+      return { success: checkuser.success, message: checkuser.message };
     }
-  };
+  } catch (err) {
+    return { success: false, message: 'Signup failed', error: err };
+  }
+}
 
+export async function userCheck(email) {
+  try {
+    // MySQL sorgusunu hazırla
+    const query = 'SELECT * FROM users WHERE email = ?';
+    const [rows] = await pool.query(query, [email]);
 
-  export async function UserExistsCheck(username, email) {
-    try {
-      // Burada kullanıcı kaydı için gerekli işlemleri gerçekleştirin
-      // Örneğin, veritabanına kullanıcı bilgilerini kaydetme işlemi
-  
-      return { success: true, message: 'User successfully signed up' };
-    } catch (error) {
-      // Hata durumunda bir hata mesajı döndür
-      return { success: false, message: 'Signup failed', error: error };
+    // Eğer kullanıcı bulunduysa hata döndür
+    if (rows.length > 0) {
+      return { success: false, message: 'Bu e-posta adresi zaten kayıtlı.' };
     }
-  };
-  
 
-    
+    // Kullanıcı bulunamadıysa, kayıt işlemine devam et
+    return { success: true, message: 'Kullanıcı Başarıyla Kayıt oldu' };
+  } catch (err) {
+    // Hata durumunda ilgili bilgileri döndür
+    return { success: false, message: 'User check failed', error: err };
+  }
+}

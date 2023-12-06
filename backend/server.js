@@ -1,7 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import {SignupUser} from './database.js';
+import {addUser} from './database.js';
 
 const app = express();
 const port = 8080;
@@ -23,14 +23,14 @@ app.post("/signup", async (req, res) => {
   try {
     const {username, email, password} = req.body;
     // güvenlik katmanları 
-    const signupdatabaseresponse = await SignupUser(username, email, password);
+    const signupdatabaseresponse = await addUser(username, email, password);
     
-    if(signupdatabaseresponse === "SignOk")
+    if(signupdatabaseresponse)
     {
-        return res.status(200).send({ message: 'successful', status: 'ok' });
+      return res.status(200).send({ message: signupdatabaseresponse.message, status: 'ok' });
     }
     else{ 
-        return res.status(201).send({ message: signupdatabaseresponse.message, status: 'SigupError' });
+      return res.status(201).send({ message: signupdatabaseresponse.message, status: 'SigupError' });
     }
     
    
@@ -42,3 +42,5 @@ app.post("/signup", async (req, res) => {
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+
