@@ -1,10 +1,36 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import React from "react";
+import { Request } from "../backend/api";
 
 
 
 export default function Signup() {
+
+  const formsignup = async (event:any) => {
+    event.preventDefault();
+    const formdata = new FormData(event.target);
+    const signupdata = {
+      username: formdata.get('username'),
+      email: formdata.get('email'),
+      password: formdata.get('password'),
+      password2: formdata.get('password2'),
+    };
+
+    try {
+      const response = await Request('signup', signupdata); 
+      if (response.status === "ok") {
+        console.log("Sign up successful", response);
+      }
+      else{
+        console.log("Sign up error", response); 
+      }
+    } catch (err) {
+      console.error('Error in signup', err);
+    }
+};
+  
+
   return (
     <>
       <Navbar />
@@ -111,7 +137,7 @@ export default function Signup() {
               <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-50">
                 Sign Up
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form className="space-y-4 md:space-y-6" action="" onSubmit={formsignup}>
                 <div>
                   <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-200 ">username *</label>
                   <input type="text" name="username" id="username" style={{ background: '#1E1B24' }} className="  text-gray-50  sm:text-sm rounded-lg  focus:border-gray-600  block w-full p-2.5 " placeholder="username" />
@@ -135,7 +161,7 @@ export default function Signup() {
                 >
                   Create An Account
                 </button>
-                
+
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Already have an account? <a href="/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Log in</a>
                 </p>
