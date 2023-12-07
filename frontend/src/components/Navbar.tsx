@@ -14,6 +14,7 @@ export default function Navbar() {
     const checkUserLogin = async () => {
       try {
         const userMailLocal = localStorage.getItem('userMail');
+        console.log(userMailLocal)
         setUserMail(userMailLocal || null);
 
         if (userMailLocal !== null) {

@@ -60,9 +60,8 @@ app.get("/users/:email", async (req, res) => {
 
   try {
     
-    const emaila = req.params.email;
-    console.log(emaila);
-    const email = "omer@gmail.com"
+
+    const email = req.params.email
     
     const note = await getUser(email)
 
