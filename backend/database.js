@@ -102,3 +102,16 @@ export async function checkStatus(email){
     return { success: false, message: 'Check Status failed', error: err}
   }
 }
+
+
+export async function getUser(email){
+  
+  try{
+    const [getUser] = await pool.query('SELECT username,email FROM users WHERE email = ?', [email]);
+
+    return getUser
+  }
+  catch(err){
+    return {success: false, message: 'getStatus failed', error: err}
+  }
+}
