@@ -57,3 +57,32 @@ export async function userCheck(username, email) {
     return { success: false, message: 'User check failed', error: err };
   }
 }
+
+export async function loginCheck(email, password){
+
+  try {
+    // MySQL sorguları
+    const queryEmail = `SELECT * FROM users WHERE email = ?`
+    const [rowsEmail] = await pool.query(queryEmail, [email]);
+    
+    // Eğer kullanıcı yoksa hata mesajı gönder var ise maile ait şifreyi kontrol et
+    if (rowsEmail.length == 0){
+      return {success: false, message: 'Bu emaile ait kullanıcı bulunamadı'}
+    }
+    
+    const isValid = await bcrypt.compare(password, rowsEmail[0].password);
+    
+    if (isValid){
+      return {success: true, message: `Hoşgeldin ${rowsEmail[0].username}`}
+    }
+    else{
+      return {success: false, message: 'Şifre hatalı lütfen tekrar deneyiniz'}
+    }
+
+    
+  }
+  catch(err){
+    return { success: false, message: 'Login failed', error: err}
+  }
+
+}

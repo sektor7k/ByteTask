@@ -1,7 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import {addUser} from './database.js';
+import {addUser, loginCheck} from './database.js';
 
 const app = express();
 const port = 8080;
@@ -36,6 +36,25 @@ app.post("/signup", async (req, res) => {
    
   } catch (err) {
     return res.status(500).send({ message: 'Server error', error: err });
+  }
+});
+
+app.post("/login", async (req, res) => {
+  try {
+    const {email, password} = req.body;
+    // güvenlik katmanı
+    const logindatabaseresponse = await loginCheck(email, password);
+
+    if(logindatabaseresponse)
+    {
+      return res.status(200).send({ message: logindatabaseresponse.message, status: 'ok', success: logindatabaseresponse.success});
+    }
+    else{
+      return res.status(201).send({ message: logindatabaseresponse.message, status: 'LoginError'});
+    }
+  }
+  catch(err){
+    return res.status(500).send({message: 'Server error', error: err})
   }
 });
 
