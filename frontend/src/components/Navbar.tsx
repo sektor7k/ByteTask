@@ -1,21 +1,35 @@
 import { useMetaMask } from "@/contexts/MetaMaskProvider";
 import React, { useState, useEffect } from "react"
 import Menu from "./navbar/menu";
+import { Request2 } from "@/backend/api";
 
 
 export default function Navbar() {
 
   const { connect, address, disconnect } = useMetaMask();
   const [userLoggedIn, setuserLoggedIn] = useState(false);
+  const [userMail, setUserMail] = useState<string | null>(null);
 
-  try {
+  useEffect(() => {
+    const checkUserLogin = async () => {
+      try {
+        const userMailLocal = localStorage.getItem('userMail');
+        setUserMail(userMailLocal || null);
 
-  }
-  catch(err){
-    setuserLoggedIn(false)
-    console.error('Error in navbar', err);
-  }
+        if (userMailLocal !== null) {
+          setuserLoggedIn(true);
+        } else {
+          setuserLoggedIn(false);
+        }
 
+      } catch (err) {
+        setuserLoggedIn(false);
+        console.error('Error in navbar', err);
+      }
+    };
+
+    checkUserLogin();
+  }, []);
 
 
   return (
@@ -30,19 +44,19 @@ export default function Navbar() {
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
 
           <div className="  flex flex-row space-x-4">
-          {userLoggedIn ? (
-            // Kullanıcı giriş yapmışsa Menu componentini render et
-            <Menu />
-          ) : (
-            // Kullanıcı giriş yapmamışsa login butonunu render et
-            <button
-              type="button"
-              onClick={() => window.location.href = '/login'}
-              className="text-gray-50 bg-white bg-opacity-0 hover:bg-opacity-100 hover:text-gray-900 border-2 border-gray-50 focus:ring-1 focus:outline-none focus:ring-white font-bold rounded-full text-sm px-6 py-3 text-center transition duration-300 ease-in-out"
-            >
-              Login
-            </button>
-          )}
+            {userLoggedIn ? (
+              // Kullanıcı giriş yapmışsa Menu componentini render et
+              <Menu userMail={userMail as unknown as string} />
+            ) : (
+              // Kullanıcı giriş yapmamışsa login butonunu render et
+              <button
+                type="button"
+                onClick={() => window.location.href = '/login'}
+                className="text-gray-50 bg-white bg-opacity-0 hover:bg-opacity-100 hover:text-gray-900 border-2 border-gray-50 focus:ring-1 focus:outline-none focus:ring-white font-bold rounded-full text-sm px-6 py-3 text-center transition duration-300 ease-in-out"
+              >
+                Login
+              </button>
+            )}
 
 
             {/* {address ? (

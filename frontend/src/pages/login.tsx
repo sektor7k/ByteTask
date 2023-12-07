@@ -44,6 +44,7 @@ export default function Login() {
       if (response.status === "ok" && response.success === true) {
         // Başarılı giriş durumunda token'i localStorage'e kaydedebilirsiniz
         localStorage.setItem('loginSuccess', response.message);
+        localStorage.setItem('userMail', 'omer@gmail.com');
         router.push('/profile/hakkimda');
       }
     } catch (err) {

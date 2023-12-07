@@ -25,5 +25,31 @@ export async function Request(apirequestmethod: string, data: any) {
   }
 }
 
+export async function Request2(apirequestmethod: string, data:string) {
+  try {
+
+    
+    const headers = {
+      'Content-Type': 'application/json'
+    };
+    
+    const response = await fetch(`${apiUrl}/${apirequestmethod}/${data}`, {
+      method: 'GET',
+      headers: headers
+    });
+    
+
+    if (response.ok) {
+      return await response.json();
+    } else {
+      const errorResponse = await response.text();
+      throw new Error(errorResponse);
+    }
+  } catch (error) {
+    console.error('Error in Request2 function:', error);
+    throw error;
+  }
+}
+
 
 
