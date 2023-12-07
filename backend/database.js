@@ -73,16 +73,32 @@ export async function loginCheck(email, password){
     const isValid = await bcrypt.compare(password, rowsEmail[0].password);
     
     if (isValid){
+      
+      checkStatus(email)
+      
       return {success: true, message: `Hoşgeldin ${rowsEmail[0].username}`}
     }
     else{
       return {success: false, message: 'Şifre hatalı lütfen tekrar deneyiniz'}
     }
 
-    
+  
   }
   catch(err){
     return { success: false, message: 'Login failed', error: err}
   }
 
+}
+
+export async function checkStatus(email){
+  
+  try {
+    const setStatus = await pool.query(`UPDATE users
+      SET status = true
+      WHERE email = ?`, [email])
+    return setStatus
+  }
+  catch(err){
+    return { success: false, message: 'Check Status failed', error: err}
+  }
 }
