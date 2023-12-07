@@ -31,7 +31,7 @@ export default function Navbar() {
             >
               Login
             </button> */}
-            {address ? (
+            {/* {address ? (
               <button
                 onClick={disconnect}
                 type="button"
@@ -49,8 +49,8 @@ export default function Navbar() {
               >
                 CONNECT
               </button>
-            )}
-            {/* <div className="flex flex-col">
+            )} */}
+            <div className="flex flex-col">
               <button className="flex flex-row justify-between items-center" onClick={toggleDropdown}>
                 <div className="flex flex-row justify-between items-center space-x-2  ">
                   <img className=" h-10 w-10 overflow-hidden rounded-full" src="https://pbs.twimg.com/media/FvELKPKWYBQ1d1x.jpg" alt="profil" />
@@ -128,7 +128,7 @@ export default function Navbar() {
 
                 </div>
               )}
-            </div> */}
+            </div>
 
 
           </div>

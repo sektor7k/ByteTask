@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 const apiUrl = 'http://localhost:8080';
 
@@ -25,3 +24,6 @@ export async function Request(apirequestmethod: string, data: any) {
     throw error; // Hata yönetimi için hatayı dışarı fırlat
   }
 }
+
+
+
