@@ -6,42 +6,24 @@ import Contact from "@/components/contact";
 import { useState } from "react";
 import { useRouter } from 'next/router';
 import ShowNotification from "@/components/Notification";
+import { useBackend } from "@/contexts/Request";
 
 export default function Signup() {
   const router = useRouter();
-
-  const [signupResponse, setSignupResponse] = useState({
-    message: "",
-    status: "",
-    success: null as boolean | null,
-  });
+  const {sasa, signupResponse} = useBackend();
+  
 
   const formsignup = async (event: any) => {
     event.preventDefault();
     const formdata = new FormData(event.target);
     const signupdata = {
-      username: formdata.get('username'),
-      email: formdata.get('email'),
-      password: formdata.get('password'),
-      password2: formdata.get('password2'),
-    };
+      username: formdata.get('username') as string,
+      email: formdata.get('email') as string,
+      password: formdata.get('password') as string,
+      password2: formdata.get('password2') as string,
+    }; 
 
-    try {
-      if (signupdata.password != signupdata.password2) {
-        setSignupResponse({ message: "Şifreler uyuşmuyor", status: "ok", success: false })
-      } else {
-        const response = await Request('signup', signupdata);
-        setSignupResponse(response);
-
-        if (response.status === "ok" && response.success === true) {
-          localStorage.setItem('signupSuccess', 'Kayıt başarılı. Lütfen giriş yapın :)');
-          router.push("/login");
-        }
-      }
-    } catch (err) {
-      console.error('Error in signup', err);
-      setSignupResponse({ message: "Kayıt sırasında bir hata oluştu.", status: "error", success: false });
-    }
+    sasa(signupdata)
   };
 
   return (
@@ -50,7 +32,7 @@ export default function Signup() {
       <section style={{ background: '#19181F' }}>
         <div className="flex flex-row items-center justify-center space-x-32  px-6 py-8 pb-36">
 
-          <Contact />
+          <Contact/>
 
           <div style={{ backgroundColor: '#23202A' }} className="w-full  rounded-3xl  border-none shadow-2xl dark:border md:mt-24 sm:max-w-md xl:p-0 ">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
