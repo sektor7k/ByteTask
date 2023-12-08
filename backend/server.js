@@ -2,6 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { addUser, loginCheck, getUser } from './database.js';
+import { checkStatusFalse } from "./database.js";
 
 const app = express();
 const port = 8080;
@@ -55,6 +56,20 @@ app.post("/login", async (req, res) => {
     return res.status(500).send({ message: 'Server error', error: err })
   }
 });
+
+app.get("/statusfalse/:email", async (req, res) => {
+  try {
+    const email = req.params.email
+
+    const statusResponse = await checkStatusFalse(email);
+
+    return res.status(200).send({succes: false, message: 'Çıkış yapıldı'})
+
+  }
+  catch (err) {
+    return res.status(500).send({ message: 'Server error', error: err })
+  }
+})
 
 app.get("/users/:email", async (req, res) => {
 

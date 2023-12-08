@@ -1,4 +1,4 @@
-import { Request2 } from "@/backend/api";
+import { Request2, Request } from "@/backend/api";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -11,9 +11,9 @@ export default function Menu({ userMail }: MenuProps) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [username, setUsername] = useState()
-  const [email, setEmail] = useState()
+  const [email, setEmail] = useState("")
   const router = useRouter();
-  
+
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -33,12 +33,16 @@ export default function Menu({ userMail }: MenuProps) {
   }
   userDataResponse();
 
-  const logOut = () =>{
+  const logOut = async () => {
     try {
-     
-      localStorage.removeItem('userMail');
+
+
+
       router.push('/login');
-      
+      const response2 = await Request2('statusfalse', email);
+      localStorage.removeItem('userMail');
+      localStorage.setItem('logoutMessage', response2.message);
+      return response2
     }
     catch (err) {
       console.error('Error fetching user data:', err);
@@ -71,7 +75,7 @@ export default function Menu({ userMail }: MenuProps) {
             <img className=" h-14 w-14 rounded-full" src="https://pbs.twimg.com/media/FvELKPKWYBQ1d1x.jpg" alt="profil" />
             <div className="flex flex-col">
               <p className="text-gray-50 text-base font-bold">
-              {username}
+                {username}
               </p>
               <p className="text-gray-400 text-sm">
                 {email}

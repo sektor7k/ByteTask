@@ -74,7 +74,7 @@ export async function loginCheck(email, password){
     
     if (isValid){
       
-      checkStatus(email)
+      checkStatusTrue(email)
       
       return {success: true, message: `Hoşgeldin ${rowsEmail[0].username}`}
     }
@@ -90,11 +90,23 @@ export async function loginCheck(email, password){
 
 }
 
-export async function checkStatus(email){
+export async function checkStatusTrue(email){
   
   try {
     const setStatus = await pool.query(`UPDATE users
       SET status = true
+      WHERE email = ?`, [email])
+    return setStatus
+  }
+  catch(err){
+    return { success: false, message: 'Check Status failed', error: err}
+  }
+}
+export async function checkStatusFalse(email){
+  
+  try {
+    const setStatus = await pool.query(`UPDATE users
+      SET status = false
       WHERE email = ?`, [email])
     return setStatus
   }

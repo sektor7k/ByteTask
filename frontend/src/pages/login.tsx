@@ -24,6 +24,11 @@ export default function Login() {
       setNotification({ message: successMessage, type: 'success' });
       localStorage.removeItem('signupSuccess');
     }
+    const logoutMessage = localStorage.getItem('logoutMessage');
+    if (logoutMessage) {
+      setNotification({ message: logoutMessage, type: 'error' });
+      localStorage.removeItem('logoutMessage');
+    }
   }, []);
 
 
