@@ -1,47 +1,30 @@
-import { Request2, Request } from "@/backend/api";
+import { Request2 } from "@/backend/api";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-
 interface MenuProps {
   userMail: string;
+  userName: string;
 }
 
-export default function Menu({ userMail }: MenuProps) {
+export default function Menu({ userMail, userName }: MenuProps) {
 
   const [isOpen, setIsOpen] = useState(false);
-  const [username, setUsername] = useState()
-  const [email, setEmail] = useState("")
-  const router = useRouter();
+  const router = useRouter(); 
 
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-
-  const userDataResponse = async () => {
-    try {
-      const response = await Request2('users', userMail as string);
-
-      setUsername(response.username)
-      setEmail(response.email)
-    }
-    catch (err) {
-      console.error('Error fetching user data:', err);
-    }
-  }
-  userDataResponse();
-
   const logOut = async () => {
     try {
 
-
-
       router.push('/login');
-      const response2 = await Request2('statusfalse', email);
+      const response2 = await Request2('statusfalse', userMail);
       localStorage.removeItem('userMail');
       localStorage.setItem('logoutMessage', response2.message);
+      router.push('/login');
       return response2
     }
     catch (err) {
@@ -51,16 +34,13 @@ export default function Menu({ userMail }: MenuProps) {
 
 
 
-
-
-
   return (
     <div className="flex flex-col">
       <button className="flex flex-row justify-between items-center" onClick={toggleDropdown}>
         <div className="flex flex-row justify-between items-center space-x-2  ">
           <img className=" h-10 w-10 overflow-hidden rounded-full" src="https://pbs.twimg.com/media/FvELKPKWYBQ1d1x.jpg" alt="profil" />
           <p className="text-gray-200 text-lg font-semibold">
-            {username}
+            {userName}
           </p>
         </div>
 
@@ -75,10 +55,10 @@ export default function Menu({ userMail }: MenuProps) {
             <img className=" h-14 w-14 rounded-full" src="https://pbs.twimg.com/media/FvELKPKWYBQ1d1x.jpg" alt="profil" />
             <div className="flex flex-col">
               <p className="text-gray-50 text-base font-bold">
-                {username}
+                {userName}
               </p>
               <p className="text-gray-400 text-sm">
-                {email}
+                {userMail}
               </p>
             </div>
           </div>

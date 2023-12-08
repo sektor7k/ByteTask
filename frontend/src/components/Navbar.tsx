@@ -8,27 +8,43 @@ export default function Navbar() {
 
   const { connect, address, disconnect } = useMetaMask();
   const [userLoggedIn, setuserLoggedIn] = useState(false);
-  const [userMail, setUserMail] = useState<string | null>(null);
+  const [userMail, setUserMail] = useState("");
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("");
+
+  const userDataResponse = async () => {
+    try {
+      const userMailLocal = localStorage.getItem('userMail');
+      if (userMailLocal !== null) {
+
+        const response = await Request2('users', userMailLocal);
+        setUsername(response.username)
+        setEmail(response.email)
+      }
+    }
+    catch (err) {
+      console.error('Error fetching user data:', err);
+    }
+  };
+
 
   useEffect(() => {
+
     const checkUserLogin = async () => {
       try {
         const userMailLocal = localStorage.getItem('userMail');
-        console.log(userMailLocal)
-        setUserMail(userMailLocal || null);
-
         if (userMailLocal !== null) {
+          setUserMail(userMailLocal);
           setuserLoggedIn(true);
+          userDataResponse();
         } else {
           setuserLoggedIn(false);
         }
-
       } catch (err) {
         setuserLoggedIn(false);
         console.error('Error in navbar', err);
       }
     };
-
     checkUserLogin();
   }, []);
 
@@ -47,7 +63,7 @@ export default function Navbar() {
           <div className="  flex flex-row space-x-4">
             {userLoggedIn ? (
               // Kullanıcı giriş yapmışsa Menu componentini render et
-              <Menu userMail={userMail as unknown as string} />
+              <Menu userMail={email} userName={username} />
             ) : (
               // Kullanıcı giriş yapmamışsa login butonunu render et
               <button
