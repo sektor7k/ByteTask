@@ -1,10 +1,8 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import ShowNotification from "@/components/Notification";
-import Contact from "@/components/contact"; 
-import { useRouter } from "next/router";
+import Contact from "@/components/contact";
 import React, { useState, useEffect } from 'react';
-import { Request } from "../backend/api";
 import { useBackend } from "@/contexts/Request";
 
 
@@ -12,7 +10,7 @@ import { useBackend } from "@/contexts/Request";
 
 export default function Login() {
   const [notification, setNotification] = useState({ message: '', type: '' });
-  const {loginContext, loginResponse} = useBackend();
+  const { loginContext, loginResponse } = useBackend();
 
 
   useEffect(() => {
@@ -82,10 +80,13 @@ export default function Login() {
                     NotiMessage={notification.message}
                   />
                 )}
-                <ShowNotification 
-                NotiType={loginResponse.success ? "success" : "error"} 
-                NotiMessage={loginResponse.message} 
-              />
+
+                {loginResponse.success !== true && (
+                  <ShowNotification
+                    NotiType={loginResponse.success ? "success" : "error"}
+                    NotiMessage={loginResponse.message}
+                  />
+                )}
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-start">
