@@ -15,7 +15,7 @@ export const MetaMaskProvider = ({ children }: { children: ReactNode }) => {
     const [address, setAddress] = useState<string | null>(null)
 
     function etherToWei(amount: number): string {
-        const wei = amount 
+        const wei = amount  
         return '0x' + wei.toString(16)
     }
  

@@ -1,16 +1,14 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import React from "react";
-import { Request } from "../backend/api";
 import Contact from "@/components/contact";
-import { useState } from "react";
 import { useRouter } from 'next/router';
 import ShowNotification from "@/components/Notification";
 import { useBackend } from "@/contexts/Request";
 
 export default function Signup() {
   const router = useRouter();
-  const {sasa, signupResponse} = useBackend();
+  const {signUpContext, signupResponse} = useBackend();
   
 
   const formsignup = async (event: any) => {
@@ -23,7 +21,7 @@ export default function Signup() {
       password2: formdata.get('password2') as string,
     }; 
 
-    sasa(signupdata)
+    signUpContext(signupdata)
   };
 
   return (

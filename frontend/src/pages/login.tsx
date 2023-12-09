@@ -1,22 +1,19 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import ShowNotification from "@/components/Notification";
-import Contact from "@/components/contact";
+import Contact from "@/components/contact"; 
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from 'react';
 import { Request } from "../backend/api";
+import { useBackend } from "@/contexts/Request";
 
 
 
 
 export default function Login() {
   const [notification, setNotification] = useState({ message: '', type: '' });
-  const router = useRouter();
-  const [loginResponse, setLoginResponse] = useState({
-    message: "",
-    status: "",
-    success: null as boolean | null,
-  });
+  const {loginContext, loginResponse} = useBackend();
+
 
   useEffect(() => {
     const successMessage = localStorage.getItem('signupSuccess');
@@ -36,26 +33,11 @@ export default function Login() {
     event.preventDefault();
     const formdata = new FormData(event.target);
     const logindata = {
-      email: formdata.get('email'),
-      password: formdata.get('password'),
+      email: formdata.get('email') as string,
+      password: formdata.get('password') as string,
     };
 
-    try {
-      const response = await Request('login', logindata);
-
-      console.log(response);
-      setLoginResponse(response);
-
-      if (response.status === "ok" && response.success === true) {
-        // Başarılı giriş durumunda token'i localStorage'e kaydedebilirsiniz
-        localStorage.setItem('loginSuccess', response.message);
-        localStorage.setItem('userMail', logindata.email as string);
-        router.push('/profile/hakkimda');
-      }
-    } catch (err) {
-      console.error('Error in login', err);
-      setLoginResponse({ message: 'Login failed' , status: '', success: false });
-    }
+    loginContext(logindata);
 
 
   };

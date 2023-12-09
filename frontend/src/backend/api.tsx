@@ -11,7 +11,7 @@ export async function Request(apirequestmethod: string, data: any) {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(data),
-    });
+    }); 
 
     if (response.ok) {
       return await response.json();

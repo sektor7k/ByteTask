@@ -3,12 +3,19 @@ import { Request } from "../backend/api";
 import router from "next/router";
 
 interface BackendContextState {
-    sasa: (signupdata: { username: string, email: string, password: string, password2: string }) => Promise<void>;
+    signUpContext: (signupdata: { username: string, email: string, password: string, password2: string }) => Promise<void>;
     signupResponse: {
+        message: string;
+        status: string | undefined;
+        success: boolean | null;
+    };
+    loginContext: (logindata: {email: string, password: string}) => Promise<void>;
+    loginResponse: {
         message: string;
         status: string;
         success: boolean | null;
     };
+    
 }
 
 export const BackendContext = createContext<BackendContextState>({} as BackendContextState);
@@ -16,19 +23,22 @@ export const BackendContext = createContext<BackendContextState>({} as BackendCo
 export const useBackend = () => useContext(BackendContext);
 
 export const BackendProvider = ({ children }: { children: ReactNode }) => {
-    const [signupResponse, setSignupResponse] = useState<{
-        message: string;
-        status: string;
-        success: boolean | null;
-    }>({
+
+    const [signupResponse, setSignupResponse] = useState({
         message: "",
         status: "",
         success: null as boolean | null,
     });
 
+    const [loginResponse, setLoginResponse] = useState({
+        message: "",
+        status: "",
+        success: null as boolean | null,
+      });
+
     // sasa fonksiyonu buraya eklenmeli
 
-    const sasa = async (signupdata: { username: string, email: string, password: string, password2: string }): Promise<void> => {
+    const signUpContext = async (signupdata: { username: string, email: string, password: string, password2: string }): Promise<void> => {
         try {
             if (signupdata.password !== signupdata.password2) {
                 setSignupResponse({ message: "Şifreler uyuşmuyor", status: "ok", success: false });
@@ -47,10 +57,31 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
+    const loginContext = async (logindata: {email: string, password: string}): Promise<void> => {
+        try {
+            const response = await Request('login', logindata);
+      
+            console.log(response);
+            setLoginResponse(response);
+      
+            if (response.status === "ok" && response.success === true) {
+              // Başarılı giriş durumunda token'i localStorage'e kaydedebilirsiniz
+              localStorage.setItem('loginSuccess', response.message);
+              localStorage.setItem('userMail', logindata.email as string);
+              router.push('/profile/hakkimda');
+            }
+          } catch (err) {
+            console.error('Error in login', err);
+            setLoginResponse({ message: 'Login failed' , status: '', success: false });
+          }
+    }
+
     return (
         <BackendContext.Provider value={{
-            sasa,
+            signUpContext,
             signupResponse,
+            loginContext,
+            loginResponse
         }}>
             {children}
         </BackendContext.Provider>
