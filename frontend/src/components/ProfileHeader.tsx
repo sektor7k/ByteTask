@@ -1,5 +1,8 @@
+import { useBackend } from "@/contexts/Request";
 
 export default function ProfileHeader() {
+
+  const {userData} = useBackend();
 
   return (
 
@@ -18,8 +21,8 @@ export default function ProfileHeader() {
             style={{ backgroundImage: `url("https://pbs.twimg.com/media/FvELKPKWYBQ1d1x.jpg")`, border: "6px solid #23202A" }}
           ></div>
           <div className=" justify-center items-center relative">
-            <h2 className="text-white text-xl font-bold ">Angelina Swam </h2>
-            <p className="text-gray-300 text-xs mt-1 translate-x-6">San Francisco, CA</p>
+            <h2 className="text-white text-xl font-bold translate-x-8">{userData.username} </h2>
+            <p className="text-gray-300 text-xs mt-1 translate-x-6">{userData.email}</p>
           </div>
         </div>
 

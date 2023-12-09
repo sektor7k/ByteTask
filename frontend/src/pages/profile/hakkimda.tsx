@@ -15,7 +15,7 @@ export default function Profile() {
     const successMessage = localStorage.getItem('loginSuccess');
     if (successMessage) {
       setNotification({ message: successMessage, type: 'success' });
-      localStorage.removeItem('loginSuccess');
+      localStorage.removeItem('loginSuccess'); 
     }
   }, []); 
 

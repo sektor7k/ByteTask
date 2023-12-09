@@ -8,7 +8,7 @@ const pool = mysql.createPool({
   host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DATABASE
+  database: process.env.MYSQL_DATABASE 
 }).promise()
 
 export async function addUser(username, email, password) {
@@ -119,7 +119,9 @@ export async function checkStatusFalse(email){
 export async function getUser(email){
   
   try{
-    const [getUser] = await pool.query('SELECT username,email FROM users WHERE email = ?', [email]);
+    const [getUser] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+
+    console.log("sa")
 
     return getUser
   }

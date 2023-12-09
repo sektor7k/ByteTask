@@ -1,31 +1,15 @@
 import { useMetaMask } from "@/contexts/MetaMaskProvider";
 import React, { useState, useEffect } from "react"
 import Menu from "./navbar/menu";
-import { Request2 } from "@/backend/api";
+import { useBackend } from "@/contexts/Request";
+
 
 
 export default function Navbar() {
 
   const { connect, address, disconnect } = useMetaMask();
   const [userLoggedIn, setuserLoggedIn] = useState(false);
-  const [userMail, setUserMail] = useState("");
-  const [username, setUsername] = useState("")
-  const [email, setEmail] = useState("");
-
-  const userDataResponse = async () => {
-    try {
-      const userMailLocal = localStorage.getItem('userMail');
-      if (userMailLocal !== null) {
-
-        const response = await Request2('users', userMailLocal);
-        setUsername(response.username)
-        setEmail(response.email)
-      }
-    }
-    catch (err) {
-      console.error('Error fetching user data:', err);
-    }
-  };
+  const {userDataResponse} = useBackend();
 
 
   useEffect(() => {
@@ -34,7 +18,6 @@ export default function Navbar() {
       try {
         const userMailLocal = localStorage.getItem('userMail');
         if (userMailLocal !== null) {
-          setUserMail(userMailLocal);
           setuserLoggedIn(true);
           userDataResponse();
         } else {
@@ -63,7 +46,7 @@ export default function Navbar() {
           <div className="  flex flex-row space-x-4">
             {userLoggedIn ? (
               // Kullanıcı giriş yapmışsa Menu componentini render et
-              <Menu userMail={email} userName={username} />
+              <Menu/>
             ) : (
               // Kullanıcı giriş yapmamışsa login butonunu render et
               <button

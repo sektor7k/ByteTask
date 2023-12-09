@@ -7,7 +7,6 @@ import ShowNotification from "@/components/Notification";
 import { useBackend } from "@/contexts/Request";
 
 export default function Signup() {
-  const router = useRouter();
   const {signUpContext, signupResponse} = useBackend();
   
 

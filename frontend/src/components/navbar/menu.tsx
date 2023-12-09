@@ -1,16 +1,14 @@
 import { Request2 } from "@/backend/api";
+import { useBackend } from "@/contexts/Request";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-interface MenuProps {
-  userMail: string;
-  userName: string;
-}
 
-export default function Menu({ userMail, userName }: MenuProps) {
+export default function Menu() {
 
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter(); 
+  const { userData} = useBackend();
 
 
   const toggleDropdown = () => {
@@ -21,7 +19,7 @@ export default function Menu({ userMail, userName }: MenuProps) {
     try {
 
       router.push('/login');
-      const response2 = await Request2('statusfalse', userMail);
+      const response2 = await Request2('statusfalse', userData.email);
       localStorage.removeItem('userMail');
       localStorage.setItem('logoutMessage', response2.message);
       router.push('/login');
@@ -40,7 +38,7 @@ export default function Menu({ userMail, userName }: MenuProps) {
         <div className="flex flex-row justify-between items-center space-x-2  ">
           <img className=" h-10 w-10 overflow-hidden rounded-full" src="https://pbs.twimg.com/media/FvELKPKWYBQ1d1x.jpg" alt="profil" />
           <p className="text-gray-200 text-lg font-semibold">
-            {userName}
+            {userData.username}
           </p>
         </div>
 
@@ -55,10 +53,10 @@ export default function Menu({ userMail, userName }: MenuProps) {
             <img className=" h-14 w-14 rounded-full" src="https://pbs.twimg.com/media/FvELKPKWYBQ1d1x.jpg" alt="profil" />
             <div className="flex flex-col">
               <p className="text-gray-50 text-base font-bold">
-                {userName}
+                {userData.username}
               </p>
               <p className="text-gray-400 text-sm">
-                {userMail}
+                {userData.email}
               </p>
             </div>
           </div>
