@@ -1,7 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { addUser, loginCheck, getUser } from './database.js';
+import { addUser, loginCheck, getUser, addUserAbout,getUserAbout } from './database.js';
 import { checkStatusFalse } from "./database.js";
 
 const app = express();
@@ -88,6 +88,45 @@ app.get("/users/:email", async (req, res) => {
   }
 
 })
+
+app.post("/userAbout", async (req, res) => {
+  try {
+    const { userid, userAbout } = req.body;
+    
+    const userAboutseresponse = await addUserAbout(userid,userAbout);
+
+    return res.status(200).send({succes: userAboutseresponse.success, message: userAboutseresponse.message})
+
+
+  } catch (err) {
+    return res.status(500).send({ message: 'Server error', error: err });
+  }
+});
+
+
+app.get("/userAbout/:userId", async (req, res) => {
+
+  try {
+    
+
+    const userId = +req.params.userId
+    
+    const note = await getUserAbout(1)
+
+    return res.status(200).send(note[0]);
+
+  }
+  catch (err) {
+    return res.status(500).send({ message: 'Server error', error: err })
+  }
+
+})
+
+
+
+
+
+
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

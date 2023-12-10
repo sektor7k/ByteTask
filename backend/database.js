@@ -105,10 +105,10 @@ export async function checkStatusTrue(email){
 export async function checkStatusFalse(email){
   
   try {
-    const setStatus = await pool.query(`UPDATE users
+    await pool.query(`UPDATE users
       SET status = false
       WHERE email = ?`, [email])
-    return setStatus
+    
   }
   catch(err){
     return { success: false, message: 'Check Status failed', error: err}
@@ -121,11 +121,65 @@ export async function getUser(email){
   try{
     const [getUser] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
 
-    console.log("sa")
-
     return getUser
   }
   catch(err){
     return {success: false, message: 'getStatus failed', error: err}
   }
 }
+
+export async function addUserAbout(userid, userAbout) {
+  try {
+
+    const queryid = `SELECT * FROM users WHERE id = ?`
+    const [rowsid] = await pool.query(queryid, [userid]);
+    
+    // Eğer kullanıcı yoksa hata mesajı gönder var ise maile ait şifreyi kontrol et
+    if (rowsid.length == 0){
+      return {success: false, message: 'Kullanıcı id si alınamadı'}
+    }
+
+    const query = `
+      INSERT INTO userabout (userId, about)
+      VALUES (?, ?)
+    `;
+    await pool.query(query, [userid, userAbout]);
+
+    return {success: true, message: 'Kullanıcı hakkında bilgisi kaydedildi'}
+
+    
+  } catch (err) {
+    return {success: false, message: 'addUserAbout failed', error: err}
+  }
+}
+
+export async function getUserAbout(userid){
+  
+  try{
+    const [getAbout] = await pool.query('SELECT * FROM userabout WHERE userId = ?', [userid]);
+
+    return getAbout
+  }
+  catch(err){
+    return {success: false, message: 'getUserAbout failed', error: err}
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
