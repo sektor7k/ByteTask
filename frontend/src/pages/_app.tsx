@@ -5,6 +5,7 @@ import { MetaMaskProvider } from '@/contexts/MetaMaskProvider'
 import {BackendProvider} from '@/contexts/Request'
 
 
+
 export default function App({ Component, pageProps }: AppProps) {
 
   return (
