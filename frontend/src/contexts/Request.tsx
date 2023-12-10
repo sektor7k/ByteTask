@@ -17,10 +17,27 @@ interface BackendContextState {
     };
     userDataResponse: () => Promise<void>;
     userData: {
+        id: null | number
         username: string;
         email: string;
         status: null | number;
-    }
+    };
+    logOut: () => Promise<any>;
+    userAboutContext: (aboutdata: {
+        userid: number | null;
+        userAbout: string;
+    }) => Promise<void>;
+    editAboutResponse: {
+        success: boolean | null;
+        message: string;
+    },
+    userAboutResponse: () => Promise<void>;
+    userAbout: {
+        id: number | null;
+        userId: number | null;
+        about: string;
+    };
+
 
 }
 
@@ -42,10 +59,22 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         success: null as boolean | null,
     });
     // get user tüm veriler
-    const [userData, setUserData] = useState ({
+    const [userData, setUserData] = useState({
+        id: null,
         username: "",
         email: "",
         status: null
+    })
+    // about edit için statler
+    const [editAboutResponse, seteditAboutResponse] = useState({
+        success: null as boolean | null,
+        message: "",
+    })
+    //tüm about verileri state
+    const [userAbout, setUserAbout] = useState({
+        id: null,
+        userId: null,
+        about: ""
     })
 
 
@@ -71,16 +100,15 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
     const loginContext = async (logindata: { email: string, password: string }): Promise<void> => {
         try {
             const response = await Request('login', logindata);
-
-            console.log(response);
             setLoginResponse(response);
-
             if (response.status === "ok" && response.success === true) {
-                
+
                 localStorage.setItem('loginSuccess', response.message);
                 localStorage.setItem('userMail', logindata.email as string);
                 router.push('/profile/hakkimda');
+
             }
+
         } catch (err) {
             console.error('Error in login', err);
             setLoginResponse({ message: 'Login failed', status: '', success: false });
@@ -92,8 +120,49 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
             if (userMailLocal !== null) {
 
                 const response = await Request2('users', userMailLocal);
-                setUserData({ username: response.username, email: response.email, status: response.status })
+                setUserData({ id: response.id, username: response.username, email: response.email, status: response.status })
             }
+        }
+        catch (err) {
+            console.error('Error fetching user data:', err);
+        }
+    };
+    const logOut = async () => {
+        try {
+            const response2 = await Request2('statusfalse', userData.email);
+            localStorage.removeItem('userMail');
+            localStorage.setItem('logoutMessage', response2.message); 
+            return response2
+        }
+        catch (err) {
+            console.error('Error fetching user data:', err);
+        }
+    };
+    const userAboutContext = async (aboutdata: { userid: number | null; userAbout: string; }): Promise<void> => {
+        try {
+
+            const response = await Request('userAbout', aboutdata);
+            seteditAboutResponse(response)
+            console.log(response)
+            router.push('/profile/hakkimda');
+
+
+        } catch (err) {
+            console.error('Error in signup', err);
+
+        }
+    };
+    const userAboutResponse = async () => {
+
+
+        try {
+            userDataResponse()
+            // if (userData.id !== null) {
+
+                const response = await Request2('userAbout', "1");
+                console.log(response)
+                setUserAbout({ id: response.id, userId: response.userId, about: response.about })
+            // }
         }
         catch (err) {
             console.error('Error fetching user data:', err);
@@ -107,7 +176,12 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
             loginContext,
             loginResponse,
             userDataResponse,
-            userData
+            userData,
+            logOut,
+            userAboutContext,
+            editAboutResponse,
+            userAboutResponse,
+            userAbout
         }}>
             {children}
         </BackendContext.Provider>
