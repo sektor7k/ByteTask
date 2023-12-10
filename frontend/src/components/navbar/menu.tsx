@@ -7,30 +7,12 @@ import { useState } from "react";
 export default function Menu() {
 
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter(); 
-  const { userData} = useBackend();
+  const { userData, logOut} = useBackend();
 
 
-  const toggleDropdown = () => {
+  const toggleDropdown = () => { 
     setIsOpen(!isOpen);
   };
-
-  const logOut = async () => {
-    try {
-
-      router.push('/login');
-      const response2 = await Request2('statusfalse', userData.email);
-      localStorage.removeItem('userMail');
-      localStorage.setItem('logoutMessage', response2.message);
-      router.push('/login');
-      return response2
-    }
-    catch (err) {
-      console.error('Error fetching user data:', err);
-    }
-  }
-
-
 
   return (
     <div className="flex flex-col">

@@ -1,5 +1,8 @@
+import { useBackend } from "@/contexts/Request"
 
 export default function UserAbout() {
+
+    const {userData, userAbout} = useBackend();
 
     return(
         <div style={{ backgroundColor: '#23202A' }} className="w-8/12  rounded-lg flex flex-col justify-between  ">
@@ -7,10 +10,11 @@ export default function UserAbout() {
                 {/* Kullanıcı hakkında */}
                 <div className=" p-12">
                     <p className=" text-xl font-bold text-white">
-                        <span className=" text-4xl text-White ">Angelina Swam</span> Hakkında
+                        <span className=" text-4xl text-White ">{userData.username}</span> Hakkında
                     </p>
                     <p className=" text-sm text-gray-400 mt-5">
-                        Merhaba, ben Angelina Swam  . 12 yıllık deneyime sahip İngilizce, Almanca ve Türkçe içerik üreticisi ve tasarımcıyım. İngilizce dil eğitimimi, ABD’nin Kuzey Karolina eyaletinde bulunan Charlotte şehri CPCC kolejinde aldım. Dil yeterliliği sonrasında aynı şehirde bulunan Strayer University’de pazarlama alanında yüksek lisans yaptım. Web Tasarım ile birlikte; metinsel olarak website ve reklam içerikleri, görsel olarak sosyal medya, katalog, banner ve video tasarım hizmetleri vermekteyim. Dijital ve gerçek dünyada daha modern ve daha profesyonel bir görünüm amacı taşıyan kişilerle çalışmak isterim.
+                        {/* Merhaba, ben Angelina Swam  . 12 yıllık deneyime sahip İngilizce, Almanca ve Türkçe içerik üreticisi ve tasarımcıyım. İngilizce dil eğitimimi, ABD’nin Kuzey Karolina eyaletinde bulunan Charlotte şehri CPCC kolejinde aldım. Dil yeterliliği sonrasında aynı şehirde bulunan Strayer University’de pazarlama alanında yüksek lisans yaptım. Web Tasarım ile birlikte; metinsel olarak website ve reklam içerikleri, görsel olarak sosyal medya, katalog, banner ve video tasarım hizmetleri vermekteyim. Dijital ve gerçek dünyada daha modern ve daha profesyonel bir görünüm amacı taşıyan kişilerle çalışmak isterim. */}
+                        {userAbout.about}
                     </p>
                 </div>
                 <div className="w-full pr-12 pl-12">

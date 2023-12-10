@@ -2,6 +2,7 @@ import { useMetaMask } from "@/contexts/MetaMaskProvider";
 import React, { useState, useEffect } from "react"
 import Menu from "./navbar/menu";
 import { useBackend } from "@/contexts/Request";
+import router from "next/router";
 
 
 
@@ -19,9 +20,9 @@ export default function Navbar() {
         const userMailLocal = localStorage.getItem('userMail');
         if (userMailLocal !== null) {
           setuserLoggedIn(true);
-          userDataResponse();
         } else {
           setuserLoggedIn(false);
+          router.push('/login');
         }
       } catch (err) {
         setuserLoggedIn(false);
@@ -29,6 +30,7 @@ export default function Navbar() {
       }
     };
     checkUserLogin();
+    userDataResponse()
   }, []);
 
 
