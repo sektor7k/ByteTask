@@ -91,9 +91,9 @@ app.get("/users/:email", async (req, res) => {
 
 app.post("/userAbout", async (req, res) => {
   try {
-    const { userid, userAbout } = req.body;
+    const { userid, userAbout, userField } = req.body;
     
-    const userAboutseresponse = await addUserAbout(userid,userAbout);
+    const userAboutseresponse = await addUserAbout(userid,userAbout, userField);
 
     return res.status(200).send({succes: userAboutseresponse.success, message: userAboutseresponse.message})
 
@@ -111,7 +111,7 @@ app.get("/userAbout/:userId", async (req, res) => {
 
     const userId = +req.params.userId
     
-    const note = await getUserAbout(1)
+    const note = await getUserAbout(userId)
 
     return res.status(200).send(note[0]);
 
