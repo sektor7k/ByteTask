@@ -1,29 +1,42 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import ProfileHeader from "@/components/ProfileHeader";
-import { Request } from "../../backend/api";
 import { useBackend } from "@/contexts/Request";
-import router from "next/router";
+import { useState } from "react";
 
 export default function ProfileEdit() {
 
-    const {userData, userAboutContext} = useBackend();
+    const { userData, userAboutContext } = useBackend();
+    const [userFields, setUserFields] = useState<string[]>([]);
+    const [newField, setNewField] = useState('');
 
-    
-
+    const userField = JSON.stringify(userFields);
 
     const formAbout = async (event: any) => {
         event.preventDefault();
         const formdata = new FormData(event.target);
         const aboutdata = {
-            userid : userData.id,
-            userAbout: formdata.get('userAbout') as string
+            userid: userData.id,
+            userAbout: formdata.get('userAbout') as string,
+            userField: userField
+            
         };
+        console.log(aboutdata)
         userAboutContext(aboutdata)
 
 
     };
 
+    const addField = () => {
+        if (newField.trim() !== '') {
+            setUserFields((prevFields) => [...prevFields, newField]);
+            setNewField(''); // Yeni alanı temizle
+        }
+        console.log(userFields)
+    };
+    const clearFields = () => {
+        setUserFields([]);
+    };
     return (
         <>
             <Navbar />
@@ -47,6 +60,59 @@ export default function ProfileEdit() {
                                         placeholder="User About"
                                     />
                                 </p>
+                                <p className="text-xl font-bold text-white mt-6">
+                                    <label htmlFor="userField">
+                                        <span className="text-2xl text-White">Uzmanı Olduğu Alanlar & Araçlar</span>{' '}
+                                    </label>
+                                </p>
+                                <div className="flex flex-row items-center space-x-6 mt-2">
+                                    <textarea
+                                        name="userField"
+                                        id="userField"
+                                        value={newField}
+                                        onChange={(e) => setNewField(e.target.value)}
+                                        style={{ background: '#1E1B24' }}
+                                        className="text-gray-50 sm:text-sm rounded-lg focus:border-gray-600 block w-full p-2.5 h-32 min-h-full"
+                                        placeholder="User Field"
+                                    />
+                                    <div className="flex flex-col space-y-5 items-center">
+                                    <button
+                                        type="button"
+                                        onClick={addField}
+                                        className=" text-white border border-solid border-gray-50 rounded-full px-4 py-2 text-center transition duration-300 ease-in-out font-bold"
+                                    >
+                                        Ekle
+                                    </button>
+                                    
+                                        <button
+                                            type="button"
+                                            onClick={clearFields}
+                                            className="text-red-500 border border-solid border-red-500 rounded-full px-4 py-2 text-center transition duration-300 ease-in-out font-bold"
+                                        >
+                                            Temizle
+                                        </button>
+                                    </div>
+                                </div>
+                                {/* Eklenen alanları göster */}
+                                {userFields.length > 0 && (
+                                    <div className="mt-4">
+                                        <p className="text-gray-400 text-sm">Eklenen Alanlar:</p>
+                                        <ul className="flex flex-wrap gap-2 text-gray-50 mt-2 space-x-4">
+                                            {userFields.map((field, index) => (
+                                                <li key={index} className="flex flex-row items-center">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setUserFields((prevFields) => prevFields.filter((_, i) => i !== index))}
+                                                        className="text-white text-sm border border-solid border-gray-50 hover:text-red-500 hover:border-red-500 rounded-full px-2 py-1 text-center transition duration-300 ease-in-out font-bold mr-1"
+                                                    >
+                                                        Sil
+                                                    </button>
+                                                    <p className="text-lg">{field}</p>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
 
                                 <button
                                     type="submit"
