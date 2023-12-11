@@ -10,7 +10,7 @@ export default function ProfileAbout() {
             {/* Freeleancer istatistikleri */}
             <Statistics/>
             {/* Kullanıcı Bilgileri */}
-            <UserAbout/>
+            <UserAbout/>  
         </div>
     )
 }

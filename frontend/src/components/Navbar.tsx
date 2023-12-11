@@ -10,7 +10,7 @@ export default function Navbar() {
 
   const { connect, address, disconnect } = useMetaMask();
   const [userLoggedIn, setuserLoggedIn] = useState(false);
-  const {userDataResponse} = useBackend();
+  const {userDataResponse, userAboutResponse} = useBackend();
 
 
   useEffect(() => {
@@ -20,9 +20,10 @@ export default function Navbar() {
         const userMailLocal = localStorage.getItem('userMail');
         if (userMailLocal !== null) {
           setuserLoggedIn(true);
+          userDataResponse();
+          userAboutResponse();
         } else {
           setuserLoggedIn(false);
-          router.push('/login');
         }
       } catch (err) {
         setuserLoggedIn(false);
@@ -30,7 +31,9 @@ export default function Navbar() {
       }
     };
     checkUserLogin();
-    userDataResponse()
+    
+    
+    
   }, []);
 
 
@@ -97,11 +100,11 @@ export default function Navbar() {
           <ul style={{ backgroundColor: '#19181F' }} className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <a
-                href="/"
+                href="/anasayfa"
                 className="block py-1 px-3 text-white rounded-full  transition duration-300 ease-in-out hover:bg-gray-800 hover:text-white"
                 aria-current="page"
               >
-                Home
+                Anasayfa
               </a>
             </li>
             <li>

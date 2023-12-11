@@ -20,7 +20,7 @@ export default function Profile() {
       setNotification({ message: successMessage, type: 'success' });
       localStorage.removeItem('loginSuccess');
     }
-    userAboutResponse()
+    
 
   }, []);
 

@@ -10,7 +10,7 @@ export default function ShowNotification({ NotiType, NotiMessage }: ShowNotifica
   const [notification, setNotification] = useState({
     message: "",
     type: "", // 'success' ya da 'error' gibi
-  });
+  }); 
 
   useEffect(() => {
     if (NotiMessage && NotiType) {
