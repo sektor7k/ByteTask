@@ -26,6 +26,7 @@ interface BackendContextState {
     userAboutContext: (aboutdata: {
         userid: number | null;
         userAbout: string;
+        userField: string;
     }) => Promise<void>;
     editAboutResponse: {
         success: boolean | null;
@@ -36,6 +37,7 @@ interface BackendContextState {
         id: number | null;
         userId: number | null;
         about: string;
+        userField: string
     };
 
 
@@ -74,7 +76,8 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
     const [userAbout, setUserAbout] = useState({
         id: null,
         userId: null,
-        about: ""
+        about: "",
+        userField: ""
     })
 
 
@@ -122,6 +125,10 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
                 const response = await Request2('users', userMailLocal);
                 setUserData({ id: response.id, username: response.username, email: response.email, status: response.status })
             }
+            else {
+                setUserData({ id: null, username: '', email: '', status: null });
+
+            }
         }
         catch (err) {
             console.error('Error fetching user data:', err);
@@ -131,14 +138,15 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         try {
             const response2 = await Request2('statusfalse', userData.email);
             localStorage.removeItem('userMail');
-            localStorage.setItem('logoutMessage', response2.message); 
+            localStorage.setItem('logoutMessage', response2.message);
+            router.push('/login');
             return response2
         }
         catch (err) {
             console.error('Error fetching user data:', err);
         }
     };
-    const userAboutContext = async (aboutdata: { userid: number | null; userAbout: string; }): Promise<void> => {
+    const userAboutContext = async (aboutdata: { userid: number | null; userAbout: string; userField: string }): Promise<void> => {
         try {
 
             const response = await Request('userAbout', aboutdata);
@@ -152,17 +160,15 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
 
         }
     };
+
     const userAboutResponse = async () => {
-
-
         try {
-            userDataResponse()
+            await userDataResponse();
             // if (userData.id !== null) {
 
-                const response = await Request2('userAbout', "1");
-                console.log(response)
-                setUserAbout({ id: response.id, userId: response.userId, about: response.about })
-            // }
+            const response = await Request2('userAbout', "1");
+            setUserAbout({ id: response.id, userId: response.userId, about: response.about, userField: response.fields })
+            //  }
         }
         catch (err) {
             console.error('Error fetching user data:', err);
