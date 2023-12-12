@@ -110,7 +110,7 @@ app.get("/userAbout/:userId", async (req, res) => {
     
 
     const userId = +req.params.userId
-    
+
     const note = await getUserAbout(userId)
 
     return res.status(200).send(note[0]);
@@ -121,6 +121,21 @@ app.get("/userAbout/:userId", async (req, res) => {
   }
 
 })
+
+
+app.post("/jobs", async (req, res) => {
+  try {
+    const { userid, jobTitle, jobDescription, jobPrice, workTime} = req.body;
+    
+   console.log(userid ,jobTitle, jobDescription, jobPrice, workTime);
+
+    return res.status(200).send({sas:"Başarılı"})
+
+
+  } catch (err) {
+    return res.status(500).send({ message: 'Server error', error: err });
+  }
+});
 
 
 
