@@ -20,8 +20,8 @@ export default function Navbar() {
         const userMailLocal = localStorage.getItem('userMail');
         if (userMailLocal !== null) {
           setuserLoggedIn(true);
-          userDataResponse();
-          userAboutResponse();
+          await userDataResponse();
+          await userAboutResponse();
         } else {
           setuserLoggedIn(false);
         }

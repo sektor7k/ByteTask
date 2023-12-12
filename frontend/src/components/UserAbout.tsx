@@ -7,7 +7,6 @@ export default function UserAbout() {
 
     const a = userAbout.userField;
     const stringToArray = a.split(',');
-    console.log(stringToArray)
 
     return (
         <div style={{ backgroundColor: '#23202A' }} className="w-8/12  rounded-lg flex flex-col justify-between  ">
@@ -53,20 +52,7 @@ export default function UserAbout() {
                         </button>
                     ))}
                 </div>
-                <div className="flex flex-row mt-4 space-x-4">
-                    <button
-                        type="button"
-                        className="text-gray-400 hover:text-white border border-solid border-gray-400 hover:border-white rounded-xl text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-bold"
-                    >
-                        Javascript/React
-                    </button>
-                    <button
-                        type="button"
-                        className="text-gray-400 hover:text-white border border-solid border-gray-400 hover:border-white rounded-xl text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-bold"
-                    >
-                        Blockchain
-                    </button>
-                </div>
+                
             </div>
             
             <div className="w-full pr-12 pl-12">

@@ -15,7 +15,12 @@ interface BackendContextState {
         status: string;
         success: boolean | null;
     };
-    userDataResponse: () => Promise<void>;
+    userDataResponse: () => Promise<{
+        id: any;
+        username: any;
+        email: any;
+        status: any;
+    } | undefined>
     userData: {
         id: null | number
         username: string;
@@ -71,14 +76,19 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
     const [editAboutResponse, seteditAboutResponse] = useState({
         success: null as boolean | null,
         message: "",
+
+
     })
+
     //tüm about verileri state
     const [userAbout, setUserAbout] = useState({
         id: null,
         userId: null,
         about: "",
         userField: ""
+
     })
+
 
 
     const signUpContext = async (signupdata: { username: string, email: string, password: string, password2: string }): Promise<void> => {
@@ -123,7 +133,9 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
             if (userMailLocal !== null) {
 
                 const response = await Request2('users', userMailLocal);
-                setUserData({ id: response.id, username: response.username, email: response.email, status: response.status })
+                const userData = { id: response.id, username: response.username, email: response.email, status: response.status }
+                setUserData(userData)
+                return userData.id;
             }
             else {
                 setUserData({ id: null, username: '', email: '', status: null });
@@ -136,10 +148,11 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
     };
     const logOut = async () => {
         try {
+            router.push('/login');
             const response2 = await Request2('statusfalse', userData.email);
             localStorage.removeItem('userMail');
             localStorage.setItem('logoutMessage', response2.message);
-            router.push('/login');
+            
             return response2
         }
         catch (err) {
@@ -163,12 +176,13 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
 
     const userAboutResponse = async () => {
         try {
-            await userDataResponse();
-            // if (userData.id !== null) {
-
-            const response = await Request2('userAbout', "1");
-            setUserAbout({ id: response.id, userId: response.userId, about: response.about, userField: response.fields })
-            //  }
+            const userId = await userDataResponse();
+            console.log(userId);
+            
+            if (userId !== null) {
+                const response = await Request2('userAbout', userId as string);
+                setUserAbout({ id: response.id, userId: response.userId, about: response.about, userField: response.fields })                
+            }
         }
         catch (err) {
             console.error('Error fetching user data:', err);
