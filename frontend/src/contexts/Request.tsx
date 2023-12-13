@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import { Request, Request2 } from "../backend/api";
+import { Request, Request2, Request3 } from "../backend/api";
 import router from "next/router";
 
 interface BackendContextState {
@@ -36,7 +36,7 @@ interface BackendContextState {
     editAboutResponse: {
         success: boolean | null;
         message: string;
-    },
+    };
     userAboutResponse: () => Promise<void>;
     userAbout: {
         id: number | null;
@@ -44,6 +44,27 @@ interface BackendContextState {
         about: string;
         userField: string
     };
+    jobContext: (jobData: {
+        userid: number | null;
+        jobTitle: string;
+        jobDescription: string;
+        jobPrice: string;
+        workTime: string;
+    }) => Promise<void>;
+    addJobResponse: {
+        success: boolean | null;
+        message: string;
+    };
+    jobsResponse: () => Promise<void>;
+    jobs: {
+        id: number | null;
+        userId: number | null;
+        jobTitle: string;
+        jobDescription: string;
+        jobPrice: number | null;
+        workTime: number | null;
+    }[];
+    userDataResponseId: (userid: number) => Promise<any>
 
 
 }
@@ -76,10 +97,7 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
     const [editAboutResponse, seteditAboutResponse] = useState({
         success: null as boolean | null,
         message: "",
-
-
     })
-
     //tüm about verileri state
     const [userAbout, setUserAbout] = useState({
         id: null,
@@ -88,6 +106,20 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         userField: ""
 
     })
+    // addJob response state'leri
+    const [addJobResponse, setaddJobResponse] = useState({
+        success: null as boolean | null,
+        message: "",
+    })
+    //
+    const [jobs, setJobs] = useState([{
+        id: null,
+        userId: null,
+        jobTitle: '',
+        jobDescription: '',
+        jobPrice: null,
+        workTime: null
+    }]);
 
 
 
@@ -152,7 +184,7 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
             const response2 = await Request2('statusfalse', userData.email);
             localStorage.removeItem('userMail');
             localStorage.setItem('logoutMessage', response2.message);
-            
+
             return response2
         }
         catch (err) {
@@ -178,11 +210,51 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         try {
             const userId = await userDataResponse();
             console.log(userId);
-            
+
             if (userId !== null) {
                 const response = await Request2('userAbout', userId as string);
-                setUserAbout({ id: response.id, userId: response.userId, about: response.about, userField: response.fields })                
+                setUserAbout({ id: response.id, userId: response.userId, about: response.about, userField: response.fields })
             }
+        }
+        catch (err) {
+            console.error('Error fetching user data:', err);
+        }
+    };
+
+    const jobContext = async (jobData: { userid: number | null; jobTitle: string; jobDescription: string; jobPrice: string; workTime: string }): Promise<void> => {
+        try {
+
+            const response = await Request('jobs', jobData);
+            console.log(response)
+            setaddJobResponse(response)
+            router.push('/anasayfa');
+
+        } catch (err) {
+            console.error('Error in signup', err);
+
+        }
+    };
+
+    const jobsResponse = async () => {
+        try {
+
+            const response = await Request3('jobs');
+            console.log(response)
+            setJobs(response);
+        }
+        catch (err) {
+            console.error('Error fetching jobs Response:', err);
+        }
+    };
+    
+
+    const userDataResponseId = async (userid: number) => {
+        try {
+            const userId = userid as unknown as string;
+            const response = await Request2('user', userId);
+            const userData = { id: response.id, username: response.username, email: response.email, status: response.status }
+            setUserData(userData)
+            return userData.id;
         }
         catch (err) {
             console.error('Error fetching user data:', err);
@@ -201,7 +273,12 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
             userAboutContext,
             editAboutResponse,
             userAboutResponse,
-            userAbout
+            userAbout,
+            jobContext,
+            addJobResponse,
+            jobsResponse,
+            jobs,
+            userDataResponseId
         }}>
             {children}
         </BackendContext.Provider>
