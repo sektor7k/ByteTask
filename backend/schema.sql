@@ -16,6 +16,17 @@ CREATE TABLE userAbout (
   FOREIGN KEY (userId) REFERENCES users(id)
 );
 
+CREATE TABLE userAbout (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  userId INT,
+  jobTitle VARCHAR(50),
+  jobDescription TEXT,
+  jobPrice INT,
+  workTime INT,
+
+  FOREIGN KEY (userId) REFERENCES users(id)
+);
+
 
 
 
