@@ -2,23 +2,10 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { Request } from "@/backend/api";
 import { useBackend } from "@/contexts/Request";
-import { redirect } from "next/dist/server/api-utils";
 
 export default function CreateJob() {
 
-    const { userData } = useBackend();
-
-    const jobContext = async (jobData: { userid: number | null; jobTitle: string; jobDescription: string;  jobPrice: string; workTime: string }): Promise<void> => {
-        try {
-
-            const response = await Request('jobs', jobData);
-            console.log(response)
-            
-        } catch (err) {
-            console.error('Error in signup', err);
-
-        }
-    };
+    const { userData, jobContext } = useBackend();
 
     const listJob = async (event: any) => {
         event.preventDefault();

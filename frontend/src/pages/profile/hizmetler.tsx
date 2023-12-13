@@ -1,9 +1,10 @@
 
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import ShowNotification from "@/components/Notification";
 import ProfileHeader from "@/components/ProfileHeader";
 import Services from "@/components/Services";
-
+import { useBackend } from "@/contexts/Request";
 
 export default function Profile() {
 
@@ -14,7 +15,6 @@ export default function Profile() {
 
         <ProfileHeader />
         <Services/>
-
       </div>
       <Footer />
     </>
