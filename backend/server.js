@@ -1,7 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { addUser, loginCheck, getUser, addUserAbout,getUserAbout } from './database.js';
+import { addUser, loginCheck, getUser, addUserAbout,getUserAbout, addJob, getAllJobs } from './database.js';
 import { checkStatusFalse } from "./database.js";
 
 const app = express();
@@ -127,9 +127,9 @@ app.post("/jobs", async (req, res) => {
   try {
     const { userid, jobTitle, jobDescription, jobPrice, workTime} = req.body;
     
-   console.log(userid ,jobTitle, jobDescription, jobPrice, workTime);
+   const note = await addJob( userid, jobTitle, jobDescription, jobPrice, workTime);
 
-    return res.status(200).send({sas:"Başarılı"})
+    return res.status(200).send(note[0]);
 
 
   } catch (err) {
@@ -137,6 +137,40 @@ app.post("/jobs", async (req, res) => {
   }
 });
 
+app.get("/jobs", async (req, res) => {
+
+  try {
+    
+
+    
+
+    const note = await getAllJobs()
+    return res.status(200).send(note);
+
+  }
+  catch (err) {
+    return res.status(500).send({ message: 'Server error', error: err })
+  }
+
+})
+
+app.get("/user/:id", async (req, res) => {
+// burda kaldın
+  try {
+    
+
+    const id = req.params.id
+    
+    const note = await getUser(id)
+
+    return res.status(200).send(note[0]);
+
+  }
+  catch (err) {
+    return res.status(500).send({ message: 'Server error', error: err })
+  }
+
+})
 
 
 

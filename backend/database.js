@@ -134,7 +134,7 @@ export async function addUserAbout(userid, userAbout, userField) {
     const queryid = `SELECT * FROM users WHERE id = ?`
     const [rowsid] = await pool.query(queryid, [userid]);
 
-    // Eğer kullanıcı yoksa hata mesajı gönder var ise maile ait şifreyi kontrol et
+    // Eğer kullanıcı yoksa hata mesajı gönder
     if (rowsid.length == 0) {
       return { success: false, message: 'Kullanıcı id si alınamadı' }
     }
@@ -176,8 +176,42 @@ export async function getUserAbout(userid) {
   }
 }
 
+export async function addJob(userid, jobTitle, jobDescription, jobPrice, workTime) {
+
+  try {
+
+    const queryid = `SELECT * FROM users WHERE id = ?`
+    const [rowsid] = await pool.query(queryid, [userid]);
+
+    if (rowsid.length == 0) {
+      return { success: false, message: 'Kullanıcı id si alınamadı' }
+    }
+
+    const query = `
+      INSERT INTO jobs (userId, jobTitle, jobDescription, jobPrice, workTime)
+      VALUES (?, ?, ?, ?, ?)
+    `;
+    await pool.query(query, [userid, jobTitle, jobDescription, jobPrice, workTime]);
+    return { success: true, message: 'İş ilanı eklendi' }
 
 
+  }
+  catch (err) {
+    return { success: false, message: 'addJob failed', error: err }
+  }
+}
+
+export async function getAllJobs(){
+
+  try{
+    const [getAlljobs] = await pool.query('SELECT * FROM jobs');
+
+    return getAlljobs
+  }
+  catch{
+    return { success: false, message: 'getAllJobs failed', error: err }
+  }
+}
 
 
 
