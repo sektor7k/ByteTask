@@ -65,9 +65,9 @@ export default function Anasayfa() {
                                         ? `${job.jobDescription.slice(0, 55)}...`
                                         : job.jobDescription}
                                 </p>
-                                <button className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white border-2 border-gray-50 rounded-b-xl text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-bold">
+                                <a href="/cardpages" className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white border-2 border-gray-50 rounded-b-xl text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-bold">
                                     İlana Git
-                                </button>
+                                </a>
                             </div>
                         ))}
 
