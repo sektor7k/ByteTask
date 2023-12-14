@@ -1,7 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { addUser, loginCheck, getUser, addUserAbout,getUserAbout, addJob, getAllJobs } from './database.js';
+import { addUser, loginCheck, getUser, addUserAbout,getUserAbout, addJob, getAllJobs, getUserId } from './database.js';
 import { checkStatusFalse } from "./database.js";
 
 const app = express();
@@ -129,7 +129,7 @@ app.post("/jobs", async (req, res) => {
     
    const note = await addJob( userid, jobTitle, jobDescription, jobPrice, workTime);
 
-    return res.status(200).send(note[0]);
+    return res.status(200).send({ success: note.success, message: note.message });
 
 
   } catch (err) {
@@ -140,9 +140,7 @@ app.post("/jobs", async (req, res) => {
 app.get("/jobs", async (req, res) => {
 
   try {
-    
-
-    
+       
 
     const note = await getAllJobs()
     return res.status(200).send(note);
@@ -156,12 +154,10 @@ app.get("/jobs", async (req, res) => {
 
 app.get("/user/:id", async (req, res) => {
 // burda kaldın
-  try {
-    
+  try {  
 
-    const id = req.params.id
-    
-    const note = await getUser(id)
+    const id = +req.params.id
+    const note = await getUserId(id)
 
     return res.status(200).send(note[0]);
 

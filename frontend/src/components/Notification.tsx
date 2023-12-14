@@ -15,7 +15,7 @@ export default function ShowNotification({ NotiType, NotiMessage }: ShowNotifica
   useEffect(() => {
     if (NotiMessage && NotiType) {
       // Bildirimi ayarla ve belirli bir süre sonra kaldır
-      setNotification({ message: NotiMessage, type: NotiType });
+      setNotification({ message: NotiMessage, type: NotiType }); 
 
       const timer = setTimeout(() => {
         setNotification({ message: "", type: "" });

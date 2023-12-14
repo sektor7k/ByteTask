@@ -17,8 +17,6 @@ export default function CreateJob() {
             jobPrice: formdata.get('jobPrice') as string,
             workTime: formdata.get('workTime') as string
         }; 
-
-        console.log(jobData)
         jobContext(jobData);
     
         

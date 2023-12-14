@@ -11,6 +11,8 @@ export default function Anasayfa() {
     useEffect(() => {
 
         jobsResponse()
+        
+        
 
     }, []);
 
@@ -49,7 +51,7 @@ export default function Anasayfa() {
                                         />
                                         <div className="flex flex-col ml-2">
                                             <p className="text-gray-100 text-base font-semibold">
-                                                Angelina
+                                                {job.username}
                                             </p>
                                             <p className="text-gray-400 text-sm">{job.jobTitle}</p>
                                         </div>

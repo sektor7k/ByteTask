@@ -1,6 +1,6 @@
 import mysql from "mysql2";
 import dotenv from "dotenv";
-import bcrypt from "bcrypt";
+import bcrypt from "bcrypt"; 
 
 dotenv.config()
 
@@ -205,11 +205,22 @@ export async function getAllJobs(){
 
   try{
     const [getAlljobs] = await pool.query('SELECT * FROM jobs');
-
     return getAlljobs
   }
   catch{
     return { success: false, message: 'getAllJobs failed', error: err }
+  }
+}
+
+export async function getUserId(id) {
+
+  try {
+    const [getUser] = await pool.query('SELECT * FROM users WHERE id = ?', [id]);
+
+    return getUser
+  }
+  catch (err) {
+    return { success: false, message: 'getStatus failed', error: err }
   }
 }
 

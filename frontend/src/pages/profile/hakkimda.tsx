@@ -11,8 +11,8 @@ import { useEffect, useState } from "react";
 
 export default function Profile() {
   const [notification, setNotification] = useState({ message: '', type: '' });
-  const { editAboutResponse, userAboutResponse} = useBackend();
-  
+  const { editAboutResponse, userAboutResponse } = useBackend();
+
 
   useEffect(() => {
     const successMessage = localStorage.getItem('loginSuccess');
@@ -20,7 +20,6 @@ export default function Profile() {
       setNotification({ message: successMessage, type: 'success' });
       localStorage.removeItem('loginSuccess');
     }
-    
 
   }, []);
 
@@ -39,7 +38,7 @@ export default function Profile() {
         )}
         {editAboutResponse.message && (
           <ShowNotification
-            NotiType={editAboutResponse.success ? "success" : "error"}
+            NotiType={"success"}
             NotiMessage={editAboutResponse.message}
           />
         )}

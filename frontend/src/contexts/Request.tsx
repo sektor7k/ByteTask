@@ -15,7 +15,7 @@ interface BackendContextState {
         status: string;
         success: boolean | null;
     };
-    userDataResponse: () => Promise<{
+    userDataResponse: () => Promise<{ 
         id: any;
         username: any;
         email: any;
@@ -63,6 +63,7 @@ interface BackendContextState {
         jobDescription: string;
         jobPrice: number | null;
         workTime: number | null;
+        username: string
     }[];
     userDataResponseId: (userid: number) => Promise<any>
 
@@ -118,7 +119,8 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         jobTitle: '',
         jobDescription: '',
         jobPrice: null,
-        workTime: null
+        workTime: null,
+        username: ''
     }]);
 
 
@@ -180,23 +182,19 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
     };
     const logOut = async () => {
         try {
-            router.push('/login');
-            const response2 = await Request2('statusfalse', userData.email);
-            localStorage.removeItem('userMail');
-            localStorage.setItem('logoutMessage', response2.message);
-
-            return response2
+          const response2 = await Request2('statusfalse', userData.email); 
+          localStorage.removeItem('userMail');
+          localStorage.setItem('logoutMessage', response2.message);
+        } catch (err) {
+          console.error('Error logging out:', err);
         }
-        catch (err) {
-            console.error('Error fetching user data:', err);
-        }
-    };
+      };
     const userAboutContext = async (aboutdata: { userid: number | null; userAbout: string; userField: string }): Promise<void> => {
         try {
 
             const response = await Request('userAbout', aboutdata);
+            console.log(response);
             seteditAboutResponse(response)
-            console.log(response)
             router.push('/profile/hakkimda');
 
 
@@ -209,8 +207,6 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
     const userAboutResponse = async () => {
         try {
             const userId = await userDataResponse();
-            console.log(userId);
-
             if (userId !== null) {
                 const response = await Request2('userAbout', userId as string);
                 setUserAbout({ id: response.id, userId: response.userId, about: response.about, userField: response.fields })
@@ -225,12 +221,11 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         try {
 
             const response = await Request('jobs', jobData);
-            console.log(response)
             setaddJobResponse(response)
             router.push('/anasayfa');
 
         } catch (err) {
-            console.error('Error in signup', err);
+            console.error('Error jobContext', err);
 
         }
     };
@@ -239,8 +234,12 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         try {
 
             const response = await Request3('jobs');
-            console.log(response)
-            setJobs(response);
+            const jobsWithUserData = await Promise.all(response.map(async (job: { userId: number; }) => {
+                const username = await userDataResponseId(job.userId);
+                return { ...job, username };
+              }));
+          
+            setJobs(jobsWithUserData);
         }
         catch (err) {
             console.error('Error fetching jobs Response:', err);
@@ -254,7 +253,7 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
             const response = await Request2('user', userId);
             const userData = { id: response.id, username: response.username, email: response.email, status: response.status }
             setUserData(userData)
-            return userData.id;
+            return userData.username;
         }
         catch (err) {
             console.error('Error fetching user data:', err);
