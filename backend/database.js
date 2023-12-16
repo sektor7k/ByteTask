@@ -204,8 +204,16 @@ export async function addJob(userid, jobTitle, jobDescription, jobPrice, workTim
 export async function getAllJobs(){
 
   try{
-    const [getAlljobs] = await pool.query('SELECT * FROM jobs');
-    return getAlljobs
+    const [getAllJobs] = await pool.query('SELECT * FROM jobs');
+    
+    const jobsWithUsername = await Promise.all(
+      getAllJobs.map(async (job) => {
+        const username = await getUserId(job.userId);
+        return { ...job, username: username.username };
+      })
+    );
+
+    return jobsWithUsername; 
   }
   catch{
     return { success: false, message: 'getAllJobs failed', error: err }
@@ -217,7 +225,7 @@ export async function getUserId(id) {
   try {
     const [getUser] = await pool.query('SELECT * FROM users WHERE id = ?', [id]);
 
-    return getUser
+    return getUser[0]
   }
   catch (err) {
     return { success: false, message: 'getStatus failed', error: err }
