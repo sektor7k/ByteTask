@@ -1,10 +1,39 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import ShowNotification from "@/components/Notification";
 import ProfileHeader from "@/components/ProfileHeader";
 import Statistics from "@/components/Statistics";
 import UserAbout from "@/components/UserAbout";
+import { useMetaMask } from "@/contexts/MetaMaskProvider";
+import { useEffect, useState } from "react";
+import Web3 from "web3";
 
 export default function CardPages() {
+
+
+    const { sendEther } = useMetaMask();
+    const [transactionHash, setTransactionHash] = useState("");
+
+    const handleSubmit = async (e: React.FormEvent) => {
+    
+        e.preventDefault();
+    
+        // Güvenlik kontrolleri ve gerekli validasyonlar burada yapılabilir
+    
+        try {
+          const web3 = new Web3();
+          
+          // Amount'u WEI cinsinden çevirme
+          const amountInWei = web3.utils.toWei(1, 'ether');
+          
+          const hash = await sendEther(Number(amountInWei), "0x70997970C51812dc3A010C7d01b50e0d17dc79C8");
+          setTransactionHash(`İşlem Gönderildi İşlem Adresiniz: ${hash}`);
+        } catch (error) {
+          // Hata durumunda yapılacak işlemler
+          console.error("Transaction failed:", error);
+        }
+      };
+
     return (
         <>
             <Navbar />
@@ -47,7 +76,7 @@ export default function CardPages() {
                     <div style={{ backgroundColor: '#23202A' }} className="w-8/12  rounded-lg flex flex-col justify-between">
 
                         <div className="p-6">
-                            <img className="w-full h-full rounded-xl" src="https://bgcp.bionluk.com/images/portfolio/1400x788/9fa3d9ea-20f7-47f7-8f50-4d8f269e59f7.png" alt="img" />
+                            <img className="w-full h-full rounded-xl" src="https://blockchain-training.ca/wp-content/uploads/2021/02/Slide1-5.jpg" alt="img" />
                         </div>
 
                         <div className=" p-6">
@@ -113,7 +142,7 @@ export default function CardPages() {
                             </div>
                             <div className="flex flex-row space-x-2 mt-6   ">
                                 <button
-                                    type="button"
+                                    type="button" onClick={handleSubmit}
                                     className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white  border-2 border-gray-50 rounded-full text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-bold"
                                 >
                                     Teklif Ver
@@ -232,6 +261,12 @@ export default function CardPages() {
                 </div>
 
             </div>
+            {transactionHash && (
+                    <ShowNotification
+                        NotiType={"success"}
+                        NotiMessage={transactionHash}
+                    />
+                )}
             <Footer />
         </>
     )

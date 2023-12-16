@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Web3 from 'web3';
 
 export default function Donate() {
-  const { sendEther } = useMetaMask();
+  const { sendEther } = useMetaMask(); 
   const [address, setAddress] = useState("");
   const [amount, setAmount] = useState("");
   const [transactionHash, setTransactionHash] = useState("");

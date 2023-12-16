@@ -1,23 +1,25 @@
 
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
-import { MetaMaskProvider } from '@/contexts/MetaMaskProvider'
-import {BackendProvider} from '@/contexts/Request'
-
+import { BackendProvider } from '@/contexts/Request'
+import { Web3Modal } from '@/contexts/Web3Modal'
 
 
 export default function App({ Component, pageProps }: AppProps) {
 
+  
+
+
   return (
 
-    
+
     <>
-    <BackendProvider>
-    <MetaMaskProvider>
-    <Component {...pageProps} />
-    </MetaMaskProvider>
-    </BackendProvider>
-    
+      <BackendProvider>     
+        <Web3Modal> 
+          <Component {...pageProps} />
+          </Web3Modal>     
+      </BackendProvider>
+
     </>
 
 

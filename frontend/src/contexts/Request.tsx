@@ -234,12 +234,9 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         try {
 
             const response = await Request3('jobs');
-            const jobsWithUserData = await Promise.all(response.map(async (job: { userId: number; }) => {
-                const username = await userDataResponseId(job.userId);
-                return { ...job, username };
-              }));
+           
           
-            setJobs(jobsWithUserData);
+            setJobs(response); 
         }
         catch (err) {
             console.error('Error fetching jobs Response:', err);

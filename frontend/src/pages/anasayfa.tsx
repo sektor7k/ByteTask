@@ -11,14 +11,15 @@ export default function Anasayfa() {
     useEffect(() => {
 
         jobsResponse()
-        
-        
+
+
 
     }, []);
 
     return (
-        <div style={{ backgroundColor: '#23202A' }}>
-            <>
+        <>
+            <div style={{ backgroundColor: '#23202A' }} className="min-h-screen" >
+
                 <Navbar />
 
                 <div className="container mx-auto p-16 flex flex-col justify-center items-center space-y-6 ">
@@ -38,7 +39,7 @@ export default function Anasayfa() {
                                 <div className="h-1/2">
                                     <img
                                         className="w-full h-full rounded-t-xl"
-                                        src="https://bgcp.bionluk.com/images/portfolio/1400x788/c6057350-842a-4dc8-b2d5-3c6aa61a82df.jpg"
+                                        src="https://blockchain-training.ca/wp-content/uploads/2021/02/Slide1-5.jpg"
                                         alt="job"
                                     />
                                 </div>
@@ -79,8 +80,8 @@ export default function Anasayfa() {
                         NotiMessage={addJobResponse.message}
                     />
                 )}
-                <Footer />
-            </>
-        </div>
+            </div>
+            <Footer />
+        </>
     )
 }
