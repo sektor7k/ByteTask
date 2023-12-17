@@ -18,7 +18,7 @@ export default function Menu() {
     <div className="flex flex-col">
       <button className="flex flex-row justify-between items-center" onClick={toggleDropdown}>
         <div className="flex flex-row justify-between items-center space-x-2  ">
-          <img className=" h-10 w-10 overflow-hidden rounded-full" src="https://pbs.twimg.com/media/FvELKPKWYBQ1d1x.jpg" alt="profil" />
+          <img className=" h-10 w-10 overflow-hidden rounded-full" src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg" alt="profil" />
           <p className="text-gray-200 text-lg font-semibold">
             {userData.username}
           </p>
@@ -32,7 +32,7 @@ export default function Menu() {
         <div style={{ backgroundColor: '#23202A' }} className="absolute transform translate-y-12 -translate-x-10 pl-8 p-5 rounded-xl shadow-2xl flex flex-col space-y-6 ">
 
           <div className="flex flex-row space-x-3">
-            <img className=" h-14 w-14 rounded-full" src="https://pbs.twimg.com/media/FvELKPKWYBQ1d1x.jpg" alt="profil" />
+            <img className=" h-14 w-14 rounded-full" src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg" alt="profil" />
             <div className="flex flex-col">
               <p className="text-gray-50 text-base font-bold">
                 {userData.username}

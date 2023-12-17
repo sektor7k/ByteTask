@@ -3,6 +3,8 @@ import Navbar from "@/components/Navbar";
 import ShowNotification from "@/components/Notification";
 import { useBackend } from "@/contexts/Request";
 import { useEffect } from "react";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function Anasayfa() {
 
@@ -47,14 +49,14 @@ export default function Anasayfa() {
                                     <div className="flex flex-row">
                                         <img
                                             className="h-12 w-12 overflow-hidden rounded-full"
-                                            src="https://pbs.twimg.com/media/FvELKPKWYBQ1d1x.jpg"
+                                            src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg"
                                             alt="profil"
                                         />
                                         <div className="flex flex-col ml-2">
                                             <p className="text-gray-100 text-base font-semibold">
                                                 {job.username}
                                             </p>
-                                            <p className="text-gray-400 text-sm">{job.jobTitle}</p>
+                                            <p className="text-gray-400 text-sm">Developer</p>
                                         </div>
                                     </div>
                                     <p className="text-2xl text-green-400 font-bold">
@@ -62,14 +64,14 @@ export default function Anasayfa() {
                                     </p>
                                 </div>
                                 <p className="text-gray-100 text-base font-medium p-4">
-                                    {job.jobDescription.length > 55
-                                        ? `${job.jobDescription.slice(0, 55)}...`
-                                        : job.jobDescription}
+                                    {job.jobTitle.length > 55
+                                        ? `${job.jobTitle.slice(0, 55)}...`
+                                        : job.jobTitle}
                                 </p>
-                                <a href="/cardpages" className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white border-2 border-gray-50 rounded-b-xl text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-bold">
+                                <Link href={`/jobs/${job.username}/${job.id}`} className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white border-2 border-gray-50 rounded-b-xl text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-bold">
                                     İlana Git
-                                </a>
-                            </div>
+                                </Link>
+                            </div> 
                         ))}
 
                     </div>

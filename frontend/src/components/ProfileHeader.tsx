@@ -18,7 +18,7 @@ export default function ProfileHeader() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 translate-y-12">
           <div
             className="bg-cover bg-center h-32 w-32 rounded-full overflow-hidden  "
-            style={{ backgroundImage: `url("https://pbs.twimg.com/media/FvELKPKWYBQ1d1x.jpg")`, border: "6px solid #23202A" }}
+            style={{ backgroundImage: `url("https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg")`, border: "6px solid #23202A" }}
           ></div>
           <div className=" justify-center items-center relative">
             <h2 className="text-white text-xl font-bold translate-x-8">{userData.username} </h2>

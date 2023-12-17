@@ -15,7 +15,8 @@ export default function CreateJob() {
             jobTitle: formdata.get('jobTitle') as string, 
             jobDescription: formdata.get('jobDescription') as string,
             jobPrice: formdata.get('jobPrice') as string,
-            workTime: formdata.get('workTime') as string
+            workTime: formdata.get('workTime') as string,
+            revision: formdata.get('revision') as string
         }; 
         jobContext(jobData);
     
@@ -44,7 +45,7 @@ export default function CreateJob() {
                                             id="jobTitle"
                                             style={{ background: '#1E1B24' }}
                                             className="text-gray-50 text-xl rounded-lg focus:border-gray-600 block w-full p-2.5 h-14 min-h-full"
-                                            placeholder="İlan Başlığı"
+                                            placeholder="İlan başlığıni giriniz"
                                         />
                                     </p>
                                 </div>
@@ -58,7 +59,7 @@ export default function CreateJob() {
                                             id="jobDescription"
                                             style={{ background: '#1E1B24' }}
                                             className="text-gray-50 sm:text-sm rounded-lg focus:border-gray-600 block w-full p-2.5 h-40 min-h-full"
-                                            placeholder="İlan Açıklaması"
+                                            placeholder="İlan açıklmasını giriniz."
                                         />
                                     </p>
                                 </div>
@@ -73,13 +74,13 @@ export default function CreateJob() {
                                             id="jobPrice"
                                             style={{ background: '#1E1B24' }}
                                             className="text-gray-50 rounded-lg focus:border-gray-600 block w-full p-2.5 h-14 min-h-full"
-                                            placeholder="İlan Fiyatı"
+                                            placeholder="İlan fiyatını giriniz"
                                         />
                                     </p>
                                 </div>
                                 <div>
                                     <p className="text-xl font-bold text-white">
-                                        <label htmlFor="workTime">İlan Süresi </label>
+                                        <label htmlFor="workTime">İlan Süresi(Gün) </label>
                                     </p>
                                     <p className="text-base text-gray-400 mt-5">
                                         <input
@@ -89,7 +90,23 @@ export default function CreateJob() {
                                             id="workTime"
                                             style={{ background: '#1E1B24' }}
                                             className="text-gray-50 rounded-lg focus:border-gray-600 block w-full p-2.5 h-14 min-h-full"
-                                            placeholder="İlan Süresi"
+                                            placeholder="İlan süresini gün olarak giriniz."
+                                        />
+                                    </p>
+                                </div>
+                                <div>
+                                    <p className="text-xl font-bold text-white">
+                                        <label htmlFor="revision">Revizyon Hakkı </label>
+                                    </p>
+                                    <p className="text-base text-gray-400 mt-5">
+                                        <input
+
+                                            type="number"
+                                            name="revision"
+                                            id="revision"
+                                            style={{ background: '#1E1B24' }}
+                                            className="text-gray-50 rounded-lg focus:border-gray-600 block w-full p-2.5 h-14 min-h-full"
+                                            placeholder="Müşterilerin kaç revizyon hakkına sahip olduklarını giriniz."
                                         />
                                     </p>
                                 </div>
