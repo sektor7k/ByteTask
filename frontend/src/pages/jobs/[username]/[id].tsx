@@ -1,38 +1,29 @@
+import { Request2 } from "@/backend/api";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import ShowNotification from "@/components/Notification";
-import ProfileHeader from "@/components/ProfileHeader";
-import Statistics from "@/components/Statistics";
-import UserAbout from "@/components/UserAbout";
-import { useMetaMask } from "@/contexts/MetaMaskProvider";
 import { useEffect, useState } from "react";
-import Web3 from "web3";
+import { useRouter } from 'next/router';
+import { useBackend } from "@/contexts/Request";
 
 export default function CardPages() {
 
 
-    const { sendEther } = useMetaMask();
-    const [transactionHash, setTransactionHash] = useState("");
+    const router = useRouter();
+    const { userData, jobDetail, jobsDetailResponse } = useBackend();
+    const { id, username } = router.query;
+    
 
-    const handleSubmit = async (e: React.FormEvent) => {
-    
-        e.preventDefault();
-    
-        // Güvenlik kontrolleri ve gerekli validasyonlar burada yapılabilir
-    
-        try {
-          const web3 = new Web3();
-          
-          // Amount'u WEI cinsinden çevirme
-          const amountInWei = web3.utils.toWei(1, 'ether');
-          
-          const hash = await sendEther(Number(amountInWei), "0x70997970C51812dc3A010C7d01b50e0d17dc79C8");
-          setTransactionHash(`İşlem Gönderildi İşlem Adresiniz: ${hash}`);
-        } catch (error) {
-          // Hata durumunda yapılacak işlemler
-          console.error("Transaction failed:", error);
-        }
-      };
+    useEffect(() => {
+        const fetchData = async () => {
+            if (id) {
+                const jobId = Array.isArray(id) ? id[0] : id;
+                jobsDetailResponse(jobId)
+            }
+        };
+
+        fetchData();
+    }, [id]);
+
 
     return (
         <>
@@ -49,19 +40,35 @@ export default function CardPages() {
                                 Yazılım {'>>'} Blockchain
                             </a>
                             <p className="text-gray-50 font-medium text-2xl mt-4">
-                                Ben, profesyonel Solidty ve Cairo akıllı kontratları geliştiririm.
+                                {jobDetail.jobTitle}
                             </p>
 
                         </div>
 
+                        {userData.id == jobDetail.userId ?(
+                            <div className=" flex flex-row">
+                            <a href="#" style={{ background: '#23202A' }} className="text-gray-500 hover:text-gray-50 border-2 border-gray-500  hover:border-2  hover:border-gray-300 hover:border-opacity-100 p-2 rounded-3xl flex flex-row items-center space-x-2 mr-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                </svg>
 
-                        <a href="#" style={{ background: '#23202A' }} className="text-gray-500 hover:text-gray-50 border-2 border-gray-500  hover:border-2  hover:border-gray-300 hover:border-opacity-100 p-2 rounded-3xl flex flex-row items-center space-x-2 mr-5">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
-                            </svg>
 
-                            <p className="text-xl">Freeleancer'a Soru Sor</p>
-                        </a>
+
+                                <p className="text-base font-bold">İlanı Düzenle</p>
+                            </a>
+                            <a href="#" style={{ background: '#23202A' }} className="text-gray-500 hover:text-red-500 border-2 border-gray-500  hover:border-2  hover:border-red-500 hover:border-opacity-100 p-2 rounded-3xl flex flex-row items-center space-x-2 mr-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                </svg>
+
+                                <p className="text-base font-bold">İlanı Kaldır</p>
+                            </a>
+                        </div>
+                        ):(
+                            null
+                        )}
+
+                        
 
 
 
@@ -86,8 +93,7 @@ export default function CardPages() {
                                 </p>
                             </div>
                             <p className=" text-sm text-gray-400 mt-5">
-                                Merhaba, ben Angelina Swam  . 12 yıllık deneyime sahip İngilizce, Almanca ve Türkçe içerik üreticisi ve tasarımcıyım. İngilizce dil eğitimimi, ABD’nin Kuzey Karolina eyaletinde bulunan Charlotte şehri CPCC kolejinde aldım. Dil yeterliliği sonrasında aynı şehirde bulunan Strayer University’de pazarlama alanında yüksek lisans yaptım. Web Tasarım ile birlikte; metinsel olarak website ve reklam içerikleri, görsel olarak sosyal medya, katalog, banner ve video tasarım hizmetleri vermekteyim. Dijital ve gerçek dünyada daha modern ve daha profesyonel bir görünüm amacı taşıyan kişilerle çalışmak isterim.
-
+                                {jobDetail.jobDescription}
                             </p>
                         </div>
 
@@ -108,7 +114,7 @@ export default function CardPages() {
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
 
-                                        <h2 className="text-gray-400 text-base font-normal">2 Günde Teslim</h2>
+                                        <h2 className="text-gray-400 text-base font-normal">{jobDetail.workTime} Günde Teslim</h2>
                                     </div>
 
 
@@ -124,7 +130,7 @@ export default function CardPages() {
 
 
 
-                                        <h2 className="text-gray-400 text-base font-normal  ">3 Revizyon Hakkı </h2>
+                                        <h2 className="text-gray-400 text-base font-normal  ">{jobDetail.revision} Revizyon Hakkı </h2>
                                     </div>
                                 </div>
                                 <div className="flex flex-row justify-between items-center">
@@ -133,7 +139,7 @@ export default function CardPages() {
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
                                         </svg>
 
-                                        <h2 className="text-green-500 text-2xl font-medium">400$ </h2>
+                                        <h2 className="text-green-500 text-2xl font-medium">{jobDetail.jobPrice}$ </h2>
                                     </div>
                                 </div>
 
@@ -142,10 +148,10 @@ export default function CardPages() {
                             </div>
                             <div className="flex flex-row space-x-2 mt-6   ">
                                 <button
-                                    type="button" onClick={handleSubmit}
+                                    type="button"
                                     className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white  border-2 border-gray-50 rounded-full text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-bold"
                                 >
-                                    Teklif Ver
+                                    Devam Et
                                 </button>
 
 
@@ -156,10 +162,10 @@ export default function CardPages() {
                         <div style={{ backgroundColor: '#23202A' }} className="w-full  rounded-lg flex flex-col pb-6 items-center">
 
                             <div className="flex flex-col mt-6 items-center space-y-4  ">
-                                <img className=" h-20 w-20 overflow-hidden rounded-full" src="https://pbs.twimg.com/media/FvELKPKWYBQ1d1x.jpg" alt="profil" />
+                                <img className=" h-20 w-20 overflow-hidden rounded-full" src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg" alt="profil" />
                                 <div>
                                     <p className="text-gray-50 text-base font-bold">
-                                        sektor7K
+                                        {username}
                                     </p>
                                     <p className="text-gray-400 text-sm">
                                         Developer
@@ -261,12 +267,6 @@ export default function CardPages() {
                 </div>
 
             </div>
-            {transactionHash && (
-                    <ShowNotification
-                        NotiType={"success"}
-                        NotiMessage={transactionHash}
-                    />
-                )}
             <Footer />
         </>
     )
