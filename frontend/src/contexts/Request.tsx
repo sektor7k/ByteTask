@@ -15,7 +15,7 @@ interface BackendContextState {
         status: string;
         success: boolean | null;
     };
-    userDataResponse: () => Promise<{ 
+    userDataResponse: () => Promise<{
         id: any;
         username: any;
         email: any;
@@ -50,6 +50,7 @@ interface BackendContextState {
         jobDescription: string;
         jobPrice: string;
         workTime: string;
+        revision: string;
     }) => Promise<void>;
     addJobResponse: {
         success: boolean | null;
@@ -65,7 +66,28 @@ interface BackendContextState {
         workTime: number | null;
         username: string
     }[];
-    userDataResponseId: (userid: number) => Promise<any>
+    userDataResponseId: (userid: number) => Promise<any>;
+    jobsDetailResponse: (id: string) => Promise<void>;
+    jobDetail: {
+        id: number | null;
+        jobDescription: string;
+        jobPrice: number | null;
+        jobTitle: string;
+        revision: number | null;
+        userId: number | null;
+        workTime: number | null;
+    };
+    jobsResponseUser: () => Promise<void>;
+    jobsUser: {
+        id: number | null;
+        userId: number | null;
+        jobTitle: string;
+        jobDescription: string;
+        jobPrice: number | null;
+        workTime: number | null;
+        username: string
+    }[];
+
 
 
 }
@@ -87,7 +109,7 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         status: "",
         success: null as boolean | null,
     });
-    // get user tüm veriler
+    // get user tüm verilernnull
     const [userData, setUserData] = useState({
         id: null,
         username: "",
@@ -112,8 +134,28 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         success: null as boolean | null,
         message: "",
     })
-    //
+    // anasayfa iş ilanları state i
     const [jobs, setJobs] = useState([{
+        id: null,
+        userId: null,
+        jobTitle: '',
+        jobDescription: '',
+        jobPrice: null,
+        workTime: null,
+        username: ''
+    }]);
+    // ilaan sayfası için ilan detayları
+    const [jobDetail, setJobDetail] = useState({
+        id: null,
+        jobDescription: '',
+        jobPrice: null,
+        jobTitle: '',
+        revision: null,
+        userId: null,
+        workTime: null
+    });
+    // kullanıcı profilindeki ilanları
+    const [jobsUser, setJobsUser] = useState([{
         id: null,
         userId: null,
         jobTitle: '',
@@ -182,13 +224,13 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
     };
     const logOut = async () => {
         try {
-          const response2 = await Request2('statusfalse', userData.email); 
-          localStorage.removeItem('userMail');
-          localStorage.setItem('logoutMessage', response2.message);
+            const response2 = await Request2('statusfalse', userData.email);
+            localStorage.removeItem('userMail');
+            localStorage.setItem('logoutMessage', response2.message);
         } catch (err) {
-          console.error('Error logging out:', err);
+            console.error('Error logging out:', err);
         }
-      };
+    };
     const userAboutContext = async (aboutdata: { userid: number | null; userAbout: string; userField: string }): Promise<void> => {
         try {
 
@@ -217,7 +259,7 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
-    const jobContext = async (jobData: { userid: number | null; jobTitle: string; jobDescription: string; jobPrice: string; workTime: string }): Promise<void> => {
+    const jobContext = async (jobData: { userid: number | null; jobTitle: string; jobDescription: string; jobPrice: string; workTime: string, revision: string }): Promise<void> => {
         try {
 
             const response = await Request('jobs', jobData);
@@ -234,15 +276,14 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         try {
 
             const response = await Request3('jobs');
-           
-          
-            setJobs(response); 
+
+
+            setJobs(response);
         }
         catch (err) {
             console.error('Error fetching jobs Response:', err);
         }
     };
-    
 
     const userDataResponseId = async (userid: number) => {
         try {
@@ -256,6 +297,31 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
             console.error('Error fetching user data:', err);
         }
     };
+    const jobsDetailResponse = async (id: string) => {
+
+        try {
+            const response = await Request2('job', id);
+
+            setJobDetail(response)
+
+        } catch (error) {
+            console.error('Error fetching job data:', error);
+        }
+    };
+
+    const jobsResponseUser = async () => {
+        try {
+            const userId = await userDataResponse();
+            if (userId !== null) {
+                const response = await Request2('jobsuser', userId as string);
+                setJobsUser(response);
+            }
+        }
+        catch (err) {
+            console.error('Error fetching jobs Response:', err);
+        }
+    };
+
 
     return (
         <BackendContext.Provider value={{
@@ -274,7 +340,11 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
             addJobResponse,
             jobsResponse,
             jobs,
-            userDataResponseId
+            userDataResponseId,
+            jobsDetailResponse,
+            jobDetail,
+            jobsResponseUser,
+            jobsUser
         }}>
             {children}
         </BackendContext.Provider>
