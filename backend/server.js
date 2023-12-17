@@ -1,11 +1,11 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { addUser, loginCheck, getUser, addUserAbout,getUserAbout, addJob, getAllJobs, getUserId } from './database.js';
+import { addUser, loginCheck, getUser, addUserAbout, getUserAbout, addJob, getAllJobs, getJobId, getUserJobs } from './database.js';
 import { checkStatusFalse } from "./database.js";
 
 const app = express();
-const port = 8080; 
+const port = 8080;
 
 app.use(cookieParser());
 app.use(express.json());
@@ -63,7 +63,7 @@ app.get("/statusfalse/:email", async (req, res) => {
 
     const statusResponse = await checkStatusFalse(email);
 
-    return res.status(200).send({succes: false, message: 'Çıkış yapıldı'})
+    return res.status(200).send({ succes: false, message: 'Çıkış yapıldı' })
 
   }
   catch (err) {
@@ -74,10 +74,10 @@ app.get("/statusfalse/:email", async (req, res) => {
 app.get("/users/:email", async (req, res) => {
 
   try {
-    
+
 
     const email = req.params.email
-    
+
     const note = await getUser(email)
 
     return res.status(200).send(note[0]);
@@ -92,10 +92,10 @@ app.get("/users/:email", async (req, res) => {
 app.post("/userAbout", async (req, res) => {
   try {
     const { userid, userAbout, userField } = req.body;
-    
-    const userAboutseresponse = await addUserAbout(userid,userAbout, userField);
 
-    return res.status(200).send({succes: userAboutseresponse.success, message: userAboutseresponse.message})
+    const userAboutseresponse = await addUserAbout(userid, userAbout, userField);
+
+    return res.status(200).send({ succes: userAboutseresponse.success, message: userAboutseresponse.message })
 
 
   } catch (err) {
@@ -107,7 +107,7 @@ app.post("/userAbout", async (req, res) => {
 app.get("/userAbout/:userId", async (req, res) => {
 
   try {
-    
+
 
     const userId = +req.params.userId
 
@@ -125,9 +125,9 @@ app.get("/userAbout/:userId", async (req, res) => {
 
 app.post("/jobs", async (req, res) => {
   try {
-    const { userid, jobTitle, jobDescription, jobPrice, workTime} = req.body;
-    
-   const note = await addJob( userid, jobTitle, jobDescription, jobPrice, workTime);
+    const { userid, jobTitle, jobDescription, jobPrice, workTime, revision } = req.body;
+
+    const note = await addJob(userid, jobTitle, jobDescription, jobPrice, workTime, revision);
 
     return res.status(200).send({ success: note.success, message: note.message });
 
@@ -140,7 +140,7 @@ app.post("/jobs", async (req, res) => {
 app.get("/jobs", async (req, res) => {
 
   try {
-       
+
 
     const note = await getAllJobs()
     return res.status(200).send(note);
@@ -152,14 +152,28 @@ app.get("/jobs", async (req, res) => {
 
 })
 
-app.get("/user/:id", async (req, res) => {
-// burda kaldın
-  try {  
+app.get("/job/:id", async (req, res) => {
+  // burda kaldın
+  try {
 
     const id = +req.params.id
-    const note = await getUserId(id)
+    const note = await getJobId(id)
+    return res.status(200).send(note);
 
-    return res.status(200).send(note[0]);
+  }
+  catch (err) {
+    return res.status(500).send({ message: 'Server error', error: err })
+  }
+
+})
+
+app.get("/jobsuser/:id", async (req, res) => {
+
+  try {
+    
+    const userId = +req.params.id
+    const note = await getUserJobs(userId)
+    return res.status(200).send(note);
 
   }
   catch (err) {

@@ -9,7 +9,7 @@ const pool = mysql.createPool({
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE
-}).promise()
+}).promise() 
 
 export async function addUser(username, email, password) {
   const hashPassword = await bcrypt.hash(password, 13)
@@ -176,7 +176,7 @@ export async function getUserAbout(userid) {
   }
 }
 
-export async function addJob(userid, jobTitle, jobDescription, jobPrice, workTime) {
+export async function addJob(userid, jobTitle, jobDescription, jobPrice, workTime, revision) {
 
   try {
 
@@ -188,10 +188,10 @@ export async function addJob(userid, jobTitle, jobDescription, jobPrice, workTim
     }
 
     const query = `
-      INSERT INTO jobs (userId, jobTitle, jobDescription, jobPrice, workTime)
-      VALUES (?, ?, ?, ?, ?)
+      INSERT INTO jobs (userId, jobTitle, jobDescription, jobPrice, workTime, revision)
+      VALUES (?, ?, ?, ?, ?, ?)
     `;
-    await pool.query(query, [userid, jobTitle, jobDescription, jobPrice, workTime]);
+    await pool.query(query, [userid, jobTitle, jobDescription, jobPrice, workTime, revision]);
     return { success: true, message: 'İş ilanı eklendi' }
 
 
@@ -231,6 +231,37 @@ export async function getUserId(id) {
     return { success: false, message: 'getStatus failed', error: err }
   }
 }
+export async function getJobId(id) {
+
+  try {
+    const [getUser] = await pool.query('SELECT * FROM jobs WHERE id = ?', [id]);
+
+    return getUser[0]
+  }
+  catch (err) {
+    return { success: false, message: 'getJobId failed', error: err }
+  }
+}
+
+export async function getUserJobs(userId){
+
+  try{
+    const [getUserJobs] = await pool.query('SELECT * FROM jobs WHERE userId = ?', [userId]);
+    
+    const jobsWithUsername = await Promise.all(
+      getUserJobs.map(async (job) => {
+        const username = await getUserId(job.userId);
+        return { ...job, username: username.username };
+      })
+    );
+
+    return jobsWithUsername; 
+  }
+  catch{
+    return { success: false, message: 'getUserJobs failed', error: err }
+  }
+}
+
 
 
 
