@@ -87,6 +87,11 @@ interface BackendContextState {
         workTime: number | null;
         username: string
     }[];
+    deleteJob: (JobId: string) => Promise<void>;
+    deleteJobResponse: {
+        success: boolean | null;
+        message: string;
+    };
 
 
 
@@ -164,6 +169,11 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         workTime: null,
         username: ''
     }]);
+    // ilan silme mesajı
+    const [deleteJobResponse, setDeleteJobResponse] = useState({
+        success: null as boolean | null,
+        message: "",
+    })
 
 
 
@@ -235,7 +245,6 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         try {
 
             const response = await Request('userAbout', aboutdata);
-            console.log(response);
             seteditAboutResponse(response)
             router.push('/profile/hakkimda');
 
@@ -318,7 +327,22 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
             }
         }
         catch (err) {
-            console.error('Error fetching jobs Response:', err);
+            console.error('Error jobsResponseUser:', err);
+        }
+    };
+
+    const deleteJob = async (jobId: string) => {
+        try {
+
+            const response = await Request2('deleteJob', jobId);
+            console.log(response);
+            setDeleteJobResponse(response)
+            router.push('/profile/hizmetler');
+
+
+        } catch (err) {
+            console.error('Error in delete job', err);
+
         }
     };
 
@@ -344,7 +368,9 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
             jobsDetailResponse,
             jobDetail,
             jobsResponseUser,
-            jobsUser
+            jobsUser,
+            deleteJob,
+            deleteJobResponse
         }}>
             {children}
         </BackendContext.Provider>
