@@ -262,6 +262,17 @@ export async function getUserJobs(userId){
   }
 }
 
+export async function deleteJob(jobId) {
+
+  try {
+    await pool.query(`DELETE FROM jobs WHERE id = ?`, [jobId])
+
+  }
+  catch (err) {
+    return { success: false, message: 'Delete job failed', error: err }
+  }
+}
+
 
 
 

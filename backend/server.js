@@ -1,7 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { addUser, loginCheck, getUser, addUserAbout, getUserAbout, addJob, getAllJobs, getJobId, getUserJobs } from './database.js';
+import { addUser, loginCheck, getUser, addUserAbout, getUserAbout, addJob, getAllJobs, getJobId, getUserJobs, deleteJob } from './database.js';
 import { checkStatusFalse } from "./database.js";
 
 const app = express();
@@ -182,6 +182,19 @@ app.get("/jobsuser/:id", async (req, res) => {
 
 })
 
+app.get("/deleteJob/:id", async (req, res) => {
+  try {
+    const jobId = req.params.id
+
+    await deleteJob(jobId);
+
+    return res.status(200).send({ succes: false, message: 'İlan Başarıyla Silindi' })
+
+  }
+  catch (err) {
+    return res.status(500).send({ message: 'Server error', error: err })
+  }
+})
 
 
 
