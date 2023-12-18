@@ -12,17 +12,17 @@ export default function CreateJob() {
         const formdata = new FormData(event.target);
         const jobData = {
             userid: userData.id,
-            jobTitle: formdata.get('jobTitle') as string, 
+            jobTitle: formdata.get('jobTitle') as string,
             jobDescription: formdata.get('jobDescription') as string,
             jobPrice: formdata.get('jobPrice') as string,
             workTime: formdata.get('workTime') as string,
             revision: formdata.get('revision') as string
-        }; 
+        };
         jobContext(jobData);
-    
-        
-      };
-    
+
+
+    };
+
 
     return (
         <>
@@ -32,7 +32,7 @@ export default function CreateJob() {
                 <div style={{ backgroundColor: '#23202A' }} className="rounded-lg flex flex-col justify-between space-x-4 w-5/6 mt-32">
                     <div className="rounded-lg flex flex-col justify-between  ">
 
-                        <form  onSubmit={listJob}>
+                        <form onSubmit={listJob}>
                             <div className="p-12 space-y-7">
                                 <div>
                                     <p className="text-2xl font-bold text-white">

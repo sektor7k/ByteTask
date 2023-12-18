@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 
 export default function Anasayfa() {
 
-    const { addJobResponse, jobsResponse, jobs } = useBackend();
+    const { addJobResponse, jobsResponse, jobs, createOrderResponse } = useBackend();
 
     useEffect(() => {
 
@@ -68,10 +68,10 @@ export default function Anasayfa() {
                                         ? `${job.jobTitle.slice(0, 55)}...`
                                         : job.jobTitle}
                                 </p>
-                                <Link href={`/jobs/${job.username}/${job.id}`} className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white border-2 border-gray-50 rounded-b-xl text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-bold">
+                                <Link href={`/jobs/${job.username || ''}/${job.id || ''}`} className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white border-2 border-gray-50 rounded-b-xl text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-bold">
                                     İlana Git
                                 </Link>
-                            </div> 
+                            </div>
                         ))}
 
                     </div>
@@ -80,6 +80,12 @@ export default function Anasayfa() {
                     <ShowNotification
                         NotiType={addJobResponse.success ? "success" : "error"}
                         NotiMessage={addJobResponse.message}
+                    />
+                )}
+                {createOrderResponse.message && (
+                    <ShowNotification
+                        NotiType={createOrderResponse.success ? "success" : "error"}
+                        NotiMessage={createOrderResponse.message}
                     />
                 )}
             </div>
