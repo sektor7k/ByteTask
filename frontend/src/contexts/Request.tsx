@@ -92,6 +92,17 @@ interface BackendContextState {
         success: boolean | null;
         message: string;
     };
+    createOrderContext: (orderData: {
+        jobId: number | null;
+        freelancerId: number | null;
+        customerId: number | null;
+        customerNote: string;
+        orderAmount: number | null;
+    }) => Promise<void>;
+    createOrderResponse: {
+        success: boolean | null;
+        message: string;
+    }
 
 
 
@@ -174,7 +185,11 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         success: null as boolean | null,
         message: "",
     })
-
+    // createOrder response state'leri
+    const [createOrderResponse, setcreateOrderResponse] = useState({
+        success: null as boolean | null,
+        message: "",
+    })
 
 
     const signUpContext = async (signupdata: { username: string, email: string, password: string, password2: string }): Promise<void> => {
@@ -346,6 +361,19 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
+    const createOrderContext = async (orderData: { jobId: number | null; freelancerId: number | null; customerId: number | null; customerNote: string; orderAmount: number | null; }): Promise<void> => {
+        try {
+
+            const response = await Request('orders', orderData);
+            console.log(response);
+            setcreateOrderResponse(response)
+            router.push("/anasayfa");
+        } catch (err) {
+            console.error('Error createOrderContext', err);
+            
+        }
+    };
+
 
     return (
         <BackendContext.Provider value={{
@@ -370,7 +398,9 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
             jobsResponseUser,
             jobsUser,
             deleteJob,
-            deleteJobResponse
+            deleteJobResponse,
+            createOrderContext,
+            createOrderResponse
         }}>
             {children}
         </BackendContext.Provider>
