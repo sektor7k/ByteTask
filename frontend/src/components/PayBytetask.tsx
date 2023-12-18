@@ -1,12 +1,32 @@
 
 import { useBackend } from "@/contexts/Request";
 import ShowNotification from "./Notification";
-
+import { parseEther } from 'viem'
+import { useEffect, useState } from "react";
+import { useDebounce } from 'use-debounce'
+import { usePrepareSendTransaction, useSendTransaction, useWaitForTransaction } from 'wagmi'
 
 
 export default function PayBytetask() {
 
   const { jobDetail, userData, createOrderContext, createOrderResponse } = useBackend();
+
+  const [to, setTo] = useState('0x70997970C51812dc3A010C7d01b50e0d17dc79C8')
+  const [debouncedTo] = useDebounce(to, 500)
+
+  const [amount, setAmount] = useState(jobDetail.jobPrice as unknown as string)
+  const [debouncedAmount] = useDebounce(amount, 500)
+
+  const { config } = usePrepareSendTransaction({
+    to: debouncedTo,
+    value: debouncedAmount ? parseEther(String(debouncedAmount)) : undefined,
+  })
+  const { data, sendTransaction } = useSendTransaction(config)
+
+  const { isLoading, isSuccess } = useWaitForTransaction({
+    hash: data?.hash,
+  })
+
 
   const createOrder = async (event: any) => {
     event.preventDefault();
@@ -18,10 +38,28 @@ export default function PayBytetask() {
       customerNote: formdata.get('customerNote') as string,
       orderAmount: jobDetail.jobPrice,
     };
-    createOrderContext(orderData);
+    console.log(orderData)
+    //createOrderContext(orderData);
 
 
   };
+
+  // const handleSuccess = async () => {
+  //   console.log('basarili');
+  //   await createOrder(event); // 'event' parametresini ileterek 'createOrder' fonksiyonunu çağırın
+  //   console.log('basarili');
+  // };
+
+  // useEffect(() => {
+  //   (async () => {
+  //     if (isSuccess) {
+  //       await handleSuccess(); // 'handleSuccess' fonksiyonunu çağırın
+  //     }
+  //   })();
+  // }, [isSuccess]);
+
+
+
 
 
 
@@ -29,12 +67,15 @@ export default function PayBytetask() {
     <div className="min-h-screen flex items-center justify-center bg-black bg-opacity-70">
       <div className="rounded-3xl p-20 pt-0 w-full flex items-center justify-center">
 
-        <div style={{ backgroundColor: '#23202A' }} className="w-full rounded-3xl border-none shadow-2xl dark:border md:mt-24 sm:max-w-md xl:p-0 ">
+        <div className="bg-[#23202A] w-full rounded-3xl border-none shadow-2xl dark:border md:mt-24 sm:max-w-md xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-50">
               Şipariş Ver
             </h1>
-            <form className="space-y-4 md:space-y-6" onSubmit={createOrder}>
+            <form className="space-y-4 md:space-y-6" onSubmit={async (e) => {
+              e.preventDefault()
+              sendTransaction?.()
+            }}>
 
 
               <div>
@@ -42,8 +83,7 @@ export default function PayBytetask() {
                 <textarea
                   name="customerNote"
                   id="customerNote"
-                  style={{ background: '#1E1B24' }}
-                  className="text-gray-50 sm:text-sm rounded-lg focus:border-gray-600 block w-full p-2.5 h-32"
+                  className="bg-[#1E1B24] text-gray-50 sm:text-sm rounded-lg focus:border-gray-600 block w-full p-2.5 h-32"
                 />
               </div>
               <div className="flex flex-col w-full space-y-3 mt-12 pr-6 ">
@@ -85,10 +125,16 @@ export default function PayBytetask() {
 
               <button
                 type="submit"
+                disabled={isLoading || !sendTransaction || !to || !amount}
                 className="w-full text-opacity-0 text-lg bg-white hover:bg-black hover:bg-opacity-10 hover:text-white border border-gray-50 focus:ring-1 focus:outline-none focus:ring-white font-bold rounded-full px-6 py-2 text-center transition duration-300 ease-in-out"
               >
-                Şiparişi Tamamla
+                {isLoading ? 'Ödeme Yapılıyor...' : 'Şiparişi Tamamla'}
               </button>
+              {isSuccess && (
+                <div className=" text-gray-300 font-mono">
+                  Successfully sent {amount} BYT to {to} hash {data?.hash.slice(0, 40)}...
+                </div>
+              )}
             </form>
 
 
@@ -96,6 +142,7 @@ export default function PayBytetask() {
         </div>
 
       </div>
+
 
       {/* {createOrderResponse.message && (
         <ShowNotification
