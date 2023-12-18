@@ -10,7 +10,7 @@ export default function Profile() {
   return (
     <>
       <Navbar />
-      <div style={{ backgroundColor: '#1E1B24' }} className="flex flex-col items-center justify-center space-y-4 ">
+      <div className="bg-[#1E1B24] flex flex-col items-center justify-center space-y-4 ">
 
         <ProfileHeader />
         <Evaluations/>

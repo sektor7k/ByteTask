@@ -16,7 +16,7 @@ export default function Services() {
   }, [deleteJobResponse])
 
   return (
-    <div style={{ backgroundColor: '#23202A' }} className="w-10/12  rounded-lg flex flex-col justify-between items-center  ">
+    <div className="bg-[#23202A] w-10/12  rounded-lg flex flex-col justify-between items-center  ">
 
       <div className="flex flex-row space-x-2 mt-6  ">
         <button

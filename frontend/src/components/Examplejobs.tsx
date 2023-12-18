@@ -3,7 +3,7 @@
 export default function ExampleJobs() {
 
     return (
-        <div style={{ backgroundColor: '#1E1B24' }} className="min-h-screen flex items-center justify-center">
+        <div  className="bg-[#1E1B24] min-h-screen flex items-center justify-center">
         <div className="w-10/12 flex flex-col items-center justify-center space-y-4">
 
         <div className=" pl-44 w-full">
@@ -21,7 +21,7 @@ export default function ExampleJobs() {
         
         <div className="p-20 pt-4  w-10/12 flex flex-row space-x-8">
 
-          <div style={{ backgroundColor: '#23202A' }} className="w-full max-w-sm border border-gray-700 rounded-lg shadow-2xl">
+          <div className="bg-[#23202A] w-full max-w-sm border border-gray-700 rounded-lg shadow-2xl">
             <a href="#">
               <img className="p-8 rounded-2xl" src="https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/gigs/323544322/original/f9df904ea0d24c99ee4f88628a634b0fa1d269b1.png" alt="product image" />
             </a>
@@ -61,7 +61,7 @@ export default function ExampleJobs() {
             </div>
           </div>
 
-          <div style={{ backgroundColor: '#23202A' }} className="w-full max-w-sm border border-gray-700 rounded-lg shadow-2xl">
+          <div className="bg-[#23202A] w-full max-w-sm border border-gray-700 rounded-lg shadow-2xl">
             <a href="#">
               <img className="p-8 rounded-t-lg" src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/1360189/original/cb4b5dd861907fe92720b1009eadd53e8dcc864b/design-logo-for-your-company.jpg" alt="product image" />
             </a>
@@ -100,7 +100,7 @@ export default function ExampleJobs() {
             </div>
           </div>
 
-          <div style={{ backgroundColor: '#23202A' }} className="w-full max-w-sm border border-gray-700 rounded-lg shadow-2xl">
+          <div className="bg-[#23202A] w-full max-w-sm border border-gray-700 rounded-lg shadow-2xl">
             <a href="#">
               <img className="p-8 rounded-t-lg" src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/173262263/original/83056cf7e962c8033646df27d06c3f4e453e4681/create-web-app-ui-ux-designs.png" alt="product image" />
             </a>

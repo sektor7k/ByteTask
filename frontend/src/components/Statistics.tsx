@@ -3,7 +3,7 @@ export default function Statistics() {
 
     return (
 
-        <div style={{ backgroundColor: '#23202A' }} className=" w-4/12  rounded-lg flex flex-col pb-6 items-center">
+        <div className=" bg-[#23202A] w-4/12  rounded-lg flex flex-col pb-6 items-center">
 
             <div className="flex flex-row space-x-2 mt-6   ">
                 <button

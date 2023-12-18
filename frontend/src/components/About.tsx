@@ -3,7 +3,7 @@
 export default function About() {
 
   return (
-    <div style={{ backgroundColor: '#1E1B24' }} className="min-h-screen flex items-center justify-center">
+    <div className=" bg-[#1E1B24] min-h-screen flex items-center justify-center">
       <div className=" rounded-3xl  p-20 pt-12  w-10/12 ">
         <div className="flex flex-col space-y-6">
 
@@ -23,7 +23,7 @@ export default function About() {
           <div className="flex flex-row space-x-20 ">
             <div className="flex flex-col space-y-6">
 
-              <div style={{ backgroundColor: '#23202A' }} className=" rounded-3xl  p-6 shadow-2xl ml-16 ">
+              <div className=" bg-[#23202A] rounded-3xl  p-6 shadow-2xl ml-16 ">
                 <div className="flex flex-row space-x-10">
 
                   <div className="flex flex-col justify-between">
@@ -45,7 +45,7 @@ export default function About() {
                   </div>
                 </div>
               </div>
-              <div style={{ backgroundColor: '#23202A' }} className=" rounded-3xl  p-6 shadow-2xl  mr-16  ">
+              <div className=" bg-[#23202A] rounded-3xl  p-6 shadow-2xl  mr-16  ">
                 <div className="flex flex-row space-x-10">
 
                   <div className="flex flex-col justify-between">
@@ -65,7 +65,7 @@ export default function About() {
                   </div>
                 </div>
               </div>
-              <div style={{ backgroundColor: '#23202A' }} className=" rounded-3xl  p-6 shadow-2xl ml-16 ">
+              <div className=" bg-[#23202A] rounded-3xl  p-6 shadow-2xl ml-16 ">
                 <div className="flex flex-row space-x-10">
 
                   <div className="flex flex-col justify-between">

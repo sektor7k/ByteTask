@@ -9,7 +9,7 @@ export default function UserAbout() {
     const stringToArray = a.split(',');
 
     return (
-        <div style={{ backgroundColor: '#23202A' }} className="w-8/12  rounded-lg flex flex-col justify-between  ">
+        <div className="bg-[#23202A] w-8/12  rounded-lg flex flex-col justify-between  ">
 
             {/* Kullanıcı hakkında */}
 

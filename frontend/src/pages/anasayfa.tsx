@@ -20,7 +20,7 @@ export default function Anasayfa() {
 
     return (
         <>
-            <div style={{ backgroundColor: '#23202A' }} className="min-h-screen" >
+            <div className="bg-[#23202A] min-h-screen" >
 
                 <Navbar />
 

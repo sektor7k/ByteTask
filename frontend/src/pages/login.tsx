@@ -44,12 +44,12 @@ export default function Login() {
   return (
     <>
       <Navbar />
-      <section style={{ background: '#19181F' }}>
+      <section className="bg-[#19181F]">
         <div className="flex flex-row items-center justify-center space-x-32  px-6 py-8 pb-36">
 
           <Contact />
 
-          <div style={{ backgroundColor: '#23202A' }} className="w-full  rounded-3xl  border-none shadow-2xl dark:border md:mt-24 sm:max-w-md xl:p-0 ">
+          <div className="bg-[#23202A] w-full  rounded-3xl  border-none shadow-2xl dark:border md:mt-24 sm:max-w-md xl:p-0 ">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-50">
                 Login
@@ -58,11 +58,11 @@ export default function Login() {
 
                 <div>
                   <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-200 ">Your email *</label>
-                  <input type="email" name="email" id="email" style={{ background: '#1E1B24' }} className="  text-gray-50  sm:text-sm rounded-lg  focus:border-gray-600  block w-full p-2.5 " placeholder="name@company.com" />
+                  <input type="email" name="email" id="email"  className="bg-[#1E1B24]  text-gray-50  sm:text-sm rounded-lg  focus:border-gray-600  block w-full p-2.5 " placeholder="name@company.com" />
                 </div>
                 <div>
                   <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-200 ">Password *</label>
-                  <input type="password" name="password" id="password" placeholder="••••••••" style={{ background: '#1E1B24' }} className="  text-gray-50  sm:text-sm rounded-lg  focus:border-gray-600  block w-full p-2.5 " />
+                  <input type="password" name="password" id="password" placeholder="••••••••" className="bg-[#1E1B24]  text-gray-50  sm:text-sm rounded-lg  focus:border-gray-600  block w-full p-2.5 " />
                 </div>
 
 

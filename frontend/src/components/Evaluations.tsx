@@ -3,7 +3,7 @@
 export default function Evaluations() {
 
     return (
-        <div style={{ backgroundColor: '#23202A' }} className="w-10/12  rounded-lg flex flex-col items-center  ">
+        <div className="bg-[#23202A] w-10/12  rounded-lg flex flex-col items-center  ">
 
             <div className="flex flex-row space-x-2 mt-6  ">
                 <button

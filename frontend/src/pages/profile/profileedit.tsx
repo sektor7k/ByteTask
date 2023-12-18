@@ -40,11 +40,11 @@ export default function ProfileEdit() {
     return (
         <>
             <Navbar />
-            <div style={{ backgroundColor: '#1E1B24' }} className="flex flex-col items-center justify-center space-y-4 ">
+            <div className="bg-[#1E1B24] flex flex-col items-center justify-center space-y-4 ">
 
                 <ProfileHeader />
                 <div className="flex flex-row items-start justify-center space-x-4 w-5/6 pb-20">
-                    <div style={{ backgroundColor: '#23202A' }} className="w-full rounded-lg flex flex-col justify-between  ">
+                    <div className="bg-[#23202A] w-full rounded-lg flex flex-col justify-between ">
 
                         <form action="" onSubmit={formAbout}>
                             <div className=" p-12">
@@ -55,8 +55,7 @@ export default function ProfileEdit() {
                                     <textarea
                                         name="userAbout"
                                         id="userAbout"
-                                        style={{ background: '#1E1B24' }}
-                                        className="text-gray-50 sm:text-sm rounded-lg focus:border-gray-600 block w-full p-2.5 h-40 min-h-full"
+                                        className="bg-[#1E1B24] text-gray-50 sm:text-sm rounded-lg focus:border-gray-600 block w-full p-2.5 h-40 min-h-full"
                                         placeholder="User About"
                                     />
                                 </p>
@@ -71,8 +70,7 @@ export default function ProfileEdit() {
                                         id="userField"
                                         value={newField}
                                         onChange={(e) => setNewField(e.target.value)}
-                                        style={{ background: '#1E1B24' }}
-                                        className="text-gray-50 sm:text-sm rounded-lg focus:border-gray-600 block w-full p-2.5 h-32 min-h-full"
+                                        className="bg-[#1E1B24] text-gray-50 sm:text-sm rounded-lg focus:border-gray-600 block w-full p-2.5 h-32 min-h-full"
                                         placeholder="User Field"
                                     />
                                     <div className="flex flex-col space-y-5 items-center">

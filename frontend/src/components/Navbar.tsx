@@ -41,7 +41,7 @@ export default function Navbar() {
   return (
 
 
-    <header style={{ backgroundColor: '#19181F' }} className="bg-white fixed w-full z-20 top-0 start-0 ">
+    <header className="bg-[#19181F] fixed w-full z-20 top-0 start-0 ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="https://w7.pngwing.com/pngs/462/673/png-transparent-black-arrows-logo-art-computer-icons-computer-monitors-desktop-svg-icon-full-screen-miscellaneous-angle-white-thumbnail.png" alt="Flowbite Logo" className="h-8" />

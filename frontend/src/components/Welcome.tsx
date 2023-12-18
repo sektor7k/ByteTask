@@ -5,7 +5,7 @@
 export default function Welcome() {
 
   return (
-    <div style={{ backgroundColor: '#1E1B24' }} className="min-h-screen flex items-center justify-center">
+    <div className="bg-[#1E1B24] min-h-screen flex items-center justify-center">
       <div style={{ backgroundColor: '#23202A', height: "30rem" }} className=" rounded-3xl  p-20 pt-12 shadow-2xl w-9/12 ">
         <div className="flex items-center mb-20 justify-between ">
           <div className="ml-0">

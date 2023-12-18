@@ -36,10 +36,10 @@ export default function Donate() {
 
   
   return (
-    <div style={{ backgroundColor: '#1E1B24' }} className="min-h-screen flex items-center justify-center">
+    <div className="bg-[#1E1B24] min-h-screen flex items-center justify-center">
       <div className="rounded-3xl p-20 pt-0 w-10/12 flex items-center justify-center">
 
-        <div style={{ backgroundColor: '#23202A' }} className="w-full rounded-3xl border-none shadow-2xl dark:border md:mt-24 sm:max-w-md xl:p-0 ">
+        <div  className=" bg-[#23202A] w-full rounded-3xl border-none shadow-2xl dark:border md:mt-24 sm:max-w-md xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-50">
               Send Donate BYT
@@ -52,8 +52,8 @@ export default function Donate() {
                   type="text"
                   name="address"
                   id="address"
-                  style={{ background: '#1E1B24' }}
-                  className="text-gray-50 sm:text-sm rounded-lg focus:border-gray-600 block w-full p-2.5"
+                 
+                  className="bg-[#1E1B24] text-gray-50 sm:text-sm rounded-lg focus:border-gray-600 block w-full p-2.5"
                   placeholder="0x45....."
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
@@ -66,8 +66,8 @@ export default function Donate() {
                   name="amount"
                   id="amount"
                   placeholder="123"
-                  style={{ background: '#1E1B24' }}
-                  className="text-gray-50 sm:text-sm rounded-lg focus:border-gray-600 block w-full p-2.5"
+                  
+                  className="bg-[#1E1B24] text-gray-50 sm:text-sm rounded-lg focus:border-gray-600 block w-full p-2.5"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
                 />

@@ -5,7 +5,7 @@ import { addUser, loginCheck, getUser, addUserAbout, getUserAbout, addJob, getAl
 import { checkStatusFalse } from "./database.js";
 
 const app = express();
-const port = 8080;
+const port = 3030;
 
 app.use(cookieParser());
 app.use(express.json());

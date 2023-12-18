@@ -27,9 +27,9 @@ export default function CreateJob() {
     return (
         <>
             <Navbar />
-            <div style={{ backgroundColor: '#1E1B24' }} className="flex justify-center">
+            <div  className="bg-[#1E1B24] flex justify-center">
 
-                <div style={{ backgroundColor: '#23202A' }} className="rounded-lg flex flex-col justify-between space-x-4 w-5/6 mt-32">
+                <div  className="bg-[#23202A] rounded-lg flex flex-col justify-between space-x-4 w-5/6 mt-32">
                     <div className="rounded-lg flex flex-col justify-between  ">
 
                         <form onSubmit={listJob}>
@@ -43,8 +43,7 @@ export default function CreateJob() {
                                             type="text"
                                             name="jobTitle"
                                             id="jobTitle"
-                                            style={{ background: '#1E1B24' }}
-                                            className="text-gray-50 text-xl rounded-lg focus:border-gray-600 block w-full p-2.5 h-14 min-h-full"
+                                            className="bg-[#1E1B24] text-gray-50 text-xl rounded-lg focus:border-gray-600 block w-full p-2.5 h-14 min-h-full"
                                             placeholder="İlan başlığıni giriniz"
                                         />
                                     </p>
@@ -57,8 +56,7 @@ export default function CreateJob() {
                                         <textarea
                                             name="jobDescription"
                                             id="jobDescription"
-                                            style={{ background: '#1E1B24' }}
-                                            className="text-gray-50 sm:text-sm rounded-lg focus:border-gray-600 block w-full p-2.5 h-40 min-h-full"
+                                            className="bg-[#1E1B24] text-gray-50 sm:text-sm rounded-lg focus:border-gray-600 block w-full p-2.5 h-40 min-h-full"
                                             placeholder="İlan açıklmasını giriniz."
                                         />
                                     </p>
@@ -72,8 +70,7 @@ export default function CreateJob() {
                                             type="number"
                                             name="jobPrice"
                                             id="jobPrice"
-                                            style={{ background: '#1E1B24' }}
-                                            className="text-gray-50 rounded-lg focus:border-gray-600 block w-full p-2.5 h-14 min-h-full"
+                                            className="bg-[#1E1B24] text-gray-50 rounded-lg focus:border-gray-600 block w-full p-2.5 h-14 min-h-full"
                                             placeholder="İlan fiyatını giriniz"
                                         />
                                     </p>
@@ -88,8 +85,7 @@ export default function CreateJob() {
                                             type="number"
                                             name="workTime"
                                             id="workTime"
-                                            style={{ background: '#1E1B24' }}
-                                            className="text-gray-50 rounded-lg focus:border-gray-600 block w-full p-2.5 h-14 min-h-full"
+                                            className="bg-[#1E1B24] text-gray-50 rounded-lg focus:border-gray-600 block w-full p-2.5 h-14 min-h-full"
                                             placeholder="İlan süresini gün olarak giriniz."
                                         />
                                     </p>
@@ -104,8 +100,7 @@ export default function CreateJob() {
                                             type="number"
                                             name="revision"
                                             id="revision"
-                                            style={{ background: '#1E1B24' }}
-                                            className="text-gray-50 rounded-lg focus:border-gray-600 block w-full p-2.5 h-14 min-h-full"
+                                            className="bg-[#1E1B24] text-gray-50 rounded-lg focus:border-gray-600 block w-full p-2.5 h-14 min-h-full"
                                             placeholder="Müşterilerin kaç revizyon hakkına sahip olduklarını giriniz."
                                         />
                                     </p>
