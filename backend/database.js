@@ -273,7 +273,30 @@ export async function deleteJob(jobId) {
   }
 }
 
+export async function createOrder(jobId, freelancerId, customerId, customerNote, orderAmount) {
 
+  try {
+
+    const queryid = `SELECT * FROM users WHERE id = ?`
+    const [rowsid] = await pool.query(queryid, [customerId]);
+
+    if (rowsid.length == 0) {
+      return { success: false, message: 'Kullanıcı id si alınamadı' }
+    }
+
+    const query = `
+      INSERT INTO orders (jobId, freelancerId, customerId, customerNote, orderAmount)
+      VALUES (?, ?, ?, ?, ?)
+    `;
+    await pool.query(query, [jobId, freelancerId, customerId, customerNote, orderAmount]);
+    return { success: true, message: 'Sipariş Alındı' }
+
+
+  }
+  catch (err) {
+    return { success: false, message: 'createOrder failed', error: err }
+  }
+}
 
 
 

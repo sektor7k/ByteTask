@@ -1,7 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { addUser, loginCheck, getUser, addUserAbout, getUserAbout, addJob, getAllJobs, getJobId, getUserJobs, deleteJob } from './database.js';
+import { addUser, loginCheck, getUser, addUserAbout, getUserAbout, addJob, getAllJobs, getJobId, getUserJobs, deleteJob, createOrder } from './database.js';
 import { checkStatusFalse } from "./database.js";
 
 const app = express();
@@ -170,7 +170,7 @@ app.get("/job/:id", async (req, res) => {
 app.get("/jobsuser/:id", async (req, res) => {
 
   try {
-    
+
     const userId = +req.params.id
     const note = await getUserJobs(userId)
     return res.status(200).send(note);
@@ -197,6 +197,17 @@ app.get("/deleteJob/:id", async (req, res) => {
 })
 
 
+app.post("/orders", async (req, res) => {
+  try {
+    const { jobId, freelancerId, customerId, customerNote, orderAmount } = req.body;
+
+    const note = await createOrder(jobId, freelancerId, customerId, customerNote, orderAmount);
+    return res.status(200).send({ success: note.success, message: note.message });
+
+  } catch (err) {
+    return res.status(500).send({ message: 'Server error', error: err });
+  }
+});
 
 
 
