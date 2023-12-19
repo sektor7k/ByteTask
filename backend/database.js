@@ -1,6 +1,6 @@
 import mysql from "mysql2";
 import dotenv from "dotenv";
-import bcrypt from "bcrypt"; 
+import bcrypt from "bcrypt";
 
 dotenv.config()
 
@@ -9,7 +9,7 @@ const pool = mysql.createPool({
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE
-}).promise() 
+}).promise()
 
 export async function addUser(username, email, password) {
   const hashPassword = await bcrypt.hash(password, 13)
@@ -201,11 +201,11 @@ export async function addJob(userid, jobTitle, jobDescription, jobPrice, workTim
   }
 }
 
-export async function getAllJobs(){
+export async function getAllJobs() {
 
-  try{
+  try {
     const [getAllJobs] = await pool.query('SELECT * FROM jobs');
-    
+
     const jobsWithUsername = await Promise.all(
       getAllJobs.map(async (job) => {
         const username = await getUserId(job.userId);
@@ -213,9 +213,9 @@ export async function getAllJobs(){
       })
     );
 
-    return jobsWithUsername; 
+    return jobsWithUsername;
   }
-  catch{
+  catch {
     return { success: false, message: 'getAllJobs failed', error: err }
   }
 }
@@ -243,11 +243,11 @@ export async function getJobId(id) {
   }
 }
 
-export async function getUserJobs(userId){
+export async function getUserJobs(userId) {
 
-  try{
+  try {
     const [getUserJobs] = await pool.query('SELECT * FROM jobs WHERE userId = ?', [userId]);
-    
+
     const jobsWithUsername = await Promise.all(
       getUserJobs.map(async (job) => {
         const username = await getUserId(job.userId);
@@ -255,9 +255,9 @@ export async function getUserJobs(userId){
       })
     );
 
-    return jobsWithUsername; 
+    return jobsWithUsername;
   }
-  catch{
+  catch {
     return { success: false, message: 'getUserJobs failed', error: err }
   }
 }
@@ -297,6 +297,56 @@ export async function createOrder(jobId, freelancerId, customerId, customerNote,
     return { success: false, message: 'createOrder failed', error: err }
   }
 }
+
+export async function getFreelancerOrdersId(freelancerId) {
+
+  try {
+    const [getFreelancerOrdersId] = await pool.query('SELECT * FROM orders WHERE freelancerId = ?', [freelancerId]);
+
+    const ordersIdWithCustomerUserName = await Promise.all(
+      getFreelancerOrdersId.map(async (order) => {
+        const customerName = await getUserId(order.customerId);
+        const job = await getJobId(order.jobId)
+        return { ...order, customerName: customerName.username, jobTitle: job.jobTitle };
+      })
+    );
+    return ordersIdWithCustomerUserName;
+  }
+  catch {
+    return { success: false, message: 'getUserJobs failed', error: err }
+  }
+}
+
+export async function orderFreelancerStatus(is_accepted, orderId) {
+  try {
+
+    if (is_accepted) {
+      const updateStatus = `
+      UPDATE orders SET status = 'aktif' WHERE order_id = ?;
+  `;
+      await pool.query(updateStatus, [orderId]);
+      console.log(orderId)
+
+      return { success: true, message: 'Sipariş Aktif Edildi' };
+
+    }else{
+      const updateStatus = `
+      UPDATE orders SET status = 'iptal' WHERE order_id = ?;
+  `;
+      await pool.query(updateStatus, [orderId]);
+      console.log(orderId)
+
+      return { success: false, message: 'Sipariş İptal Edildi' };
+
+    }
+
+
+  } catch (err) {
+    return { success: false, message: 'addUserAbout failed', error: err }
+  }
+}
+
+
 
 
 

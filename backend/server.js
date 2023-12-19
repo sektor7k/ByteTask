@@ -1,7 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { addUser, loginCheck, getUser, addUserAbout, getUserAbout, addJob, getAllJobs, getJobId, getUserJobs, deleteJob, createOrder } from './database.js';
+import { addUser, loginCheck, getUser, addUserAbout, getUserAbout, addJob, getAllJobs, getJobId, getUserJobs, deleteJob, createOrder, getFreelancerOrdersId, orderFreelancerStatus } from './database.js';
 import { checkStatusFalse } from "./database.js";
 
 const app = express();
@@ -202,6 +202,34 @@ app.post("/orders", async (req, res) => {
     const { jobId, freelancerId, customerId, customerNote, orderAmount, customerAddr, orderHash } = req.body;
 
     const note = await createOrder(jobId, freelancerId, customerId, customerNote, orderAmount, customerAddr, orderHash);
+    return res.status(200).send({ success: note.success, message: note.message });
+
+  } catch (err) {
+    return res.status(500).send({ message: 'Server error', error: err });
+  }
+});
+
+
+app.get("/getFreelancerOrdersId/:id", async (req, res) => {
+
+  try {
+
+    const freelancerId = +req.params.id
+    const note = await getFreelancerOrdersId(freelancerId)
+    return res.status(200).send(note);
+
+  }
+  catch (err) {
+    return res.status(500).send({ message: 'Server error', error: err })
+  }
+
+})
+
+app.post("/orderFreelancerStatus", async (req, res) => {
+  try {
+    const {is_accepted, orderId  } = req.body;
+
+    const note = await orderFreelancerStatus(is_accepted, orderId);
     return res.status(200).send({ success: note.success, message: note.message });
 
   } catch (err) {
