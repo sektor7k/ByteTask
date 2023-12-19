@@ -5,12 +5,13 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import { useBackend } from "@/contexts/Request";
 import PayBytetask from "@/components/PayBytetask";
+import ShowNotification from "@/components/Notification";
+
 
 export default function CardPages() {
 
-
     const router = useRouter();
-    const { userData, jobDetail, jobsDetailResponse, deleteJob } = useBackend();
+    const { userData, jobDetail, jobsDetailResponse, deleteJob ,createOrderResponse} = useBackend();
     const { id, username } = router.query;
 
     const [isPayBytetaskVisible, setIsPayBytetaskVisible] = useState(false);
@@ -22,6 +23,8 @@ export default function CardPages() {
         setIsPayBytetaskVisible(false);
     };
 
+    function sleep(n: number | undefined) { return new Promise(resolve => setTimeout(resolve, n)); }
+
     useEffect(() => {
         const fetchData = async () => {
             if (id) {
@@ -32,9 +35,11 @@ export default function CardPages() {
 
         fetchData();
     }, [id]);
+
     const deleteJobHandler = async () => {
         await deleteJob(jobDetail.id as unknown as string);
     }
+
 
     return (
         <>
@@ -78,7 +83,7 @@ export default function CardPages() {
                         ) : (
                             null
                         )}
-                        
+
                     </div>
 
                 </div>
@@ -273,15 +278,21 @@ export default function CardPages() {
                 <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full">
                     <div className="flex justify-end" onClick={handleOutsideClick}>
                         <button className="fixed transform translate-y-24 -translate-x-4 ">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 text-white ">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 text-white ">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
                         </button>
                     </div>
                     <PayBytetask />
 
                 </div>
             )}
+            {createOrderResponse.message && (
+                    <ShowNotification
+                        NotiType={createOrderResponse.success ? "success" : "error"}
+                        NotiMessage={createOrderResponse.message}
+                    />
+                )}
             <Footer />
         </>
     )

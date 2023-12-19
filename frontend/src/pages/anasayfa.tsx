@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 
 export default function Anasayfa() {
 
-    const { addJobResponse, jobsResponse, jobs, createOrderResponse } = useBackend();
+    const { addJobResponse, jobsResponse, jobs, } = useBackend();
 
     useEffect(() => {
 
@@ -82,12 +82,7 @@ export default function Anasayfa() {
                         NotiMessage={addJobResponse.message}
                     />
                 )}
-                {createOrderResponse.message && (
-                    <ShowNotification
-                        NotiType={createOrderResponse.success ? "success" : "error"}
-                        NotiMessage={createOrderResponse.message}
-                    />
-                )}
+                
             </div>
             <Footer />
         </>

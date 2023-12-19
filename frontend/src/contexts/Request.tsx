@@ -98,6 +98,8 @@ interface BackendContextState {
         customerId: number | null;
         customerNote: string;
         orderAmount: number | null;
+        customerAddr: string;
+        orderHash: string;
     }) => Promise<void>;
     createOrderResponse: {
         success: boolean | null;
@@ -361,13 +363,12 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
-    const createOrderContext = async (orderData: { jobId: number | null; freelancerId: number | null; customerId: number | null; customerNote: string; orderAmount: number | null; }): Promise<void> => {
+    const createOrderContext = async (orderData: { jobId: number | null; freelancerId: number | null; customerId: number | null; customerNote: string; orderAmount: number | null; customerAddr: string; orderHash: string}): Promise<void> => {
         try {
 
             const response = await Request('orders', orderData);
             console.log(response);
             setcreateOrderResponse(response)
-            router.push("/anasayfa");
         } catch (err) {
             console.error('Error createOrderContext', err);
             
