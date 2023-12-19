@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 
 export default function Anasayfa() {
 
-    const { addJobResponse, jobsResponse, jobs, } = useBackend();
+    const { addJobResponse, jobsResponse, jobs, } = useBackend(); 
 
     useEffect(() => {
 
