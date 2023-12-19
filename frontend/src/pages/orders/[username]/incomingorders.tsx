@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 type OrderDetailsState = Record<string | number, boolean>;
 
 export default function Profile() {
-    const { getFreelancerOrdersId, freelancerOrdersIdResponse, orderFreelancerStatus, orderFreelancerStatusRes, userData } = useBackend();
+    const { getFreelancerOrdersId, freelancerOrdersIdResponse, orderFreelancerStatus, orderFreelancerDeliver, orderFreelancerStatusRes, userData } = useBackend();
     const [isOpen, setIsOpen] = useState<OrderDetailsState>({});
 
     const toggleDetails = (orderId: string | number) => {
@@ -38,6 +38,15 @@ export default function Profile() {
             orderId: orderId
         }
         await orderFreelancerStatus(data as unknown as string)
+        await sleep(1000)
+        window.location.reload();
+    }
+
+    const orderDeliver = async (orderId: string | null) => {
+        const data = {
+            orderId: orderId
+        }
+        await orderFreelancerDeliver(data as unknown as string)
         await sleep(1000)
         window.location.reload();
     }
@@ -93,7 +102,7 @@ export default function Profile() {
                                                 </>
                                             )}
                                             {order.status === 'aktif' && (
-                                                <button className="text-white font-semibold bg-blue-600 px-6 py-3 rounded-lg">
+                                                <button className="text-white font-semibold bg-blue-600 px-6 py-3 rounded-lg" onClick={() => orderDeliver(order.order_id)}>
                                                     Teslim Et
                                                 </button>
                                             )}
@@ -139,7 +148,8 @@ export default function Profile() {
                                                 order.status === 'aktif' ? 'text-green-500' :
                                                     order.status === 'tamamlandı' ? 'text-blue-500' :
                                                         order.status === 'iptal' ? 'text-red-500' :
-                                                            'text-gray-400'  // Varsayılan durum
+                                                            order.status === 'inceleniyor' ? 'text-pink-500' :
+                                                                'text-gray-400'  // Varsayılan durum
                                                 }`}>
                                                 {order.status}
                                             </p>

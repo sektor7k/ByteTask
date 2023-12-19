@@ -27,6 +27,7 @@ export default function Profile() {
 
 
 
+
     return (
         <>
             <Navbar />
@@ -80,6 +81,9 @@ export default function Profile() {
                                             )}
                                             {order.status === 'tamamlandı' && (
                                                 <span className="text-blue-500">Sipariş Tamamlandı</span>
+                                            )}
+                                            {order.status === 'inceleniyor' && (
+                                                <span className="text-pink-500">Ürün İnceleniyor</span>
                                             )}
                                         </div>
                                     </div>

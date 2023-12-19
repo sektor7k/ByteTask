@@ -329,7 +329,7 @@ export async function orderFreelancerStatus(is_accepted, orderId) {
 
       return { success: true, message: 'Sipariş Aktif Edildi' };
 
-    }else{
+    } else {
       const updateStatus = `
       UPDATE orders SET status = 'iptal' WHERE order_id = ?;
   `;
@@ -364,6 +364,27 @@ export async function getCustomerOrdersId(customerId) {
     return { success: false, message: 'getUserJobs failed', error: err }
   }
 }
+
+
+export async function orderFreelancerDeliver(orderId) {
+  try {
+
+
+    const updateStatus = `
+      UPDATE orders SET status = 'inceleniyor' WHERE order_id = ?;
+  `;
+    await pool.query(updateStatus, [orderId]);
+
+    return { success: true, message: 'Sipariş İnceleniyor' };
+
+
+
+
+  } catch (err) {
+    return { success: false, message: 'orderFreelancerDeliver failed', error: err }
+  }
+}
+
 
 
 

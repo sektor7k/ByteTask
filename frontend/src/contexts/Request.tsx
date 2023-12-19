@@ -123,6 +123,7 @@ interface BackendContextState {
         success: boolean | null;
         message: string;
     };
+    orderFreelancerDeliver: (data: string) => Promise<void>
     getCustomerOrdersId: () => Promise<void>;
     customerOrdersIdResponse: {
         order_id: null;
@@ -462,6 +463,18 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
             console.error('Error orderFreelancerStatus', err);
         }
     }
+    const orderFreelancerDeliver = async (data: string) => {
+        try {
+            const response = await Request('orderFreelancerDeliver', data)
+            console.log(response)
+            setOrderFreelancerStatusRes(response)
+
+        }
+        catch (err) {
+            console.error('Error orderFreelancerStatus', err);
+        }
+    }
+    
 
     const getCustomerOrdersId = async () => {
         try {
@@ -511,7 +524,8 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
             orderFreelancerStatus,
             orderFreelancerStatusRes,
             getCustomerOrdersId,
-            customerOrdersIdResponse
+            customerOrdersIdResponse,
+            orderFreelancerDeliver
 
 
         }}>
