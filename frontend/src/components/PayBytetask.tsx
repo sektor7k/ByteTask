@@ -1,10 +1,10 @@
 
 import { useBackend } from "@/contexts/Request";
-import ShowNotification from "./Notification";
 import { parseEther } from 'viem'
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useDebounce } from 'use-debounce'
-import { usePrepareSendTransaction, useSendTransaction, useWaitForTransaction } from 'wagmi'
+import { usePrepareSendTransaction, useSendTransaction, useWaitForTransaction, useAccount } from 'wagmi'
+import router from "next/router";
 
 
 export default function PayBytetask() {
@@ -27,38 +27,47 @@ export default function PayBytetask() {
     hash: data?.hash,
   })
 
+  const {address} = useAccount();
 
-  const createOrder = async (event: any) => {
-    event.preventDefault();
-    const formdata = new FormData(event.target);
+  async function sleep(n: number | undefined) { return new Promise(resolve => setTimeout(resolve, n)); }
+
+  const createOrder = async () => {
     const orderData = {
       jobId: jobDetail.id,
       freelancerId: jobDetail.userId,
       customerId: userData.id,
-      customerNote: formdata.get('customerNote') as string,
+      customerNote: localStorage.getItem('customerNote') as string,
       orderAmount: jobDetail.jobPrice,
+      customerAddr: address as string,
+      orderHash: data?.hash as string
     };
-    console.log(orderData)
-    //createOrderContext(orderData);
+    await createOrderContext(orderData);
+    await sleep(3000)
+    window.location.reload();
+  }
 
+  const sentBYT = async (event: any) => {
+    event.preventDefault();
+    sendTransaction?.();
+    const formdata = new FormData(event.target);
+    const orderData = {
+      customerNote: formdata.get('customerNote') as string,
+    };
+    localStorage.setItem('customerNote', orderData.customerNote as string);
+  }
 
-  };
+  
 
-  // const handleSuccess = async () => {
-  //   console.log('basarili');
-  //   await createOrder(event); // 'event' parametresini ileterek 'createOrder' fonksiyonunu çağırın
-  //   console.log('basarili');
-  // };
+  useEffect(() => {
 
-  // useEffect(() => {
-  //   (async () => {
-  //     if (isSuccess) {
-  //       await handleSuccess(); // 'handleSuccess' fonksiyonunu çağırın
-  //     }
-  //   })();
-  // }, [isSuccess]);
-
-
+    const sasa = async() =>{
+      if (isSuccess) {
+        await createOrder();
+      }
+    }
+    sasa();
+    
+  }, [isSuccess])
 
 
 
@@ -72,11 +81,7 @@ export default function PayBytetask() {
             <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-50">
               Şipariş Ver
             </h1>
-            <form className="space-y-4 md:space-y-6" onSubmit={async (e) => {
-              e.preventDefault()
-              sendTransaction?.()
-            }}>
-
+            <form className="space-y-4 md:space-y-6" onSubmit={sentBYT}>
 
               <div>
                 <label htmlFor="customerNote" className="block mb-2 text-sm font-medium text-gray-200">Müşteri Notu</label>
@@ -130,11 +135,6 @@ export default function PayBytetask() {
               >
                 {isLoading ? 'Ödeme Yapılıyor...' : 'Şiparişi Tamamla'}
               </button>
-              {isSuccess && (
-                <div className=" text-gray-300 font-mono">
-                  Successfully sent {amount} BYT to {to} hash {data?.hash.slice(0, 40)}...
-                </div>
-              )}
             </form>
 
 
@@ -144,12 +144,7 @@ export default function PayBytetask() {
       </div>
 
 
-      {/* {createOrderResponse.message && (
-        <ShowNotification
-          NotiType={createOrderResponse.success ? "success" : "error"}
-          NotiMessage={createOrderResponse.message}
-        />
-      )} */}
+      
 
     </div>
   );
