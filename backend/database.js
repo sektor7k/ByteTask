@@ -346,6 +346,27 @@ export async function orderFreelancerStatus(is_accepted, orderId) {
   }
 }
 
+export async function getCustomerOrdersId(customerId) {
+
+  try {
+    const [getCustomerOrdersId] = await pool.query('SELECT * FROM orders WHERE customerId = ?', [customerId]);
+
+    const ordersIdWithCustomerUserName = await Promise.all(
+      getCustomerOrdersId.map(async (order) => {
+        const freelancerName = await getUserId(order.freelancerId);
+        const job = await getJobId(order.jobId)
+        return { ...order, freelancerName: freelancerName.username, jobTitle: job.jobTitle };
+      })
+    );
+    return ordersIdWithCustomerUserName;
+  }
+  catch {
+    return { success: false, message: 'getUserJobs failed', error: err }
+  }
+}
+
+
+
 
 
 

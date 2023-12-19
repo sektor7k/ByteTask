@@ -3,24 +3,28 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import ShowNotification from "@/components/Notification";
 import { useBackend } from "@/contexts/Request";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type OrderDetailsState = Record<string | number, boolean>;
 
 export default function Profile() {
-    const {  } = useBackend();
+    const { getCustomerOrdersId, customerOrdersIdResponse, userData } = useBackend();
     const [isOpen, setIsOpen] = useState<OrderDetailsState>({});
 
     const toggleDetails = (orderId: string | number) => {
         setIsOpen((prev) => ({ ...prev, [orderId]: !prev[orderId] }));
     };
 
-
+    function sleep(n: number | undefined) { return new Promise(resolve => setTimeout(resolve, n)); }
     useEffect(() => {
-        
+
+        getCustomerOrdersId();
+
+
     }, []);
 
-    
+
 
 
     return (
@@ -29,12 +33,12 @@ export default function Profile() {
             <div className="bg-[#1E1B24] flex flex-col items-center justify-center space-y-4 min-h-screen ">
                 <div className="bg-[#23202A] w-10/12 rounded-lg flex flex-col items-center mt-24">
                     <div className="flex flex-row space-x-2 mt-6  ">
-                        <button
+                        <Link href={`/orders/${userData.username}/incomingorders`}
                             type="button"
                             className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white  border-2 border-gray-50 focus:ring-2 focus:outline-none focus:ring-whit  rounded-full rounded-r-none text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-bold"
                         >
                             Gelen Siparişler
-                        </button>
+                        </Link>
                         <button
                             type="button"
                             className="text-black bg-white hover:bg-black hover:bg-opacity-10 hover:text-white  border-2 border-gray-50 focus:ring-2 focus:outline-none focus:ring-whit  rounded-full rounded-l-none text-sm px-4 py-2 text-center transition duration-300 ease-in-out font-bold"
@@ -44,7 +48,7 @@ export default function Profile() {
                     </div>
 
                     <div className="flex flex-col  space-y-5 w-5/6 p-10">
-                        {asas.map((order) => (
+                        {customerOrdersIdResponse.map((order) => (
                             <div className="w-full border border-solid border-gray-700 rounded-xl flex flex-col p-6 space-y-3 ">
                                 <div className="flex flex-row justify-between items-center">
                                     <div className="flex flex-row space-x-3">
@@ -52,7 +56,7 @@ export default function Profile() {
                                         <div>
                                             <div className="flex flex-row space-x-1">
                                                 <p className="text-white font-bold text-lg">
-                                                    {order.customerName}
+                                                    {order.freelancerName}
                                                 </p>
                                             </div>
                                             <p className="text-gray-400">
@@ -64,14 +68,12 @@ export default function Profile() {
 
                                         <div className="space-x-3 ">
                                             {order.status === 'beklemede' && (
-                                               
-                                                     <span className="text-yellow-500">Sipariş Beklemede</span>
-                                               
+
+                                                <span className="text-yellow-500">Sipariş Beklemede</span>
+
                                             )}
                                             {order.status === 'aktif' && (
-                                                <button className="text-white font-semibold bg-blue-600 px-6 py-3 rounded-lg">
-                                                    Teslim Et
-                                                </button>
+                                                <span className="text-green-500">Sipariş Aktif</span>
                                             )}
                                             {order.status === 'iptal' && (
                                                 <span className="text-red-500">Sipariş İptal Edildi</span>
@@ -91,17 +93,11 @@ export default function Profile() {
                                 {isOpen[order.order_id] && (
                                     <div className="flex flex-col space-y-3">
                                         <div className="flex flex-col space-y-2">
-                                            <p className="text-white text-lg font-semibold font-mono">Müşteri Notu :</p>
+                                            <p className="text-white text-lg font-semibold font-mono">Müşteri Notum :</p>
                                             <p className="text-gray-400 text-sm font-mono">
                                                 {order.customerNote}
                                             </p>
-                                        </div>
-                                        <div className="flex flex-col space-y-2">
-                                            <p className="text-white text-lg font-semibold font-mono">Müşteri Adresi :</p>
-                                            <p className="text-gray-400 text-sm font-mono">
-                                                {order.customerAddr}
-                                            </p>
-                                        </div>
+                                        </div>  
                                         <div className="flex flex-col space-y-2">
                                             <p className="text-white text-lg font-semibold font-mono">Sipariş Hash Adresi :</p>
                                             <p className="text-gray-400 text-sm font-mono">
@@ -109,17 +105,7 @@ export default function Profile() {
 
                                             </p>
                                         </div>
-                                        <div className="flex flex-col space-y-2">
-                                            <p className="text-white text-lg font-semibold font-mono">Sipariş Durumu:</p>
-                                            <p className={`text-base font-mono ${order.status === 'beklemede' ? 'text-yellow-500' :
-                                                order.status === 'aktif' ? 'text-green-500' :
-                                                    order.status === 'tamamlandı' ? 'text-blue-500' :
-                                                        order.status === 'iptal' ? 'text-red-500' :
-                                                            'text-gray-400'  // Varsayılan durum
-                                                }`}>
-                                                {order.status}
-                                            </p>
-                                        </div>
+                                        
                                     </div>
                                 )}
                             </div>

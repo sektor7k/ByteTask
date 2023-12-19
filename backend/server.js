@@ -1,7 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { addUser, loginCheck, getUser, addUserAbout, getUserAbout, addJob, getAllJobs, getJobId, getUserJobs, deleteJob, createOrder, getFreelancerOrdersId, orderFreelancerStatus } from './database.js';
+import { addUser, loginCheck, getUser, addUserAbout, getUserAbout, addJob, getAllJobs, getJobId, getUserJobs, deleteJob, createOrder, getFreelancerOrdersId, orderFreelancerStatus, getCustomerOrdersId } from './database.js';
 import { checkStatusFalse } from "./database.js";
 
 const app = express();
@@ -236,6 +236,21 @@ app.post("/orderFreelancerStatus", async (req, res) => {
     return res.status(500).send({ message: 'Server error', error: err });
   }
 });
+
+app.get("/getCustomerOrdersId/:id", async (req, res) => {
+
+  try {
+
+    const customerId = +req.params.id
+    const note = await getCustomerOrdersId(customerId)
+    return res.status(200).send(note);
+
+  }
+  catch (err) {
+    return res.status(500).send({ message: 'Server error', error: err })
+  }
+
+})
 
 
 

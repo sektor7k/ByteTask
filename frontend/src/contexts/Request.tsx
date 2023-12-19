@@ -114,7 +114,7 @@ interface BackendContextState {
         customerNote: string;
         customerAddr: string;
         orderHash: string;
-        status:string;
+        status: string;
         customerName: string;
         jobTitle: string;
     }[];
@@ -123,6 +123,19 @@ interface BackendContextState {
         success: boolean | null;
         message: string;
     };
+    getCustomerOrdersId: () => Promise<void>;
+    customerOrdersIdResponse: {
+        order_id: null;
+        jobId: null;
+        freelancerId: null;
+        customerId: null;
+        customerNote: string;
+        customerAddr: string;
+        orderHash: string;
+        status: string;
+        freelancerName: string;
+        jobTitle: string;
+    }[];
 
 
 
@@ -220,15 +233,28 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         customerNote: '',
         customerAddr: '',
         orderHash: '',
-        status:'',
+        status: '',
         customerName: '',
         jobTitle: ''
     }])
     // sipariş kabul iptal response statleri 
-    const [orderFreelancerStatusRes , setOrderFreelancerStatusRes] = useState({
+    const [orderFreelancerStatusRes, setOrderFreelancerStatusRes] = useState({
         success: null as boolean | null,
         message: "",
     })
+    // freeleancerların aldığı siparişlerin statleri
+    const [customerOrdersIdResponse, setCustomerOrdersIdResponse] = useState([{
+        order_id: null,
+        jobId: null,
+        freelancerId: null,
+        customerId: null,
+        customerNote: '',
+        customerAddr: '',
+        orderHash: '',
+        status: '',
+        freelancerName: '',
+        jobTitle: ''
+    }])
 
 
     const signUpContext = async (signupdata: { username: string, email: string, password: string, password2: string }): Promise<void> => {
@@ -400,7 +426,7 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
-    const createOrderContext = async (orderData: { jobId: number | null; freelancerId: number | null; customerId: number | null; customerNote: string; orderAmount: number | null; customerAddr: string; orderHash: string}): Promise<void> => {
+    const createOrderContext = async (orderData: { jobId: number | null; freelancerId: number | null; customerId: number | null; customerNote: string; orderAmount: number | null; customerAddr: string; orderHash: string }): Promise<void> => {
         try {
 
             const response = await Request('orders', orderData);
@@ -408,10 +434,10 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
             setcreateOrderResponse(response)
         } catch (err) {
             console.error('Error createOrderContext', err);
-            
+
         }
     };
-    const getFreelancerOrdersId = async() =>{
+    const getFreelancerOrdersId = async () => {
         try {
             const freelancerId = await userDataResponse();
             if (freelancerId !== null) {
@@ -423,19 +449,34 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
         catch (err) {
             console.error('Error getFreelancerOrdersId:', err);
         }
-        
+
     }
 
-    const orderFreelancerStatus = async(data:string) =>{
-        try{
-            const response = await Request('orderFreelancerStatus',data)
+    const orderFreelancerStatus = async (data: string) => {
+        try {
+            const response = await Request('orderFreelancerStatus', data)
             setOrderFreelancerStatusRes(response)
 
         }
-        catch(err)
-        {
+        catch (err) {
             console.error('Error orderFreelancerStatus', err);
         }
+    }
+
+    const getCustomerOrdersId = async () => {
+        try {
+            const customerId = await userDataResponse();
+            if (customerId !== null) {
+                console.log(customerId )
+                const response = await Request2('getCustomerOrdersId', customerId);
+                console.log(response)
+                setCustomerOrdersIdResponse(response)
+            }
+        }
+        catch (err) {
+            console.error('Error getCustomerOrdersId:', err);
+        }
+
     }
 
 
@@ -468,7 +509,11 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
             getFreelancerOrdersId,
             freelancerOrdersIdResponse,
             orderFreelancerStatus,
-            orderFreelancerStatusRes
+            orderFreelancerStatusRes,
+            getCustomerOrdersId,
+            customerOrdersIdResponse
+
+
         }}>
             {children}
         </BackendContext.Provider>
