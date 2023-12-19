@@ -104,7 +104,26 @@ interface BackendContextState {
     createOrderResponse: {
         success: boolean | null;
         message: string;
-    }
+    };
+    getFreelancerOrdersId: () => Promise<void>;
+    freelancerOrdersIdResponse: {
+        order_id: null;
+        jobId: null;
+        freelancerId: null;
+        customerId: null;
+        customerNote: string;
+        customerAddr: string;
+        orderHash: string;
+        status:string;
+        customerName: string;
+        jobTitle: string;
+    }[];
+    orderFreelancerStatus: (data: string) => Promise<void>;
+    orderFreelancerStatusRes: {
+        success: boolean | null;
+        message: string;
+    };
+
 
 
 
@@ -189,6 +208,24 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
     })
     // createOrder response state'leri
     const [createOrderResponse, setcreateOrderResponse] = useState({
+        success: null as boolean | null,
+        message: "",
+    })
+    // freeleancerların aldığı siparişlerin statleri
+    const [freelancerOrdersIdResponse, setFreelancerOrdersIdResponse] = useState([{
+        order_id: null,
+        jobId: null,
+        freelancerId: null,
+        customerId: null,
+        customerNote: '',
+        customerAddr: '',
+        orderHash: '',
+        status:'',
+        customerName: '',
+        jobTitle: ''
+    }])
+    // sipariş kabul iptal response statleri 
+    const [orderFreelancerStatusRes , setOrderFreelancerStatusRes] = useState({
         success: null as boolean | null,
         message: "",
     })
@@ -374,6 +411,32 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
             
         }
     };
+    const getFreelancerOrdersId = async() =>{
+        try {
+            const freelancerId = await userDataResponse();
+            if (freelancerId !== null) {
+                const response = await Request2('getFreelancerOrdersId', freelancerId);
+                console.log(response)
+                setFreelancerOrdersIdResponse(response)
+            }
+        }
+        catch (err) {
+            console.error('Error getFreelancerOrdersId:', err);
+        }
+        
+    }
+
+    const orderFreelancerStatus = async(data:string) =>{
+        try{
+            const response = await Request('orderFreelancerStatus',data)
+            setOrderFreelancerStatusRes(response)
+
+        }
+        catch(err)
+        {
+            console.error('Error orderFreelancerStatus', err);
+        }
+    }
 
 
     return (
@@ -401,7 +464,11 @@ export const BackendProvider = ({ children }: { children: ReactNode }) => {
             deleteJob,
             deleteJobResponse,
             createOrderContext,
-            createOrderResponse
+            createOrderResponse,
+            getFreelancerOrdersId,
+            freelancerOrdersIdResponse,
+            orderFreelancerStatus,
+            orderFreelancerStatusRes
         }}>
             {children}
         </BackendContext.Provider>
