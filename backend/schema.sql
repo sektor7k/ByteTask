@@ -35,6 +35,8 @@ CREATE TABLE orders (
     customerId INT,
     customerNote TEXT,
     orderAmount DECIMAL(10, 2),
+    customerAddr TEXT,
+    orderHash TEXT,
     status VARCHAR(255) DEFAULT 'beklemede',
     FOREIGN KEY (freelancerId) REFERENCES users(id),
     FOREIGN KEY (customerId) REFERENCES users(id),

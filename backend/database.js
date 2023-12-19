@@ -273,7 +273,7 @@ export async function deleteJob(jobId) {
   }
 }
 
-export async function createOrder(jobId, freelancerId, customerId, customerNote, orderAmount) {
+export async function createOrder(jobId, freelancerId, customerId, customerNote, orderAmount, customerAddr, orderHash) {
 
   try {
 
@@ -285,10 +285,10 @@ export async function createOrder(jobId, freelancerId, customerId, customerNote,
     }
 
     const query = `
-      INSERT INTO orders (jobId, freelancerId, customerId, customerNote, orderAmount)
-      VALUES (?, ?, ?, ?, ?)
+      INSERT INTO orders (jobId, freelancerId, customerId, customerNote, orderAmount, customerAddr, orderHash)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
     `;
-    await pool.query(query, [jobId, freelancerId, customerId, customerNote, orderAmount]);
+    await pool.query(query, [jobId, freelancerId, customerId, customerNote, orderAmount, customerAddr, orderHash]);
     return { success: true, message: 'Sipariş Alındı' }
 
 

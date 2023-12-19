@@ -199,9 +199,9 @@ app.get("/deleteJob/:id", async (req, res) => {
 
 app.post("/orders", async (req, res) => {
   try {
-    const { jobId, freelancerId, customerId, customerNote, orderAmount } = req.body;
+    const { jobId, freelancerId, customerId, customerNote, orderAmount, customerAddr, orderHash } = req.body;
 
-    const note = await createOrder(jobId, freelancerId, customerId, customerNote, orderAmount);
+    const note = await createOrder(jobId, freelancerId, customerId, customerNote, orderAmount, customerAddr, orderHash);
     return res.status(200).send({ success: note.success, message: note.message });
 
   } catch (err) {
