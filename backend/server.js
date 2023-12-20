@@ -3,7 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import { addUser, loginCheck, getUser, addUserAbout, getUserAbout, addJob, getAllJobs, getJobId, getUserJobs, deleteJob, createOrder, getFreelancerOrdersId, orderFreelancerStatus, getCustomerOrdersId, orderFreelancerDeliver } from './database.js';
 import { checkStatusFalse } from "./database.js";
-
+import { sendByt } from "./microTransaction.js";
 const app = express();
 const port = 3030;
 
@@ -17,7 +17,7 @@ app.use(cors({
 }));
 
 app.get("/", (req, res) => {
-  res.send("Yazılımı Bırak Sana Göre Değil");
+  sendByt();
 });
 
 app.post("/signup", async (req, res) => {
