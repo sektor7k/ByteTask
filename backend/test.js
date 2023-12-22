@@ -78,7 +78,21 @@ describe('Test Server Endpoints', () => {
         expect(res.body.message).to.equal('İş ilanı eklendi');
         expect(res.body.success).to.be.true;
 
+    })
 
+    // İş ilanı silme testi
+    it('İş ilanı silme', async () => {
+        const userId = await pool.query('SELECT * FROM users WHERE email = "test@example.com"');
+        const jobs = await pool.query("SELECT * FROM jobs WHERE userId = ? ", [userId[0][0].id]);
+        const jobId = (jobs[0][0].id)
+        const res = await supertest(app)
+            .get(`/deleteJob/${jobId}`);
+
+
+        expect(res.status).to.equal(200);
+        expect(res.body.message).to.equal('İlan Başarıyla Silindi');
+        expect(res.body.succes).to.be.false;
+        
     })
 
     //Testler bittikten sonra veritabanını temizleme

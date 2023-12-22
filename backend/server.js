@@ -186,9 +186,9 @@ app.get("/deleteJob/:id", async (req, res) => {
   try {
     const jobId = req.params.id
 
-    await deleteJob(jobId);
+    const response = await deleteJob(jobId);
 
-    return res.status(200).send({ succes: false, message: 'İlan Başarıyla Silindi' })
+    return res.status(200).send({ succes: response.success, message: response.message })
 
   }
   catch (err) {

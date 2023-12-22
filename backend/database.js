@@ -268,6 +268,7 @@ export async function deleteJob(jobId) {
   try {
     await pool.query(`DELETE FROM jobs WHERE id = ?`, [jobId])
 
+    return { success: false, message: 'İlan Başarıyla Silindi' }
   }
   catch (err) {
     return { success: false, message: 'Delete job failed', error: err }
