@@ -13,7 +13,7 @@ CREATE TABLE userAbout (
   id INT AUTO_INCREMENT PRIMARY KEY,
   userId INT,
   about TEXT,
-  FOREIGN KEY (userId) REFERENCES users(id)
+  FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE jobs (

@@ -108,8 +108,8 @@ export async function checkStatusFalse(email) {
   try {
     await pool.query(`UPDATE users
       SET status = false
-      WHERE email = ?`, [email])
-
+      WHERE email = ?`, [email]);
+    return { succes: false, message: 'Çıkış yapıldı' }
   }
   catch (err) {
     return { success: false, message: 'Check Status failed', error: err }
@@ -396,7 +396,7 @@ export async function orderFreelancerDeliver(orderId, address) {
 
 
 
-
+export default pool;
 
 
 

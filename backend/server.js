@@ -63,7 +63,7 @@ app.get("/statusfalse/:email", async (req, res) => {
 
     const statusResponse = await checkStatusFalse(email);
 
-    return res.status(200).send({ succes: false, message: 'Çıkış yapıldı' })
+    return res.status(200).send({ succes: statusResponse.succes, message: statusResponse.message })
 
   }
   catch (err) {
@@ -272,3 +272,4 @@ app.listen(port, () => {
 });
 
 
+export default app;
