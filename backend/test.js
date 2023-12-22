@@ -43,6 +43,8 @@ describe('Test Server Endpoints', () => {
         expect(res.status).to.equal(200);
         expect(res.body.succes).to.be.false;
         expect(res.body.message).to.equal('Çıkış yapıldı');
+
+        return
     });
 
 
@@ -80,6 +82,31 @@ describe('Test Server Endpoints', () => {
 
     })
 
+    
+
+    //Sipariş Ekleme Testi
+    it('Sipariş Ekleme', async () => {
+        const userId = await pool.query('SELECT * FROM users WHERE email = "test@example.com"');
+        const jobs = await pool.query("SELECT * FROM jobs WHERE userId = ? ", [userId[0][0].id]);
+        const jobId = (jobs[0][0].id);
+
+        const res = await supertest(app)
+            .post('/orders')
+            .send({
+                jobId: jobId,
+                freelancerId: userId[0][0].id,
+                customerId: userId[0][0].id,
+                customerNote: 'Test Order Note',
+                orderAmount: 100,
+                customerAddr: 'Test Address',
+                orderHash: 'Test Hash'
+            });
+
+        expect(res.status).to.equal(200);
+        expect(res.body.success).to.be.true;
+        expect(res.body.message).to.equal('Sipariş Alındı');
+    })
+
     // İş ilanı silme testi
     it('İş ilanı silme', async () => {
         const userId = await pool.query('SELECT * FROM users WHERE email = "test@example.com"');
@@ -92,7 +119,7 @@ describe('Test Server Endpoints', () => {
         expect(res.status).to.equal(200);
         expect(res.body.message).to.equal('İlan Başarıyla Silindi');
         expect(res.body.succes).to.be.false;
-        
+
     })
 
     //Testler bittikten sonra veritabanını temizleme
@@ -100,4 +127,3 @@ describe('Test Server Endpoints', () => {
         await pool.query('DELETE FROM users WHERE email = "test@example.com"');
     });
 });
-
