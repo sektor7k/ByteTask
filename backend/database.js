@@ -1,6 +1,7 @@
 import mysql from "mysql2";
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
+import { sendByt } from "./microTransaction.js";
 
 dotenv.config()
 
@@ -366,16 +367,23 @@ export async function getCustomerOrdersId(customerId) {
 }
 
 
-export async function orderFreelancerDeliver(orderId) {
+export async function orderFreelancerDeliver(orderId, address) {
   try {
 
 
     const updateStatus = `
-      UPDATE orders SET status = 'inceleniyor' WHERE order_id = ?;
+      UPDATE orders SET status = 'tamamlandı' WHERE order_id = ?;
   `;
     await pool.query(updateStatus, [orderId]);
 
-    return { success: true, message: 'Sipariş İnceleniyor' };
+    // sende byt
+    const getOrderAmount = await pool.query('SELECT orderAmount FROM orders WHERE order_id = ?', [orderId]);
+    const amount = Math.floor(getOrderAmount[0][0].orderAmount)
+    console.log(amount.toString())
+    console.log(address)
+    sendByt(address, amount.toString());
+
+    return { success: true, message: 'Ürün Teslim edildi' };
 
 
 

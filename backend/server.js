@@ -254,9 +254,9 @@ app.get("/getCustomerOrdersId/:id", async (req, res) => {
 
 app.post("/orderFreelancerDeliver", async (req, res) => {
   try {
-    const {orderId } = req.body;
-
-    const note = await orderFreelancerDeliver(orderId);
+    const {orderId, address } = req.body;
+    
+    const note = await orderFreelancerDeliver(orderId, address);
     return res.status(200).send({ success: note.success, message: note.message });
 
   } catch (err) {

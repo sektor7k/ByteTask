@@ -5,12 +5,14 @@ import ShowNotification from "@/components/Notification";
 import { useBackend } from "@/contexts/Request";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useAccount } from "wagmi";
 
 type OrderDetailsState = Record<string | number, boolean>;
 
 export default function Profile() {
     const { getFreelancerOrdersId, freelancerOrdersIdResponse, orderFreelancerStatus, orderFreelancerDeliver, orderFreelancerStatusRes, userData } = useBackend();
     const [isOpen, setIsOpen] = useState<OrderDetailsState>({});
+    const {address} = useAccount();
 
     const toggleDetails = (orderId: string | number) => {
         setIsOpen((prev) => ({ ...prev, [orderId]: !prev[orderId] }));
@@ -44,7 +46,8 @@ export default function Profile() {
 
     const orderDeliver = async (orderId: string | null) => {
         const data = {
-            orderId: orderId
+            orderId: orderId,
+            address: address
         }
         await orderFreelancerDeliver(data as unknown as string)
         await sleep(1000)

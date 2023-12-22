@@ -44,6 +44,7 @@ export default function PayBytetask() {
     await createOrderContext(orderData);
     await sleep(3000)
     window.location.reload();
+    
   }
 
   const sentBYT = async (event: any) => {
@@ -124,7 +125,7 @@ export default function PayBytetask() {
                   </div>
                 </div>
 
-
+ 
 
               </div>
 
