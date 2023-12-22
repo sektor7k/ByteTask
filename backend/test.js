@@ -1,6 +1,6 @@
 import supertest from 'supertest';
 import { expect } from 'chai';
-import app from './server.js'; 
+import app from './server.js';
 import pool from './database.js';
 describe('Test Server Endpoints', () => {
 
@@ -41,7 +41,7 @@ describe('Test Server Endpoints', () => {
             .get('/statusfalse/test@example.com');
 
         expect(res.status).to.equal(200);
-        //expect(res.body.success).to.be.false;
+        expect(res.body.succes).to.be.false;
         expect(res.body.message).to.equal('Çıkış yapıldı');
     });
 
@@ -49,23 +49,39 @@ describe('Test Server Endpoints', () => {
     //Add User about test
     it('kullanıcı about bilgileri ekleme', async () => {
         // Temizleme işlemi
-      
-       const id = await pool.query('SELECT id FROM users WHERE email = "test@example.com"');
-       const userId = id[0][0].id;
 
+        const id = await pool.query('SELECT id FROM users WHERE email = "test@example.com"');
+        const userId = id[0][0].id;
         const res = await supertest(app)
             .post('/userAbout')
             .send({ userid: userId, userAbout: 'userAbout', userField: 'userField' });
 
         expect(res.status).to.equal(200);
-        //expect(res.body.status).to.equal('Kullanıcı hakkında bilgisi eklendi' || 'Kullanıcı hakkında bilgisi güncellendi');
-        //expect(res.body.success).to.be.true;
+        expect(res.body.message).to.equal('Kullanıcı hakkında bilgisi eklendi');
+        expect(res.body.succes).to.be.true;
 
-        
+
         token = res.body.token;
     });
 
-    // Testler bittikten sonra veritabanını temizleme
+    // İş ilanı ekleme testi
+    it('İş ilanı ekleme', async () => {
+
+        const id = await pool.query('SELECT id FROM users WHERE email = "test@example.com"');
+        const userId = id[0][0].id;
+
+        const res = await supertest(app)
+            .post('/jobs')
+            .send({ userid: userId, jobTitle: 'Test Title', jobDescription: 'Test Description', jobPrice: '21', workTime: '21', revision: '21' });
+
+        expect(res.status).to.equal(200);
+        expect(res.body.message).to.equal('İş ilanı eklendi');
+        expect(res.body.success).to.be.true;
+
+
+    })
+
+    //Testler bittikten sonra veritabanını temizleme
     after(async () => {
         await pool.query('DELETE FROM users WHERE email = "test@example.com"');
     });
