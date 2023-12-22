@@ -327,7 +327,7 @@ export async function orderFreelancerStatus(is_accepted, orderId) {
       UPDATE orders SET status = 'aktif' WHERE order_id = ?;
   `;
       await pool.query(updateStatus, [orderId]);
-      console.log(orderId)
+      
 
       return { success: true, message: 'Sipariş Aktif Edildi' };
 
@@ -336,7 +336,7 @@ export async function orderFreelancerStatus(is_accepted, orderId) {
       UPDATE orders SET status = 'iptal' WHERE order_id = ?;
   `;
       await pool.query(updateStatus, [orderId]);
-      console.log(orderId)
+      
 
       return { success: false, message: 'Sipariş İptal Edildi' };
 
@@ -380,8 +380,6 @@ export async function orderFreelancerDeliver(orderId, address) {
     // sende byt
     const getOrderAmount = await pool.query('SELECT orderAmount FROM orders WHERE order_id = ?', [orderId]);
     const amount = Math.floor(getOrderAmount[0][0].orderAmount)
-    console.log(amount.toString())
-    console.log(address)
     sendByt(address, amount.toString());
 
     return { success: true, message: 'Ürün Teslim edildi' };

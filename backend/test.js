@@ -110,6 +110,22 @@ describe('Seneryo 1', () => {
         expect(res.body.message).to.equal('Sipariş Aktif Edildi');
     })
 
+    // Sipariş Teslim Testi
+    it('Ürün Teslim', async () => {
+        const userId = await pool.query('SELECT * FROM users WHERE email = "test@example.com"');
+        const orders = await pool.query("SELECT * FROM orders WHERE customerId = ?", [userId[0][0].id]);
+        const orderId = (orders[0][0].order_id);
+
+        const res = await supertest(app)
+            .post('/orderFreelancerDeliver')
+            .send({ orderId: orderId, address: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'});
+
+        expect(res.status).to.equal(200);
+        expect(res.body.success).to.be.true;
+        expect(res.body.message).to.equal('Ürün Teslim edildi');
+    })
+
+
 
     // İş ilanı silme testi
     it('İş ilanı silme', async () => {
