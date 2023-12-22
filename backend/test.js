@@ -35,18 +35,6 @@ describe('Test Server Endpoints', () => {
         expect(res.body.success).to.be.true;
     });
 
-    // Check Status Test
-    it('hesaptan çıkış yapma', async () => {
-        const res = await supertest(app)
-            .get('/statusfalse/test@example.com');
-
-        expect(res.status).to.equal(200);
-        expect(res.body.succes).to.be.false;
-        expect(res.body.message).to.equal('Çıkış yapıldı');
-
-        return
-    });
-
 
     //Add User about test
     it('kullanıcı about bilgileri ekleme', async () => {
@@ -107,6 +95,22 @@ describe('Test Server Endpoints', () => {
         expect(res.body.message).to.equal('Sipariş Alındı');
     })
 
+    // Sipariş Onay Testi
+    it('Sipariş Onaylama', async () => {
+        const userId = await pool.query('SELECT * FROM users WHERE email = "test@example.com"');
+        const orders = await pool.query("SELECT * FROM orders WHERE customerId = ?", [userId[0][0].id]);
+        const orderId = (orders[0][0].order_id);
+
+        const res = await supertest(app)
+            .post('/orderFreelancerStatus')
+            .send({ is_accepted: true, orderId: orderId });
+
+        expect(res.status).to.equal(200);
+        expect(res.body.success).to.be.true;
+        expect(res.body.message).to.equal('Sipariş Aktif Edildi');
+    })
+
+
     // İş ilanı silme testi
     it('İş ilanı silme', async () => {
         const userId = await pool.query('SELECT * FROM users WHERE email = "test@example.com"');
@@ -121,6 +125,17 @@ describe('Test Server Endpoints', () => {
         expect(res.body.succes).to.be.false;
 
     })
+
+    // Check Status Test
+    it('hesaptan çıkış yapma', async () => {
+        const res = await supertest(app)
+            .get('/statusfalse/test@example.com');
+
+        expect(res.status).to.equal(200);
+        expect(res.body.succes).to.be.false;
+        expect(res.body.message).to.equal('Çıkış yapıldı');
+
+    });
 
     //Testler bittikten sonra veritabanını temizleme
     after(async () => {
