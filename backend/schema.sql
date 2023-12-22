@@ -13,6 +13,7 @@ CREATE TABLE userAbout (
   id INT AUTO_INCREMENT PRIMARY KEY,
   userId INT,
   about TEXT,
+  fields TEXT,
   FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE
 );
 
@@ -25,7 +26,7 @@ CREATE TABLE jobs (
   workTime INT,
   revision INT,
 
-  FOREIGN KEY (userId) REFERENCES users(id)
+  FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE orders (
@@ -40,7 +41,7 @@ CREATE TABLE orders (
     status VARCHAR(255) DEFAULT 'beklemede',
     FOREIGN KEY (freelancerId) REFERENCES users(id),
     FOREIGN KEY (customerId) REFERENCES users(id),
-    FOREIGN KEY (jobId) REFERENCES jobs(id)
+    FOREIGN KEY (jobId) REFERENCES jobs(id) ON DELETE CASCADE
 );
 
 
