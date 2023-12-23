@@ -167,6 +167,56 @@
 2. Test işlemini tamamladıktan sonra test sonucunu "Geçti/Kaldı" olarak belirterek nedenleri ile birlikte raporlamalıdır.
    
 
+## Sipariş Ekleme Test Case'i
+
+### Risk Seviyesi: Yüksek
+
+**Amaç**: Kullanıcının başarıyla bir sipariş ekleyebilmesinin test edilmesi amaçlanmaktadır.
+
+### Girdiler:
+
+1. Kullanıcı ID: [Test kullanıcısının ID'si, örneğin: `123`]
+2. İş İlanı ID: [Test iş ilanının ID'si, örneğin: `456`]
+3. Freelancer ID: [Freelancer kullanıcısının ID'si, örneğin: `789`]
+4. Müşteri ID: [Müşteri kullanıcısının ID'si, örneğin: `123`]
+5. Müşteri Notu: `Test Sipariş Notu`
+6. Sipariş Tutarı: `100` BYT
+7. Müşteri Adresi: [Müşteri cüzdan adres, örneğin: `0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266`]
+8. Sipariş Hash: [İşlem Hash adres, örneğin: `0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266Fd6e51aad88F6F4ce6Fd6e51aad88F6F4ce6`]
+
+### Beklenen Çıktılar:
+
+- Siparişin başarılı bir şekilde eklenmesi.
+
+### Kriterler:
+
+- Kullanıcı ID, sistemde mevcut bir kullanıcıya ait olmalıdır.
+- İş ilanı ID, sistemde mevcut bir iş ilanına ait olmalıdır.
+- Freelancer ID ve Müşteri ID geçerli birer kullanıcı ID'si olmalıdır.
+- Müşteri Notu, geçerli bir metin olmalıdır.
+- Sipariş Tutarı pozitif bir sayı olmalıdır.
+- Müşteri Adresi, geçerli bir adres değeri olmalıdır.
+- Sipariş Hash, geçerli bir hash değeri olmalıdır.
+
+### Hata Kriterleri:
+
+- Kullanıcı ID, sistemde mevcut bir kullanıcıya ait değilse veya eksikse.
+- İş ilanı ID, sistemde mevcut bir iş ilanına ait değilse veya eksikse.
+- Freelancer ID veya Müşteri ID geçerli bir kullanıcı ID'si değilse.
+- Müşteri Notu, geçerli bir metin değilse.
+- Sipariş Tutarı pozitif bir sayı değilse.
+- Web3 cüzdan bağlantısı sağlananmışsa.
+- Müşteri Adresi, web3 cüzdanından alınamamışsa.
+- Kullanıcının sipariş vermek için cüzdanında yeterli gass yoksa.
+- İşlem blockchain de geçerli RPC ye gönderemeişse.
+- Sipariş Hash, geçerli bir hash değeri değilse.
+- Sistem, herhangi bir teknik nedenle veritabanı bağlantı işlemini gerçekleştirememişse.
+
+### Test Prosedürü:
+
+1. Test kullanıcısı, yazılımı desteklenen sistem ve cihazlarda çalıştırarak belirtilen girdilerle testi gerçekleştirmelidir.
+2. Test işlemini tamamladıktan sonra test sonucunu "Geçti/Kaldı" olarak belirterek nedenleri ile birlikte raporlamalıdır.
+
 ## Sipariş Kabul Etme Test Case'i
 
 ### Risk Seviyesi: Düşük
