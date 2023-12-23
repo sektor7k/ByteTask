@@ -192,3 +192,35 @@
 
 1. Test kullanıcısı, yazılımı desteklenen sistem ve cihazlarda çalıştırarak belirtilen girdilerle testi gerçekleştirmelidir.
 2. Test işlemini tamamladıktan sonra test sonucunu "Geçti/Kaldı" olarak belirterek nedenleri ile birlikte raporlamalıdır.
+
+
+## İş İlanı Reddetme Test Case'i
+
+### Risk Seviyesi: Yüksek
+
+**Amaç:** Kullanıcının başarıyla bir iş ilanını reddedebilmesinin test edilmesi amaçlanmaktadır.
+
+### Girdiler:
+
+1. Kullanıcı ID: [Kullanıcının ID'si, örneğin: 123]
+2. İş İlanı ID: [İş ilanının ID'si, örneğin: 456]
+
+### Beklenen Çıktılar:
+
+- İş ilanının başarılı bir şekilde reddedilmesi.
+
+### Kriterler:
+
+- Kullanıcı ID, sistemde mevcut bir kullanıcıya ait olmalıdır.
+- İş ilanı ID, sistemde mevcut bir iş ilanına ait olmalıdır.
+
+### Hata Kriterleri:
+
+- Kullanıcı ID, sistemde mevcut bir kullanıcıya ait değilse veya eksikse.
+- İş ilanı ID, sistemde mevcut bir iş ilanına ait değilse veya eksikse.
+- Sistem, herhangi bir teknik nedenle veritabanı bağlantı işlemini gerçekleştirememişse.
+
+### Test Prosedürü:
+
+1. Test kullanıcısı, yazılımı desteklenen sistem ve cihazlarda çalıştırarak belirtilen girdilerle testi gerçekleştirmelidir.
+2. Test işlemini tamamladıktan sonra test sonucunu "Geçti/Kaldı" olarak belirterek nedenleri ile birlikte raporlamalıdır.
