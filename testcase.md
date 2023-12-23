@@ -63,3 +63,35 @@
 
 1. Test kullanıcısı, yazılımı desteklenen sistem ve cihazlarda çalıştırarak belirtilen girdilerle testi gerçekleştirmelidir.
 2. Test işlemini tamamladıktan sonra test sonucunu "Geçti/Kaldı" olarak belirterek nedenleri ile birlikte raporlamalıdır.
+
+## Kullanıcı Bilgileri Ekleme Test Case'i
+
+### Risk Seviyesi: Yüksek
+
+**Amaç:** Kullanıcının profil bilgilerini başarıyla ekleyebilmesinin test edilmesi amaçlanmaktadır.
+
+### Girdiler:
+
+1. Kullanıcı ID: [Kullanıcının ID'si, örneğin: 123]
+2. Kullanıcı Hakkında Bilgisi: "Kullanıcı deneyimi olan bir yazılım geliştirici."
+3. Kullanıcı Alan Bilgisi: "Web ve mobil uygulama geliştirme."
+
+### Beklenen Çıktılar:
+
+- Kullanıcının profil bilgilerini başarılı bir şekilde eklemesi.
+
+### Kriterler:
+
+- Kullanıcı ID, sistemde mevcut bir kullanıcıya ait olmalıdır.
+- Kullanıcı, geçerli bir "Kullanıcı Hakkında Bilgisi" ve "Kullanıcı Alan Bilgisi" girmelidir.
+
+### Hata Kriterleri:
+
+- Kullanıcı ID, sistemde mevcut bir kullanıcıya ait değilse veya eksikse.
+- Kullanıcı, geçerli olmayan bir "Kullanıcı Hakkında Bilgisi" veya "Kullanıcı Alan Bilgisi" girmişse.
+- Sistem, herhangi bir teknik nedenle veritabanı bağlantı işlemini gerçekleştirememişse.
+
+### Test Prosedürü:
+
+1. Test kullanıcısı, yazılımı desteklenen sistem ve cihazlarda çalıştırarak belirtilen girdilerle testi gerçekleştirmelidir.
+2. Test işlemini tamamladıktan sonra test sonucunu "Geçti/Kaldı" olarak belirterek nedenleri ile birlikte raporlamalıdır.
