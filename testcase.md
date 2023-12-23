@@ -224,3 +224,37 @@
 
 1. Test kullanıcısı, yazılımı desteklenen sistem ve cihazlarda çalıştırarak belirtilen girdilerle testi gerçekleştirmelidir.
 2. Test işlemini tamamladıktan sonra test sonucunu "Geçti/Kaldı" olarak belirterek nedenleri ile birlikte raporlamalıdır.
+
+## İş İlanı Teslimi Test Case'i
+
+### Risk Seviyesi: Yüksek
+
+**Amaç:** Kullanıcının başarıyla bir iş ilanını teslim edebilmesinin test edilmesi amaçlanmaktadır.
+
+### Girdiler:
+
+1. Kullanıcı ID: [Kullanıcının ID'si, örneğin: 123]
+2. İş İlanı ID: [İş ilanının ID'si, örneğin: 456]
+3. Teslim Adresi: [Teslim edilecek adres, örneğin: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266']
+
+### Beklenen Çıktılar:
+
+- İş ilanının başarılı bir şekilde teslim edilmesi.
+
+### Kriterler:
+
+- Kullanıcı ID, sistemde mevcut bir kullanıcıya ait olmalıdır.
+- İş ilanı ID, sistemde mevcut bir iş ilanına ait olmalıdır.
+- Teslim adresi geçerli bir Ethereum cüzdan adresi formatına sahip olmalıdır.
+
+### Hata Kriterleri:
+
+- Kullanıcı ID, sistemde mevcut bir kullanıcıya ait değilse veya eksikse.
+- İş ilanı ID, sistemde mevcut bir iş ilanına ait değilse veya eksikse.
+- Teslim adresi geçerli bir Ethereum cüzdan adresi formatına sahip değilse.
+- Sistem, herhangi bir teknik nedenle veritabanı bağlantı işlemini gerçekleştirememişse.
+
+### Test Prosedürü:
+
+1. Test kullanıcısı, yazılımı desteklenen sistem ve cihazlarda çalıştırarak belirtilen girdilerle testi gerçekleştirmelidir.
+2. Test işlemini tamamladıktan sonra test sonucunu "Geçti/Kaldı" olarak belirterek nedenleri ile birlikte raporlamalıdır.
