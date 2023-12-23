@@ -182,7 +182,7 @@
 5. Müşteri Notu: `Test Sipariş Notu`
 6. Sipariş Tutarı: `100` BYT
 7. Müşteri Adresi: [Müşteri cüzdan adres, örneğin: `0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266`]
-8. Sipariş Hash: [İşlem Hash adres, örneğin: `0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266Fd6e51aad88F6F4ce6Fd6e51aad88F6F4ce6`]
+8. Sipariş Hash: [İşlem Hash adres, örneğin: `0x1aad88F6F4ce6Fd6aad88F6F4ce6aB8827279cffFb92266Fd6e51aad88F6F4ce6Fd6e51aad88F6F4ce6`]
 
 ### Beklenen Çıktılar:
 
