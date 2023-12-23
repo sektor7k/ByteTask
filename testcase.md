@@ -32,3 +32,34 @@
 1. Test kullanıcısı, yazılımı desteklenen sistem ve cihazlarda çalıştırarak belirtilen girdilerle testi gerçekleştirmelidir.
 2. Test işlemini tamamladıktan sonra test sonucunu "Geçti/Kaldı" olarak belirterek nedenleri ile birlikte raporlamalıdır.
 
+## Kayıt (Signin) Test Case'i
+
+### Risk Seviyesi: Yüksek
+
+**Amaç:** Kullanıcının sisteme kayıt işleminin test edilmesi amaçlanmaktadır.
+
+### Girdiler:
+
+1. Kullanıcı Adı: YeniKullanici
+2. Parola: YeniParola456
+3. Kullanıcı Kayıt Butonu: Tetiklenmiş durumda
+
+### Beklenen Çıktılar:
+
+- Kullanıcının başarılı bir şekilde sisteme kayıt olması ve giriş ekranına yönlendirilmesi.
+
+### Kriterler:
+
+- Kullanıcı parola alanına büyük/küçük harf ve en az bir tek basamaklı doğal sayı içeren bir parola girmelidir.
+- Belirtilen kullanıcı adı, sistemde daha önce kayıtlı olmayan bir değer olmalıdır.
+- Kullanıcı, kullanıcı adı ve parola alanlarına uygun değerler dışında değer girmemelidir.
+
+### Hata Kriterleri:
+
+- Belirtilen değerlerin sistemde kayıtlı değerlerle çakışması.
+- Sistemin herhangi bir teknik nedenle veritabanı bağlantı işlemini gerçekleştirememesi.
+
+### Test Prosedürü:
+
+1. Test kullanıcısı, yazılımı desteklenen sistem ve cihazlarda çalıştırarak belirtilen girdilerle testi gerçekleştirmelidir.
+2. Test işlemini tamamladıktan sonra test sonucunu "Geçti/Kaldı" olarak belirterek nedenleri ile birlikte raporlamalıdır.
