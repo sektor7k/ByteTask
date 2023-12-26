@@ -20,7 +20,6 @@ export async function sendByt(addr, amount) {
     to: addr,
     value: parseEther(amount)
   })
-  console.log(hash);
 
 }
 

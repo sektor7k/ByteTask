@@ -79,19 +79,76 @@ Proje, kullanıcıların platforma kaydolmasını, güvenli bir şekilde giriş 
 
 - Kullanıcı dostu ve sakin bir arayüz tasarımı olacak.
 - Koyu renk paleti kullanıcıyı yormayacak şekilde seçilecek.
+- Yazılım, farklı tarayıcılar üzerinde (Chrome, Firefox, Safari) test edilecek.
 
 ## Test Gereksinimleri
 
-- Yazılım, farklı tarayıcılar üzerinde (Chrome, Firefox, Safari) test edilecek.
+Yazılım, farklı tarayıcılar üzerinde (Chrome, Firefox, Safari) test edilecek.
+
+### Test Kapsamı:
+
+#### Tarayıcılar: 
+
+Google Chrome, Mozilla Firefox, Safari.
+
+#### İşletim Sistemleri:
+
+Windows, macOS, Linux.
+
+#### Performans Testleri:
+
+- Yazılımın tarayıcılar arasında performansını değerlendirmek için test senaryoları oluşturulacak.
+- Her tarayıcıda minimum ve maksimum sistem gereksinimleri doğrultusunda performans testleri yapılacak.
+
+#### Uyumluluk Testleri:
+
+- Tarayıcı uyumluluğunu sağlamak için UI uyumluluk testleri yapılacak.
+Tarayıcıya özgü CSS ve JavaScript uyumluluğu kontrol edilecek.
+Güvenlik Testleri:
+
+- Yazılımın tarayıcılar arasında güvenliğini değerlendirmek için güvenlik testleri yapılacak.
+- Tarayıcı tabanlı saldırılara karşı savunma mekanizmaları test edilecek.
+Dağıtım ve Kurulum:
+Yazılımın dağıtımı ve kurulumu için detaylı talimatlar sağlanacak.
 
 ## Dağıtım ve Kurulum
 
 - Yazılımın dağıtımı ve kurulumu için detaylı talimatlar sağlanacak.
+- Dağıtım prosedürleri belirtilecek.
+  
+### Kurulum Talimatları:
 
+- Kullanıcıların yazılımı başarıyla kurabilmesi için adım adım kurulum talimatları sunulacak.
+- Donanım ve yazılım gereksinimleri belirtilecek.
+ 
 ## Bakım ve Destek
 
 - Yazılımın bakımı ve destek süreçleri belirlenecek.
 
+### Bakım Politikası:
+
+Yazılımın güncelleme ve bakım politikası açıklanacak.
+Düzenli bakım süreçleri ve güncelleme periyotları belirlenecek.
+
+### Destek Hizmetleri:
+
+- Kullanıcılara sağlanacak destek hizmetleri belirlenecek (e-posta, canlı sohbet, telefon).
+- Sorun raporlama ve çözüm süreçleri açıklanacak.
+  
 ## Referanslar
 
 - Kullanılacak API'lar, kütüphaneler ve dış kaynaklar belirlenecek ve belirtilecek.
+
+### API'lar:
+
+Kullanılacak API'ların belirli versiyonları ve kullanım talimatları belirtilecek.
+
+### Kütüphaneler:
+
+Proje içinde kullanılacak önemli kütüphaneler listelenecek.
+Kütüphane sürümleri ve bağımlılıkları belirtilecek.
+
+### Dış Kaynaklar:
+
+Proje geliştirme sürecinde başvurulan dış kaynaklar, bloglar, forumlar listelenecek.
+Referanslar ve alıntılar belirtilecek.
